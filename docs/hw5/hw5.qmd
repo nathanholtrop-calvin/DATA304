@@ -1,7 +1,40 @@
 ---
-title: "hw5"
-format: html
-output-file: "index"
+title: "Homework 5: Data Visualization Analysis"
+author: "Nathan Holtrop"
+format: 
+  html:
+    output-file: "index"
+    theme: lux
+    toc: true
+    code-fold: true
+---
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm role="button"}
+
+## Exercise 1: Linking
+
+Complete!
+
+
+## Exercise 2: Gallery Analysis
+
+### The Graphic
+![Ridgeline Plot of Temperatures in Lincoln, NE by month in 2016](images/ExampleVisualization.png){width=40% fig-align="center"}
+
+[Link to original visualization](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
+
+### Analysis
+* **Marks & Channels:**
+    * **Marks:** Line and Area
+    * **Channels:** Month is mapped to the y-axis with faceted x-axes for each month. Mean Temperature [F] is mapped to the x-axis.
+* **The Story:** What is this graphic trying to tell the viewer?
+* **Why it works:** Why did you pick this? What makes it "good"?
+
 ---
 
-This is working!
+## Exercise 3: Vega-Lite Weather Visualizations
+
+```{r}
+#| message: false
+#| warning: false
+library(vegawidget)
+# Your code for the weather-with-dates.csv data will go here

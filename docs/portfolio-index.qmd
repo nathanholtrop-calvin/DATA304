@@ -25,5 +25,3 @@ Course Assignments
 Everything from Vega-Lite charts to gallery analysis.
 [View Assignment 5](hw5/){.btn .btn-outline-primary .btn-sm}
 :::
-
-[HW 5](hw5/)

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Holtrop">
 
-<title>hw5</title>
+<title>Homework 5: Data Visualization Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,26 +34,46 @@ ul.task-list li input[type="checkbox"] {
 <link href="hw5_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="hw5_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="hw5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="hw5_files/libs/bootstrap/bootstrap-9715af8180f0efcbd50600be02bb9e4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="hw5_files/libs/bootstrap/bootstrap-16b27f1969a6ab9de5785512d143d7c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#exercise-1-linking" id="toc-exercise-1-linking" class="nav-link active" data-scroll-target="#exercise-1-linking">Exercise 1: Linking</a></li>
+  <li><a href="#exercise-2-gallery-analysis" id="toc-exercise-2-gallery-analysis" class="nav-link" data-scroll-target="#exercise-2-gallery-analysis">Exercise 2: Gallery Analysis</a>
+  <ul class="collapse">
+  <li><a href="#the-graphic" id="toc-the-graphic" class="nav-link" data-scroll-target="#the-graphic">The Graphic</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-vega-lite-weather-visualizations" id="toc-exercise-3-vega-lite-weather-visualizations" class="nav-link" data-scroll-target="#exercise-3-vega-lite-weather-visualizations">Exercise 3: Vega-Lite Weather Visualizations</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">hw5</h1>
+<h1 class="title">Homework 5: Data Visualization Analysis</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Holtrop </p>
+          </div>
+  </div>
     
   
     
@@ -63,7 +84,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is working!</p>
+<p><a href="../index.html" class="btn btn-outline-secondary btn-sm" role="button">← Back to Home</a></p>
+<section id="exercise-1-linking" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-linking">Exercise 1: Linking</h2>
+<p>Complete!</p>
+</section>
+<section id="exercise-2-gallery-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-gallery-analysis">Exercise 2: Gallery Analysis</h2>
+<section id="the-graphic" class="level3">
+<h3 class="anchored" data-anchor-id="the-graphic">The Graphic</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ExampleVisualization.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Ridgeline Plot of Temperatures in Lincoln, NE by month in 2016</figcaption>
+</figure>
+</div>
+<p><a href="https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color">Link to original visualization</a></p>
+</section>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
+<ul>
+<li><strong>Marks &amp; Channels:</strong>
+<ul>
+<li><strong>Marks:</strong> Line and Area</li>
+<li><strong>Channels:</strong> Month is mapped to the y-axis with faceted x-axes for each month. Mean Temperature [F] is mapped to the x-axis.</li>
+</ul></li>
+<li><strong>The Story:</strong> What is this graphic trying to tell the viewer?</li>
+<li><strong>Why it works:</strong> Why did you pick this? What makes it “good”?</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="exercise-3-vega-lite-weather-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-vega-lite-weather-visualizations">Exercise 3: Vega-Lite Weather Visualizations</h2>
+<p>#| message: false #| warning: false library(vegawidget) # Your code for the weather-with-dates.csv data will go here</p>
+</section>
 
 </main>
 <!-- /main column -->
