@@ -25,9 +25,28 @@ Complete!
 ### Analysis
 * **Marks & Channels:**
     * **Marks:** Line and Area
-    * **Channels:** Month is mapped to the y-axis with faceted x-axes for each month. Mean Temperature [F] is mapped to the x-axis.
-* **The Story:** What is this graphic trying to tell the viewer?
-* **Why it works:** Why did you pick this? What makes it "good"?
+    * **Mapping:**
+      * Month is mapped to the y-axis with faceted x-axes for each month.
+      * Mean Temperature [F] is mapped to the x-axis.
+        * The height of each ridgeline is determined by the density of that temperature occurring.
+      * Color (a continuous representation of Mean Temperature [F]) is mapped to fill.
+      
+
+* **The Story: What is this graphic trying to tell the viewer?**
+
+This graph not only demonstrates the temperature in Lincoln, NE every month, but also highlights the variance of the temperature. This is important for discussing the effects of seasonality. For instance, the winter months (i.e. December and January) show not only colder temperatures, but also increased variance with shorter and longer plots. This contrasts with the summer months of June and July which have much more peaky and narrow graphs, emphasizing the fairly consistent and warmer temperatures.
+
+* **Why it works: Why did you pick this? What makes it "good"?**
+
+I picked this graphic because it stuck out to me as an interesting choice of plotting in addition to internal faceting (they would likely be referred to as something else within Vega-Lite). I found it fairly simple to read and interpret while also exhibiting the strength of conveying a large amount of information. Furthermore, I think the graph made good use of the color scheme, using warmer colors for warmer temperatures and cooler colors for the winter months.
+
+In addition to all that is mentioned above. I appreciated the smooth ridges in comparison to another option such as a histogram because it demonstrates the continuity of time.
+
+* **Vega-Lite What features would you know how to implement in Vega-Lite? What features would you not know how to do (or are tricky) in Vega-Lite?**
+
+Within Vega-Lite, and with the training that we have achieved thus far, I am confident that I could implement the 'Area' mark, map variables to the x and y axes, create some form of a ridgeplot, implement a variation of the facets, and add a title and labels.
+
+Something that might be tricky to do would be to generate the smooth curves on the plots from raw data points and generate the proper facets required. The biggest issue would likely be the overlap between the ridgeline plots for each month.
 
 ---
 
