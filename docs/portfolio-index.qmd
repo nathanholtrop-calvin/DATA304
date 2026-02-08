@@ -3,6 +3,27 @@ title: "Nathan Holtrop's Data 304 Portfolio"
 format:
   html:
     output-file: "index"
+    theme: lux
+    toc: true
 embed-resources: true
 ---
+## Welcome to my Portfolio
+
+::: {.column-margin}
+![Nathan Holtrop](images/Headshot.jpg){style="border-radius: 10px;"}
+
+*Data Science and Actuarial Science student at Calvin University.*
+:::
+
+Hello! This site hosts my data visualization journey. Below you will find my coursework and projects.
+
+Course Assignments
+---
+
+::: {.callout-note appearance="simple"}
+## Homework 5: The Basics
+Everything from Vega-Lite charts to gallery analysis.
+[View Assignment 5](hw5/){.btn .btn-outline-primary .btn-sm}
+:::
+
 [HW 5](hw5/)
