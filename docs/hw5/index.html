@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="hw5_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="hw5_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="hw5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="hw5_files/libs/bootstrap/bootstrap-16b27f1969a6ab9de5785512d143d7c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="hw5_files/libs/bootstrap/bootstrap-cd0b510553c0280351974f36dd8953e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="hw5_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="hw5_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
 <script src="hw5_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-1-linking" id="toc-exercise-1-linking" class="nav-link active" data-scroll-target="#exercise-1-linking">Exercise 1: Linking</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link active" data-scroll-target="#test">Test</a></li>
+  <li><a href="#exercise-1-linking" id="toc-exercise-1-linking" class="nav-link" data-scroll-target="#exercise-1-linking">Exercise 1: Linking</a></li>
   <li><a href="#exercise-2-gallery-analysis" id="toc-exercise-2-gallery-analysis" class="nav-link" data-scroll-target="#exercise-2-gallery-analysis">Exercise 2: Gallery Analysis</a>
   <ul class="collapse">
   <li><a href="#the-graphic" id="toc-the-graphic" class="nav-link" data-scroll-target="#the-graphic">The Graphic</a></li>
@@ -130,6 +131,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a href="../index.html" class="btn btn-outline-secondary btn-sm" role="button">← Back to Home</a></p>
+<section id="test" class="level2">
+<h2 class="anchored" data-anchor-id="test">Test</h2>
+</section>
 <section id="exercise-1-linking" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1-linking">Exercise 1: Linking</h2>
 <p>Complete!</p>
@@ -195,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "description": "Daily High Temp in Seattle",</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "description": "Daily High Temperature in Seattle",</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
@@ -226,11 +230,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-b4e2a4d3fdcf4a5c8892" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4e2a4d3fdcf4a5c8892">{"x":{
+<div id="htmlwidget-8a1e0806a4fcf2fa8455" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8a1e0806a4fcf2fa8455">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Daily High Temp in Seattle",
+    "description": "Daily High Temperature in Seattle",
     "data": {
       "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
     },
@@ -307,8 +311,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-0ba6e3c9b7a38a085e66" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ba6e3c9b7a38a085e66">{"x":{
+<div id="htmlwidget-5f1b90ed82111c6d1af5" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5f1b90ed82111c6d1af5">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "Distribution of Weather Types by Month",
