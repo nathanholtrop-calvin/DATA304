@@ -7,53 +7,156 @@ format:
     theme: lux
     toc: true
     code-fold: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
-[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm role="button"}
+
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
+role="button"}
 
 ## Exercise 1: Linking
 
 Complete!
 
-
 ## Exercise 2: Gallery Analysis
 
 ### The Graphic
-![Ridgeline Plot of Temperatures in Lincoln, NE by month in 2016](images/ExampleVisualization.png){width=40% fig-align="center"}
 
-[Link to original visualization](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
+![Ridgeline Plot of Temperatures in Lincoln, NE by month in
+2016](images/ExampleVisualization.png){width="40%" fig-align="center"}
+
+[Link to original
+visualization](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
 
 ### Analysis
-* **Marks & Channels:**
-    * **Marks:** Line and Area
-    * **Mapping:**
-      * Month is mapped to the y-axis with faceted x-axes for each month.
-      * Mean Temperature [F] is mapped to the x-axis.
-        * The height of each ridgeline is determined by the density of that temperature occurring.
-      * Color (a continuous representation of Mean Temperature [F]) is mapped to fill.
-      
 
-* **The Story: What is this graphic trying to tell the viewer?**
+-   **Marks & Channels:**
+    -   **Marks:** Line and Area
+    -   **Mapping:**
+        -   Month is mapped to the y-axis with faceted x-axes for each
+            month.
+        -   Mean Temperature \[F\] is mapped to the x-axis.
+            -   The height of each ridgeline is determined by the
+                density of that temperature occurring.
+        -   Color (a continuous representation of Mean Temperature
+            \[F\]) is mapped to fill.
+-   **The Story: What is this graphic trying to tell the viewer?**
 
-This graph not only demonstrates the temperature in Lincoln, NE every month, but also highlights the variance of the temperature. This is important for discussing the effects of seasonality. For instance, the winter months (i.e. December and January) show not only colder temperatures, but also increased variance with shorter and longer plots. This contrasts with the summer months of June and July which have much more peaky and narrow graphs, emphasizing the fairly consistent and warmer temperatures.
+This graph not only demonstrates the temperature in Lincoln, NE every
+month, but also highlights the variance of the temperature. This is
+important for discussing the effects of seasonality. For instance, the
+winter months (i.e. December and January) show not only colder
+temperatures, but also increased variance with shorter and longer plots.
+This contrasts with the summer months of June and July which have much
+more peaky and narrow graphs, emphasizing the fairly consistent and
+warmer temperatures.
 
-* **Why it works: Why did you pick this? What makes it "good"?**
+-   **Why it works: Why did you pick this? What makes it "good"?**
 
-I picked this graphic because it stuck out to me as an interesting choice of plotting in addition to internal faceting (they would likely be referred to as something else within Vega-Lite). I found it fairly simple to read and interpret while also exhibiting the strength of conveying a large amount of information. Furthermore, I think the graph made good use of the color scheme, using warmer colors for warmer temperatures and cooler colors for the winter months.
+I picked this graphic because it stuck out to me as an interesting
+choice of plotting in addition to internal faceting (they would likely
+be referred to as something else within Vega-Lite). I found it fairly
+simple to read and interpret while also exhibiting the strength of
+conveying a large amount of information. Furthermore, I think the graph
+made good use of the color scheme, using warmer colors for warmer
+temperatures and cooler colors for the winter months.
 
-In addition to all that is mentioned above. I appreciated the smooth ridges in comparison to another option such as a histogram because it demonstrates the continuity of time.
+In addition to all that is mentioned above. I appreciated the smooth
+ridges in comparison to another option such as a histogram because it
+demonstrates the continuity of time.
 
-* **Vega-Lite What features would you know how to implement in Vega-Lite? What features would you not know how to do (or are tricky) in Vega-Lite?**
+-   **Vega-Lite What features would you know how to implement in
+    Vega-Lite? What features would you not know how to do (or are
+    tricky) in Vega-Lite?**
 
-Within Vega-Lite, and with the training that we have achieved thus far, I am confident that I could implement the 'Area' mark, map variables to the x and y axes, create some form of a ridgeplot, implement a variation of the facets, and add a title and labels.
+Within Vega-Lite, and with the training that we have achieved thus far,
+I am confident that I could implement the 'Area' mark, map variables to
+the x and y axes, create some form of a ridgeplot, implement a variation
+of the facets, and add a title and labels.
 
-Something that might be tricky to do would be to generate the smooth curves on the plots from raw data points and generate the proper facets required. The biggest issue would likely be the overlap between the ridgeline plots for each month.
+Something that might be tricky to do would be to generate the smooth
+curves on the plots from raw data points and generate the proper facets
+required. The biggest issue would likely be the overlap between the
+ridgeline plots for each month.
 
----
+------------------------------------------------------------------------
+## Exercise 3: Graph-Making Exercises (Seattle Weather)
 
-## Exercise 3: Vega-Lite Weather Visualizations
-
+Import the Vegawidget Library
 ```{r}
-#| message: false
-#| warning: false
 library(vegawidget)
-# Your code for the weather-with-dates.csv data will go here
+```
+
+### Exercise #1
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Daily High Temp in Seattle",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  },
+  "width": 600,
+  "height": 300,
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "timeUnit": "dayofyear",
+      "title": "Day of the Year"
+    },
+    "y": {
+      "field": "temp_max",
+      "type": "quantitative",
+      "title": "Max Temperature (C)"
+    },
+    "color": {
+      "field": "year",
+      "type": "nominal",
+      "title": "Year"
+    },
+    "opacity": {
+      "value": 0.5
+    }
+  }
+}' |> as_vegaspec()
+```
+
+### Exercise #3
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Distribution of Weather Types by Month",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  },
+  "width": 600,
+  "height": 300,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "ordinal",
+      "timeUnit": "month",
+      "title": "Month"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of Days"
+    },
+    "color": {
+      "field": "weather",
+      "type": "nominal",
+      "title": "Weather Condition",
+      "scale": {
+        "domain": ["sun", "fog", "drizzle", "rain", "snow"],
+        "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+      }
+    }
+  }
+}' |> as_vegaspec()
+```
