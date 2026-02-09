@@ -1,0 +1,53 @@
+---
+title: "Homework 6: Tufte and Composite Graphics"
+author: "Nathan Holtrop"
+format: 
+  html:
+    output-file: "index"
+    theme: lux
+    toc: true
+    code-fold: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
+role="button"}
+
+## Exercise 1: Read Chapter 1 of Tufte (2001).
+
+-   What is the most interesting lesson, guide, or piece of advice Tufte
+    offers you in this chapter?
+
+-   Tufte shares some of his favorite graphics in this chapter. Pick one
+(but not the one about the military advance on and retreat from Russia)
+and answer the following.
+
+-   What page is your graphic on? \[Take a screen shot and include the image
+as well, if you can.\]
+
+-   Why did you pick the graphic you chose?
+
+-   What encoding channels are used in the graphic? What variables are they
+associated with?
+
+-   What, if any, elements of the graphic would be hard/impossible for you
+to implement in Vega-Lite (given what we know so far)?
+
+-   What point is Tufte illustrating with this graphic?
+
+## Exercise 2: Read the following pages from (Knaflic 2020, chap. 2, pp 81-90;101-103).
+
+-   List one or two ideas that you learned in these sections that will change the way you design and create data graphics.
+
+## Exercise 3: Do Exercise 2.13 (Knaflic 2020, p 96).
+
+
+# References
+
+References
+
+Knaflic, C. N. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.
+
+Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%20quantitative%20information.pdf.

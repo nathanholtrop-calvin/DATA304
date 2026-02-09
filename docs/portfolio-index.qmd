@@ -21,7 +21,13 @@ Course Assignments
 ---
 
 ::: {.callout-note appearance="simple"}
-## Homework 5: The Basics
+## Homework 5: Starting a Portfolio
 Everything from Vega-Lite charts to gallery analysis.
 [View Assignment 5](hw5/){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.callout-note appearance="simple"}
+## Homework 6: Tufte and Composite Graphics
+Reading reflections and complex visualization.
+[View Assignment 6](hw6/){.btn .btn-outline-primary .btn-sm}
 :::
