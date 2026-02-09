@@ -93,7 +93,7 @@ library(vegawidget)
 '
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Daily High Temp in Seattle",
+  "description": "Daily High Temperature in Seattle",
   "data": {
     "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
   },
