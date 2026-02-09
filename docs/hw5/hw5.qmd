@@ -15,8 +15,6 @@ editor:
 [← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
 role="button"}
 
-## Test
-
 ## Exercise 1: Linking
 
 Complete!
