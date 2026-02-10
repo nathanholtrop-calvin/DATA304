@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -35,6 +70,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="hw6_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="hw6_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="hw6_files/libs/bootstrap/bootstrap-9b93e615b1908c23f64f9d4affd147ac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="hw6_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="hw6_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
+<script src="hw6_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
+<link href="hw6_files/libs/vega-embed-6.22.2/vega-embed.css" rel="stylesheet">
+<script src="hw6_files/libs/vega-embed-6.22.2/vega-embed@6.22.2.min.js"></script>
+<script src="hw6_files/libs/vegawidget-vl5-binding-0.5.0/vegawidget-vl5.js"></script>
 
 
 </head>
@@ -141,14 +182,223 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>List one or two ideas that you learned in these sections that will change the way you design and create data graphics.</li>
 </ul>
+<p>I really appreciated how on pg. 88, after determining that the timeline on the x-axis was not consistent the author not only spent time to fix the graph, but interpreted a potential reason for the inconsistency and created a subplot accordingly. This was a reminder to me that there are always different (and potentially better!) ways to display data and emphasize the point that you are trying to make.</p>
 </section>
 <section id="exercise-3-do-exercise-2.13-knaflic-2020-p-96." class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3-do-exercise-2.13-knaflic-2020-p-96.">Exercise 3: Do Exercise 2.13 (Knaflic 2020, p 96).</h2>
+<section id="step-1-list-three-things-that-are-not-ideal-about-this-graph.-what-makes-it-challenging" class="level5">
+<h5 class="anchored" data-anchor-id="step-1-list-three-things-that-are-not-ideal-about-this-graph.-what-makes-it-challenging">STEP 1: List three things that are not ideal about this graph. What makes it challenging?</h5>
+<ol type="1">
+<li><p>There are two y-axes with separate variables.</p></li>
+<li><p>The y-axis on the right does not start at 0.</p></li>
+<li><p>There is both a line graph and a bar chart with overlapping labels, making it difficult to read.</p></li>
+</ol>
+</section>
+<section id="step-2-for-each-of-the-three-things-youve-listed-describe-how-you-would-overcome-the-given-challenge." class="level5">
+<h5 class="anchored" data-anchor-id="step-2-for-each-of-the-three-things-youve-listed-describe-how-you-would-overcome-the-given-challenge.">STEP 2: For each of the three things you’ve listed, describe how you would overcome the given challenge.</h5>
+<p>In order to overcome the given challenge, I would do the following:</p>
+<ul>
+<li><p>Rather than using a dual-axis graph, I would split them up into separate facets.</p></li>
+<li><p>Another option would be to represent them with the same mark and layer them with the same scale.</p></li>
+<li><p>Start the y-axis at 0.</p></li>
+<li><p>Simplify the color scheme.</p></li>
+<li><p>Reduce or eliminate the harsh grid lines.</p></li>
+<li><p>Ensure the labels are easy to read or remove them entirely.</p></li>
+</ul>
+</section>
+<section id="step-3-download-the-data.-create-your-visual-that-puts-into-practice-the-strategies-youve-outlined." class="level5">
+<h5 class="anchored" data-anchor-id="step-3-download-the-data.-create-your-visual-that-puts-into-practice-the-strategies-youve-outlined.">STEP 3: Download the data. Create your visual that puts into practice the strategies you’ve outlined.</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">  "description": "Response and Completion Rates - Knaflic 2.13",</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "values": [</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q1-2017","Completion Rate":0.91,"Response Rate":0.023},</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q2-2017","Completion Rate":0.93,"Response Rate":0.018},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q3-2017","Completion Rate":0.91,"Response Rate":0.028},</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q4-2017","Completion Rate":0.89,"Response Rate":0.023},</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q1-2018","Completion Rate":0.84,"Response Rate":0.034},</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q2-2018","Completion Rate":0.88,"Response Rate":0.027},</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q3-2018","Completion Rate":0.91,"Response Rate":0.026},</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q4-2018","Completion Rate":0.87,"Response Rate":0.039},</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">      {"Date":"Q1-2019","Completion Rate":0.83,"Response Rate":0.028}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">    ]</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Completion Rate",</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 500,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 150,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "point": true, "color": "#1f77b4"},</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Date", "type": "nominal", "axis": {"labelAngle": 0}},</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Completion Rate",</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 1]},</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {"format": "%"}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Response Rate",</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 500,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 150,</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "point": true, "color": "#ff7f0e"},</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Date", "type": "nominal", "axis": {"labelAngle": 0}},</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Response Rate",</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 0.05]},</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {"format": "%"}</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="st">  ]</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-fc5979033ee25b1f213c" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc5979033ee25b1f213c">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Response and Completion Rates - Knaflic 2.13",
+    "data": {
+      "values": [
+        {
+          "Date": "Q1-2017",
+          "Completion Rate": 0.91,
+          "Response Rate": 0.023
+        },
+        {
+          "Date": "Q2-2017",
+          "Completion Rate": 0.93,
+          "Response Rate": 0.018
+        },
+        {
+          "Date": "Q3-2017",
+          "Completion Rate": 0.91,
+          "Response Rate": 0.028
+        },
+        {
+          "Date": "Q4-2017",
+          "Completion Rate": 0.89,
+          "Response Rate": 0.023
+        },
+        {
+          "Date": "Q1-2018",
+          "Completion Rate": 0.84,
+          "Response Rate": 0.034
+        },
+        {
+          "Date": "Q2-2018",
+          "Completion Rate": 0.88,
+          "Response Rate": 0.027
+        },
+        {
+          "Date": "Q3-2018",
+          "Completion Rate": 0.91,
+          "Response Rate": 0.026
+        },
+        {
+          "Date": "Q4-2018",
+          "Completion Rate": 0.87,
+          "Response Rate": 0.039
+        },
+        {
+          "Date": "Q1-2019",
+          "Completion Rate": 0.83,
+          "Response Rate": 0.028
+        }
+      ]
+    },
+    "vconcat": [
+      {
+        "title": "Completion Rate",
+        "width": 500,
+        "height": 150,
+        "mark": {
+          "type": "line",
+          "point": true,
+          "color": "#1f77b4"
+        },
+        "encoding": {
+          "x": {
+            "field": "Date",
+            "type": "nominal",
+            "axis": {
+              "labelAngle": 0
+            }
+          },
+          "y": {
+            "field": "Completion Rate",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                1
+              ]
+            },
+            "axis": {
+              "format": "%"
+            }
+          }
+        }
+      },
+      {
+        "title": "Response Rate",
+        "width": 500,
+        "height": 150,
+        "mark": {
+          "type": "line",
+          "point": true,
+          "color": "#ff7f0e"
+        },
+        "encoding": {
+          "x": {
+            "field": "Date",
+            "type": "nominal",
+            "axis": {
+              "labelAngle": 0
+            }
+          },
+          "y": {
+            "field": "Response Rate",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                0.05
+              ]
+            },
+            "axis": {
+              "format": "%"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The vertical concatenation of the graphs allows them both to be displayed accurately, with proper y-axes, while also maintaining easy comparability, highlighting changes over time (throwback to <em>Exercise #1</em>).</p>
+</section>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
-<p>References</p>
-<p>Knaflic, C. N. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.</p>
+<p>Knaflic, C. N. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%E2%80%99s%20Practice %20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.</p>
 <p>Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed.&nbsp;Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%20quantitative%20information.pdf.</p>
 </section>
 

@@ -61,13 +61,101 @@ Tufte is illustrating the space-time-story graphic idea and highlighting the pot
 
 -   List one or two ideas that you learned in these sections that will change the way you design and create data graphics.
 
+I really appreciated how on pg. 88, after determining that the timeline on the x-axis was not consistent the author not only spent time to fix the graph, but interpreted a potential reason for the inconsistency and created a subplot accordingly. This was a reminder to me that there are always different (and potentially better!) ways to display data and emphasize the point that you are trying to make.
+
 ## Exercise 3: Do Exercise 2.13 (Knaflic 2020, p 96).
 
+##### STEP 1: List three things that are not ideal about this graph. What makes it challenging?
+
+1. There are two y-axes with separate variables.
+
+2. The y-axis on the right does not start at 0.
+
+3. There is both a line graph and a bar chart with overlapping labels, making it difficult to read.
+
+##### STEP 2: For each of the three things you’ve listed, describe how you would overcome the given challenge.
+
+In order to overcome the given challenge, I would do the following:
+
+-   Rather than using a dual-axis graph, I would split them up into separate facets.
+
+-   Another option would be to represent them with the same mark and layer them with the same scale.
+
+-   Start the y-axis at 0.
+
+-   Simplify the color scheme.
+
+-   Reduce or eliminate the harsh grid lines.
+
+-   Ensure the labels are easy to read or remove them entirely.
+
+
+##### STEP 3: Download the data. Create your visual that puts into practice the strategies you’ve outlined.
+
+```{r}
+#| label: knaflic-2-13
+#| message: false
+#| warning: false
+
+library(vegawidget)
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Response and Completion Rates - Knaflic 2.13",
+  "data": {
+    "values": [
+      {"Date":"Q1-2017","Completion Rate":0.91,"Response Rate":0.023},
+      {"Date":"Q2-2017","Completion Rate":0.93,"Response Rate":0.018},
+      {"Date":"Q3-2017","Completion Rate":0.91,"Response Rate":0.028},
+      {"Date":"Q4-2017","Completion Rate":0.89,"Response Rate":0.023},
+      {"Date":"Q1-2018","Completion Rate":0.84,"Response Rate":0.034},
+      {"Date":"Q2-2018","Completion Rate":0.88,"Response Rate":0.027},
+      {"Date":"Q3-2018","Completion Rate":0.91,"Response Rate":0.026},
+      {"Date":"Q4-2018","Completion Rate":0.87,"Response Rate":0.039},
+      {"Date":"Q1-2019","Completion Rate":0.83,"Response Rate":0.028}
+    ]
+  },
+  "vconcat": [
+    {
+      "title": "Completion Rate",
+      "width": 500,
+      "height": 150,
+      "mark": {"type": "line", "point": true, "color": "#1f77b4"},
+      "encoding": {
+        "x": {"field": "Date", "type": "nominal", "axis": {"labelAngle": 0}},
+        "y": {
+          "field": "Completion Rate",
+          "type": "quantitative",
+          "scale": {"domain": [0, 1]},
+          "axis": {"format": "%"}
+        }
+      }
+    },
+    {
+      "title": "Response Rate",
+      "width": 500,
+      "height": 150,
+      "mark": {"type": "line", "point": true, "color": "#ff7f0e"},
+      "encoding": {
+        "x": {"field": "Date", "type": "nominal", "axis": {"labelAngle": 0}},
+        "y": {
+          "field": "Response Rate",
+          "type": "quantitative",
+          "scale": {"domain": [0, 0.05]},
+          "axis": {"format": "%"}
+        }
+      }
+    }
+  ]
+}' |> as_vegaspec()
+```
+
+The vertical concatenation of the graphs allows them both to be displayed accurately, with proper y-axes, while also maintaining easy comparability, highlighting changes over time (throwback to *Exercise #1*).
 
 # References
 
-References
-
-Knaflic, C. N. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.
+Knaflic, C. N. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%E2%80%99s%20Practice
+%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.
 
 Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%20quantitative%20information.pdf.
