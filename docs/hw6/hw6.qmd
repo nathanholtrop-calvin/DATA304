@@ -17,25 +17,45 @@ role="button"}
 
 ## Exercise 1: Read Chapter 1 of Tufte (2001).
 
--   What is the most interesting lesson, guide, or piece of advice Tufte
+-   1) What is the most interesting lesson, guide, or piece of advice Tufte
     offers you in this chapter?
 
--   Tufte shares some of his favorite graphics in this chapter. Pick one
+I really liked Tufte's final notes on p. 51. In particular he said "Graphical excellence is that which gives to the view the greatest number of ideas in the shortest time with the least ink in the smallest space."
+
+This clear and direct emphasis on minimalism reminded me that simplicity is key with data visualizations.
+
+-   2) Tufte shares some of his favorite graphics in this chapter. Pick one
 (but not the one about the military advance on and retreat from Russia)
 and answer the following.
 
--   What page is your graphic on? \[Take a screen shot and include the image
+::: {}
+![Life Cycle of the Japanese Beetle](images/GraphicScreenshot.png){style="border-radius: 10px;"}
+
+*L. Hugh Newman, Man and Insects (London, 1965), pp. 104-105.*
+:::
+
+-   a. What page is your graphic on? \[Take a screen shot and include the image
 as well, if you can.\]
 
--   Why did you pick the graphic you chose?
+Page 43
 
--   What encoding channels are used in the graphic? What variables are they
+-   b. Why did you pick the graphic you chose?
+
+I chose this graphic because I appreciated the artistic continuity when balanced with the simplicity of the message. It is very clear what the graphic represents, but as a visual learner myself, I found it very useful to understand and visualize.
+
+-   c. What encoding channels are used in the graphic? What variables are they
 associated with?
 
--   What, if any, elements of the graphic would be hard/impossible for you
+The marks are lines showing the months of the year, representing change over time, and are represented on the x-axis. TThe y-axis corresponds to gravity and elements above/below the earth within the image. This is done to highlight the life cycle of the beetle coming from and returning to the earth. There is minimal color involved (just shading with lights and darks within the image to highlight the beetle). In terms of fill, the whole graphic is filled with the image.
+
+-   d. What, if any, elements of the graphic would be hard/impossible for you
 to implement in Vega-Lite (given what we know so far)?
 
--   What point is Tufte illustrating with this graphic?
+I would have no idea how to create such a complex image as a graph. My only thought would be to save the image itself as a background image and then layer the months and grid lines over top.
+
+-   e. What point is Tufte illustrating with this graphic?
+
+Tufte is illustrating the space-time-story graphic idea and highlighting the potential to mix the space and time aspects within the x-axis.
 
 ## Exercise 2: Read the following pages from (Knaflic 2020, chap. 2, pp 81-90;101-103).
 
