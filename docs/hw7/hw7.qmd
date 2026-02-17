@@ -210,13 +210,16 @@ Figure 6.12 is bad because the bars are too long and draw the eye away from the 
 1. Watch this video starting at 12:18 until 49:52. (You are welcome to watch the whole thing if you like.) You will see some things that look familiar from our discussion of perception in class, but there are also a number of additional examples and discussion.
 
 2. List at least three pieces of advice you can glean from this video that might help you design good graphics.
-    - 
     
-    - 
+    - A well-designed workhorse can do a lot: You don't need a spectacular graphic to accomplish your goals and do so effectively. 
     
-    - 
+    - Remember to highlight the parts of a graphic that you want viewers to notice and focus on.
+    
+    - Make sure that the design of the graphic matches the "context" of the data. Map variables clearly and avoid using aesthetic features that will distort the true representation.
 
 3. There are two figures in this video that come from Chapter 1 of Tufte (2001). Did you spot them? Which figures are they?
+
+  - The two figures that matched were Charles Joseph Minard’s Map of Napoleon’s Russia Campaign and, despite scouring the video as much as five times, I was unable to find the second one.
 
 ----------------
 
