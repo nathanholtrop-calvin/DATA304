@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -35,6 +70,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="hw7_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="hw7_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="hw7_files/libs/bootstrap/bootstrap-6290eca0b2410cad968798637cadff3d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="hw7_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="hw7_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
+<script src="hw7_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
+<link href="hw7_files/libs/vega-embed-6.22.2/vega-embed.css" rel="stylesheet">
+<script src="hw7_files/libs/vega-embed-6.22.2/vega-embed@6.22.2.min.js"></script>
+<script src="hw7_files/libs/vegawidget-vl5-binding-0.5.0/vegawidget-vl5.js"></script>
 
 
 </head>
@@ -88,14 +129,391 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="exercise-1-wilke-on-visualizing-amounts">Exercise 1: Wilke on visualizing amounts</h2>
 <p>Read Chapter 6 of Wilke (2019). This chapter begins by discussing bar charts. Many of you gravitate toward bar plots. Beware the tendency to overuse them! But if you are going to use them, you should use them well.</p>
 <ol type="1">
-<li><p>List some guidelines/advice Wilke gives about creating bar charts.</p></li>
-<li><p>When is it not advised to use a bar chart? Why?</p></li>
-<li><p>What alternatives to bars are mentioned in this chapter?</p></li>
-<li><p>What guidance does Wilke give about whether or not to stack bars vs.&nbsp;dodge them (using an offset in Vega-Lite)?</p></li>
-<li><p>Recreate Figure 6.3 in Vega-Lite.</p></li>
-<li><p>Recreate Figures 6.8 and 6.9 in Vega-Lite.</p></li>
-<li><p>Recreate Figure 6.11 and explain why Figures 6.12 and 6.13 are labeled “bad”. (Note: You will have to do some filtering or do something extra to deal with the extra data here.)</p></li>
+<li>List some guidelines/advice Wilke gives about creating bar charts.</li>
 </ol>
+<ul>
+<li><p>Always start at a zero baseline!</p></li>
+<li><p>Use horizontal bars if the tables are too long.</p></li>
+<li><p>Rearrange bars by size unless they are already in a meaningful order.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>When is it not advised to use a bar chart? Why?</li>
+</ol>
+<p>It is not advised to use a bar chart if the bars do not all start at zero or if the difference between the height of the bars is minute. This is not an efficient use of ink and it is difficult to decipher. It would likely be better to use something like a scatter plot.</p>
+<ol start="3" type="1">
+<li>What alternatives to bars are mentioned in this chapter?</li>
+</ol>
+<ul>
+<li><p>Heatmap - “While this visualization makes it harder to determine the exact data values shown, it does an excellent job of highlighting broader trends.”</p></li>
+<li><p>Dot plot - Much better for location rather than length.</p></li>
+</ul>
+<ol start="4" type="1">
+<li>What guidance does Wilke give about whether or not to stack bars vs.&nbsp;dodge them (using an offset in Vega-Lite)?</li>
+</ol>
+<p>Wilke suggests that stacking bars is useful when the sum of the bars is a meaningful amount or if the values are representing a count. You should not use stacked bars if the primary goal is to compare across subcategories as they will not all have a zero baseline.</p>
+<ol start="5" type="1">
+<li>Recreate Figure 6.3 in Vega-Lite.</li>
+</ol>
+<p>Import the Vegawidget Library</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/cow-movies.csv"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 400,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 200,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": "bar",</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "amount",</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Weekend gross (USD)"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "title",</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "sort": "-x",</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": null</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-3bc905fba2a49034dd59" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3bc905fba2a49034dd59">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/cow-movies.csv"
+    },
+    "width": 400,
+    "height": 200,
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "amount",
+        "type": "quantitative",
+        "title": "Weekend gross (USD)"
+      },
+      "y": {
+        "field": "title",
+        "type": "nominal",
+        "sort": "-x",
+        "title": null
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Recreate Figures 6.8 and 6.9 in Vega-Lite.</li>
+</ol>
+<p>Figure 6.8</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    {"filter": "datum.race != </span><span class="sc">\'</span><span class="st">all</span><span class="sc">\'</span><span class="st"> &amp;&amp; datum.race != </span><span class="sc">\'</span><span class="st">white_non_hispanic</span><span class="sc">\'</span><span class="st">"}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 400,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 300,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": "bar",</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "race",</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "race",</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "axis": {"labelAngle": 0}</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "median_income",</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "median income (USD)"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "age",</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "age (years)",</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">      "scale": {"scheme": "viridis"}</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">    "xOffset": {"field": "age"}</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-adf7ea408ff99c66c114" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-adf7ea408ff99c66c114">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+    },
+    "transform": [
+      {
+        "filter": "datum.race != 'all' && datum.race != 'white_non_hispanic'"
+      }
+    ],
+    "width": 400,
+    "height": 300,
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "race",
+        "type": "nominal",
+        "title": "race",
+        "axis": {
+          "labelAngle": 0
+        }
+      },
+      "y": {
+        "field": "median_income",
+        "type": "quantitative",
+        "title": "median income (USD)"
+      },
+      "color": {
+        "field": "age",
+        "type": "nominal",
+        "title": "age (years)",
+        "scale": {
+          "scheme": "viridis"
+        }
+      },
+      "xOffset": {
+        "field": "age"
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Figure 6.9</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">      "filter": "datum.race != </span><span class="sc">\'</span><span class="st">all</span><span class="sc">\'</span><span class="st"> &amp;&amp; datum.race != </span><span class="sc">\'</span><span class="st">white_non_hispanic</span><span class="sc">\'</span><span class="st">"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "field": "race",</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "type": "nominal",</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">    "columns": 2,</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "title": null,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "header": {"labelFontSize": 12, "labelFontWeight": "bold"}</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "width": {"step": 45},</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">    "height": 200,</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">    "mark": "bar",</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">    "encoding": {</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "x": {</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "age",</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "age (years)",</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">        "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65-74", "&gt;74"],</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">        "axis": {"labelAngle": 0}</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">      "y": {</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "median_income",</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "quantitative",</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "median income (USD)"</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">      "color": {</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "race",</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "legend": null</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="st">  "resolve": {"scale": {"y": "shared", "x": "shared"}}</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-82b7be113b40565fd3e2" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-82b7be113b40565fd3e2">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+    },
+    "transform": [
+      {
+        "filter": "datum.race != 'all' && datum.race != 'white_non_hispanic'"
+      }
+    ],
+    "facet": {
+      "field": "race",
+      "type": "nominal",
+      "columns": 2,
+      "title": null,
+      "header": {
+        "labelFontSize": 12,
+        "labelFontWeight": "bold"
+      }
+    },
+    "spec": {
+      "width": {
+        "step": 45
+      },
+      "height": 200,
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "age",
+          "type": "nominal",
+          "title": "age (years)",
+          "sort": [
+            "15-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65-74",
+            ">74"
+          ],
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "median_income",
+          "type": "quantitative",
+          "title": "median income (USD)"
+        },
+        "color": {
+          "field": "race",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    "resolve": {
+      "scale": {
+        "y": "shared",
+        "x": "shared"
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Recreate Figure 6.11 and explain why Figures 6.12 and 6.13 are labeled “bad”. (Note: You will have to do some filtering or do something extra to deal with the extra data here.)</li>
+</ol>
+<p>Figure 6.11</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/cow-gapminder.csv"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    {"filter": "datum.continent == </span><span class="sc">\'</span><span class="st">Americas</span><span class="sc">\'</span><span class="st"> &amp;&amp; datum.year == 2007"}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 400,</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 450,</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": {"type": "point", "filled": true, "color": "#0072B2", "size": 60},</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "lifeExp",</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "life expectancy (years)",</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "scale": {"zero": false}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "country",</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "sort": "-x",</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": null</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-ba0286d51bcde428f63b" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ba0286d51bcde428f63b">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/cow-gapminder.csv"
+    },
+    "transform": [
+      {
+        "filter": "datum.continent == 'Americas' && datum.year == 2007"
+      }
+    ],
+    "width": 400,
+    "height": 450,
+    "mark": {
+      "type": "point",
+      "filled": true,
+      "color": "#0072B2",
+      "size": 60
+    },
+    "encoding": {
+      "x": {
+        "field": "lifeExp",
+        "type": "quantitative",
+        "title": "life expectancy (years)",
+        "scale": {
+          "zero": false
+        }
+      },
+      "y": {
+        "field": "country",
+        "type": "nominal",
+        "sort": "-x",
+        "title": null
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Figure 6.12 is bad because the bars are too long and draw the eye away from the key difference of life expectancy that is being displayed which is the primary focus of the graph. Figure 6.13 is bad because the countries are ordered alphabetically, which causes a dots to become disordered and hectic.</p>
 <hr>
 </section>
 <section id="exercise-2-a-video-presentation-by-healy" class="level2">

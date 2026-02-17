@@ -23,17 +23,185 @@ Read Chapter 6 of Wilke (2019). This chapter begins by discussing bar charts. Ma
 
 1. List some guidelines/advice Wilke gives about creating bar charts.
 
+  - Always start at a zero baseline!
+  
+  - Use horizontal bars if the tables are too long.
+  
+  - Rearrange bars by size unless they are already in a meaningful order.
+
 2. When is it not advised to use a bar chart? Why?
+
+It is not advised to use a bar chart if the bars do not all start at zero or if the difference between the height of the bars is minute. This is not an efficient use of ink and it is difficult to decipher. It would likely be better to use something like a scatter plot.
 
 3. What alternatives to bars are mentioned in this chapter?
 
+  - Heatmap - "While this visualization makes it harder to determine the exact data values shown, it does an excellent job of highlighting broader trends."
+  
+  - Dot plot - Much better for location rather than length.
+
 4. What guidance does Wilke give about whether or not to stack bars vs. dodge them (using an offset in Vega-Lite)?
+
+Wilke suggests that stacking bars is useful when the sum of the bars is a meaningful amount or if the values are representing a count. You should not use stacked bars if the primary goal is to compare across subcategories as they will not all have a zero baseline.
 
 5. Recreate Figure 6.3 in Vega-Lite.
 
+Import the Vegawidget Library
+```{r}
+library(vegawidget)
+```
+
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-movies.csv"
+  },
+  "width": 400,
+  "height": 200,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "amount",
+      "type": "quantitative",
+      "title": "Weekend gross (USD)"
+    },
+    "y": {
+      "field": "title",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    }
+  }
+}' |> as_vegaspec()
+```
+
 6. Recreate Figures 6.8 and 6.9 in Vega-Lite.
 
+Figure 6.8
+
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+  },
+  "transform": [
+    {"filter": "datum.race != \'all\' && datum.race != \'white_non_hispanic\'"}
+  ],
+  "width": 400,
+  "height": 300,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "race",
+      "type": "nominal",
+      "title": "race",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "median_income",
+      "type": "quantitative",
+      "title": "median income (USD)"
+    },
+    "color": {
+      "field": "age",
+      "type": "nominal",
+      "title": "age (years)",
+      "scale": {"scheme": "viridis"}
+    },
+    "xOffset": {"field": "age"}
+  }
+}' |> as_vegaspec()
+```
+
+Figure 6.9
+
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.race != \'all\' && datum.race != \'white_non_hispanic\'"
+    }
+  ],
+  "facet": {
+    "field": "race",
+    "type": "nominal",
+    "columns": 2,
+    "title": null,
+    "header": {"labelFontSize": 12, "labelFontWeight": "bold"}
+  },
+  "spec": {
+    "width": {"step": 45},
+    "height": 200,
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "age",
+        "type": "nominal",
+        "title": "age (years)",
+        "sort": ["15-24", "25-34", "35-44", "45-54", "55-64", "65-74", ">74"],
+        "axis": {"labelAngle": 0}
+      },
+      "y": {
+        "field": "median_income",
+        "type": "quantitative",
+        "title": "median income (USD)"
+      },
+      "color": {
+        "field": "race",
+        "type": "nominal",
+        "legend": null
+      }
+    }
+  },
+  "resolve": {"scale": {"y": "shared", "x": "shared"}}
+}' |> as_vegaspec()
+```
+
 7. Recreate Figure 6.11 and explain why Figures 6.12 and 6.13 are labeled “bad”. (Note: You will have to do some filtering or do something extra to deal with the extra data here.)
+
+Figure 6.11
+
+``` {r}
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-gapminder.csv"
+  },
+  "transform": [
+    {"filter": "datum.continent == \'Americas\' && datum.year == 2007"}
+  ],
+  "width": 400,
+  "height": 450,
+  "mark": {"type": "point", "filled": true, "color": "#0072B2", "size": 60},
+  "encoding": {
+    "x": {
+      "field": "lifeExp",
+      "type": "quantitative",
+      "title": "life expectancy (years)",
+      "scale": {"zero": false}
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    }
+  }
+}' |> as_vegaspec()
+
+```
+
+Figure 6.12 is bad because the bars are too long and draw the eye away from the key difference of life expectancy that is being displayed which is the primary focus of the graph. Figure 6.13 is bad because the countries are ordered alphabetically, which causes a dots to become disordered and hectic.
 
 ----------------
 
