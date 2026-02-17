@@ -1,0 +1,83 @@
+---
+title: "Homework 7: Perception and Practice"
+author: "Nathan Holtrop"
+format: 
+  html:
+    output-file: "index"
+    theme: lux
+    toc: true
+    code-fold: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
+role="button"}
+
+----------------
+
+## Exercise 1: Wilke on visualizing amounts
+
+Read Chapter 6 of Wilke (2019). This chapter begins by discussing bar charts. Many of you gravitate toward bar plots. Beware the tendency to overuse them! But if you are going to use them, you should use them well.
+
+1. List some guidelines/advice Wilke gives about creating bar charts.
+
+2. When is it not advised to use a bar chart? Why?
+
+3. What alternatives to bars are mentioned in this chapter?
+
+4. What guidance does Wilke give about whether or not to stack bars vs. dodge them (using an offset in Vega-Lite)?
+
+5. Recreate Figure 6.3 in Vega-Lite.
+
+6. Recreate Figures 6.8 and 6.9 in Vega-Lite.
+
+7. Recreate Figure 6.11 and explain why Figures 6.12 and 6.13 are labeled “bad”. (Note: You will have to do some filtering or do something extra to deal with the extra data here.)
+
+----------------
+
+## Exercise 2: A video presentation by Healy
+
+1. Watch this video starting at 12:18 until 49:52. (You are welcome to watch the whole thing if you like.) You will see some things that look familiar from our discussion of perception in class, but there are also a number of additional examples and discussion.
+
+2. List at least three pieces of advice you can glean from this video that might help you design good graphics.
+    - 
+    
+    - 
+    
+    - 
+
+3. There are two figures in this video that come from Chapter 1 of Tufte (2001). Did you spot them? Which figures are they?
+
+----------------
+
+## Exercise 3: Heat maps
+
+1. In Vega-Lite lingo, what makes something be a heat map?
+
+2. Recreate Figure 6.14 or 6.15 from Wilke (2019) (your choice). Or get fancy and include an interactive element that let’s you select the year to order by.
+
+3. At around 20:10, Healy presents a possible problem with heat maps, what is it?
+
+4. But starting at around 44:12, he presents a heat map as a “show pony”. Why isn’t the problem presented earlier an issue here? Is it an issue in the figure you make in part b? Why or why not?
+
+----------------
+
+## Exercise 4: Pie charts
+
+1. What does Healy have to say about pie charts in his video?
+
+2. How does that compare to what Wilke says in Section 10.1 of Wilke (2019)?
+
+3. What alternatives does Wilke present to pie charts and in what situations does he favor each? (You should be comparing pie charts to two other types of graphics that can be made with the same sort of data.)
+
+4. We won’t make many pie charts, but I suppose you should make at least one. To do this in Vega-Lite, use an arc mark. Recreate Figure 10.1 of Wilke (2019).
+
+----------------
+
+# References
+
+Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%20quantitative%20information.pdf.
+
+Wilke, C. O. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O’Reilly Media. https://clauswilke.com/dataviz/.

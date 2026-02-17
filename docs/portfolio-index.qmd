@@ -31,3 +31,9 @@ Everything from Vega-Lite charts to gallery analysis.
 Reading reflections and complex visualization.
 [View Assignment 6](hw6/){.btn .btn-outline-primary .btn-sm}
 :::
+
+::: {.callout-note appearance="simple"}
+## Homework 7: Perception and More Practice
+Reading reflections and complex visualization.
+[View Assignment 7](hw7/){.btn .btn-outline-primary .btn-sm}
+:::
