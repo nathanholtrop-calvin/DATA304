@@ -227,11 +227,61 @@ Figure 6.12 is bad because the bars are too long and draw the eye away from the 
 
 1. In Vega-Lite lingo, what makes something be a heat map?
 
+Using Vega-Lite terminology, something is a heatmap if the graph is encoded to have two categorical variables on the x and y axes, with the rectangle mark, and a quantitative variable encoded to color.
+
 2. Recreate Figure 6.14 or 6.15 from Wilke (2019) (your choice). Or get fancy and include an interactive element that let’s you select the year to order by.
+
+``` {r}
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-internet2.csv",
+    "format": {"type": "csv", "parse": {"users": "number"}}
+  },
+  "transform": [
+    {"filter": "isValid(datum.users)"}
+  ],
+  "width": 600,
+  "height": 450,
+  "mark": {"type": "rect", "stroke": "white", "strokeWidth": 0.5},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "title": null,
+      "sort": {"field": "users", "op": "max", "order": "descending"}
+    },
+    "color": {
+      "field": "users",
+      "type": "quantitative",
+      "title": "Internet Users (%)",
+      "scale": {"scheme": "magma"}
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"domain": false, "ticks": false}
+  }
+}' |> as_vegaspec()
+```
+
+
 
 3. At around 20:10, Healy presents a possible problem with heat maps, what is it?
 
+Healy explains that, while we can tell general differences between colors, color is an incredibly innaccurate way of comparing continuous values. Firstly, because it is difficult to compare such similar values, and, secondly, because of the effect that the surrounding colors have on the square we are focused on. The surrounding colors will make it seem either lighter or darker than it actually is.
+
 4. But starting at around 44:12, he presents a heat map as a “show pony”. Why isn’t the problem presented earlier an issue here? Is it an issue in the figure you make in part b? Why or why not?
+
+The problem mentioned previously does not matter with the "show pony" due to the fact that we are looking less at the individual pixels and far more at the general trends and major changes over time.
 
 ----------------
 
@@ -239,11 +289,67 @@ Figure 6.12 is bad because the bars are too long and draw the eye away from the 
 
 1. What does Healy have to say about pie charts in his video?
 
+Healy explains that pie charts are much more difficult to interpret because we are far better at decoding lengths (bar charts) and position (scatter plots) as opposed to the relative angles and areas of a pie chart.
+
 2. How does that compare to what Wilke says in Section 10.1 of Wilke (2019)?
+
+Wilke's opinions seem to contradict with Healy as he claims that there are certain use cases where pie charts are favorable. He says that pie charts work well when the goal is to "emphasize simple fractions" or when datasets are quite small.
 
 3. What alternatives does Wilke present to pie charts and in what situations does he favor each? (You should be comparing pie charts to two other types of graphics that can be made with the same sort of data.)
 
+WIlke compares pie charts to both stacked bar chart and side-by-side bar charts. He says that similar to pie charts, stacked bar charts do well to visualizes the data as proportions of a whole. He then continues by explaining that side-by-side bars allow for the easiest visualization of relative proportions and work well when the whole is broken into many pieces. Similarly to pie charts, side-by-side bars work great for smaller datasets but that stacked bars are the only ones that work well as a visualization of many sets of proportions or time series of proportions.
+
 4. We won’t make many pie charts, but I suppose you should make at least one. To do this in Vega-Lite, use an arc mark. Recreate Figure 10.1 of Wilke (2019).
+
+``` {r}
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Recreation of Wilke Figure 10.1: German Parliament Composition",
+  "data": {
+    "values": [
+      {"party": "FDP", "seats": 39},
+      {"party": "SPD", "seats": 214},
+      {"party": "CDU/CSU", "seats": 243}
+    ]
+  },
+  "width": 500,
+  "height": 500,
+  "encoding": {
+    "theta": {"field": "seats", "type": "quantitative", "stack": true},
+    "color": {
+      "field": "party",
+      "type": "nominal",
+      "scale": {
+        "domain": ["CDU/CSU", "SPD", "FDP"],
+        "range": ["#a9a9a9", "#AA4A44", "#FFDB58"]
+      },
+      "legend": null
+    },
+    "order": {"field": "seats", "type": "quantitative", "sort": "descending"}
+  },
+  "layer": [
+    {
+      "mark": {"type": "arc", "outerRadius": 150, "stroke": "white", "strokeWidth": 2}
+    },
+    {
+      "mark": {"type": "text", "radius": 185, "fontSize": 16, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "party", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {"type": "text", "radius": 100, "fill": "white", "fontSize": 18, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "seats", "type": "quantitative"}
+      }
+    }
+  ],
+  "view": {"stroke": null}
+}' |> as_vegaspec()
+
+```
 
 ----------------
 
