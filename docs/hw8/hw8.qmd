@@ -1,0 +1,485 @@
+---
+title: "Homework 8: Data Operations and Graphics"
+author: "Nathan Holtrop"
+format: 
+  html:
+    output-file: "index"
+    theme: lux
+    toc: true
+    code-fold: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
+role="button"}
+
+----------------
+
+## Exercise 1: Recreate Supply & Demand Graphs from HW #4.
+
+```{r}
+library(vegawidget)
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #1: Side-by-Side Bar Chart"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"},
+    {"fold": ["cap_num", "dem_num"], "as": ["type", "value"]}
+  ],
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {"labelAngle": -45}
+    },
+    "xOffset": {"field": "type"},
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Number of Requests"
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {"range": ["#808080", "#0072B2"]},
+      "legend": {"labelExpr": "datum.label == \'cap_num\' ? \'Capacity\' : \'Demand\'"}
+    }
+  }
+}' |> as_vegaspec()
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #2: Line Graph"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"},
+    {"fold": ["cap_num", "dem_num"], "as": ["type", "value"]}
+  ],
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Month"
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Number of Requests"
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {"range": ["#808080", "#0072B2"]},
+      "legend": {"labelExpr": "datum.label == \'cap_num\' ? \'Capacity\' : \'Demand\'"}
+    }
+  }
+}' |> as_vegaspec()
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #3: Overlapping Bar Chart"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {"labelAngle": -45}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "size": 30, "color": "#808080", "opacity": 0.5},
+      "encoding": {
+        "y": {"field": "cap_num", "type": "quantitative", "title": "Number of Requests"}
+      }
+    },
+    {
+      "mark": {"type": "bar", "size": 15, "color": "#0072B2"},
+      "encoding": {
+        "y": {"field": "dem_num", "type": "quantitative"}
+      }
+    }
+  ]
+}' |> as_vegaspec()
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #4: Unmet Demand Stacked on Capacity"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"},
+    {
+      "calculate": "datum.dem_num > datum.cap_num ? datum.dem_num - datum.cap_num : 0", 
+      "as": "unmet_demand"
+    },
+    {"fold": ["cap_num", "unmet_demand"], "as": ["type", "value"]},
+    {
+      "calculate": "datum.type == \'cap_num\' ? 0 : 1", 
+      "as": "stack_order"
+    }
+  ],
+  "mark": {"type": "bar", "stroke": "white"},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Requests (Total Capacity + Overage)"
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {
+        "domain": ["cap_num", "unmet_demand"],
+        "range": ["#808080", "#E69F00"]
+      },
+      "legend": {
+        "labelExpr": "datum.label == \'cap_num\' ? \'Capacity\' : \'Unmet Demand\'"
+      }
+    },
+    "order": {
+      "field": "stack_order",
+      "type": "quantitative"
+    }
+  }
+}' |> as_vegaspec()
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #5: Dumbell Chart"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {"labelAngle": -45}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "black", "strokeWidth": 1.5},
+      "encoding": {
+        "y": {"field": "cap_num", "type": "quantitative", "title": "Number of Requests"},
+        "y2": {"field": "dem_num"}
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 100, "filled": true, "color": "#808080"},
+      "encoding": {
+        "y": {"field": "cap_num", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 100, "filled": true, "color": "#0072B2"},
+      "encoding": {
+        "y": {"field": "dem_num", "type": "quantitative"}
+      }
+    }
+  ]
+}' |> as_vegaspec()
+```
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Chart #6: Unmet Demand"},
+  "data": {"url": "demandcapacity.csv"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    {"calculate": "toNumber(join(split(datum.capacity, \',\'), \'\'))", "as": "cap_num"},
+    {"calculate": "toNumber(join(split(datum.demand, \',\'), \'\'))", "as": "dem_num"},
+    {
+      "calculate": "datum.dem_num > datum.cap_num ? datum.dem_num - datum.cap_num : 0", 
+      "as": "unmet_demand"
+    }
+  ],
+  "mark": {"type": "line", "point": true, "color": "#E69F00"},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "unmet_demand",
+      "type": "quantitative",
+      "title": "Unmet Demand (Requests)"
+    }
+  }
+}' |> as_vegaspec()
+```
+
+## Exercise 2: Jobs (Example graph shown below)
+
+1. You may be wondering just what perc means in this data set. Create a graphic that shows the sum of all the values of perc in each year separated by men and women. Explain what your graphic reveals about what perc means.
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  },
+  "width": 400,
+  "height": 200,
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "perc",
+      "type": "quantitative",
+      "title": "Sum of Perc"
+    },
+    "color": {
+      "field": "sex",
+      "type": "nominal"
+    }
+  }
+}' |> as_vegaspec()
+```
+
+As shown on the graph above, the variable 'perc' is the total percentage of people by gender in the workforce. As you can see, it always equals 100% because it is the combination of both men and women.
+
+2. Now modify the graph from class.
+
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  },
+  "transform": [
+    {
+      "filter": "datum.year == 1850 || datum.year == 1900 || datum.year == 1950 || datum.year == 2000"
+    },
+    {
+      "pivot": "sex",
+      "value": "perc",
+      "groupby": ["job", "year"]
+    }
+  ],
+  "facet": {
+    "column": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Comparison of Men and Women by Year"
+    }
+  },
+  "spec": {
+    "width": 180,
+    "height": 180,
+    "mark": {"size": 30, "type": "point"},
+    "encoding": {
+      "x": {
+        "field": "men",
+        "type": "quantitative",
+        "title": "% of Men",
+        "scale": {"constant": 0.0001, "type": "symlog"},
+        "axis": {"format": ".0%", "tickCount": 5}
+      },
+      "y": {
+        "field": "women",
+        "type": "quantitative",
+        "title": "% of Women",
+        "scale": {"constant": 0.0001, "type": "symlog"},
+        "axis": {"format": ".0%", "tickCount": 5}
+      },
+      "tooltip": [
+        {"field": "job", "type": "nominal"},
+        {"field": "men", "type": "quantitative", "format": ".2%"},
+        {"field": "women", "type": "quantitative", "format": ".2%"}
+      ]
+    }
+  },
+  "title": {
+    "text": "Occupational Gender Gap Over Time",
+    "subtitle": "Percentage of total workforce by job"
+  }
+}' |> as_vegaspec()
+```
+
+3. Redo part b but show the percentage of men who worked in various jobs and the percentage of women who worked in various jobs.
+
+``` {r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  },
+  "transform": [
+    {
+      "filter": "datum.year == 1850 || datum.year == 1900 || datum.year == 1950 || datum.year == 2000"
+    },
+    {
+      "window": [{"op": "sum", "field": "perc", "as": "total_perc_sex_year"}],
+      "frame": [null, null],
+      "groupby": ["sex", "year"]
+    },
+    {
+      "calculate": "datum.perc / datum.total_perc_sex_year",
+      "as": "perc_within_sex"
+    },
+    {
+      "pivot": "sex",
+      "value": "perc_within_sex",
+      "groupby": ["job", "year"]
+    }
+  ],
+  "facet": {
+    "column": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Normalized: % of Gender in Job"
+    }
+  },
+  "spec": {
+    "width": 180,
+    "height": 180,
+    "mark": {"size": 30, "type": "point"},
+    "encoding": {
+      "x": {
+        "field": "men",
+        "type": "quantitative",
+        "title": "% of all Men",
+        "scale": {"constant": 0.0001, "type": "symlog"},
+        "axis": {"format": ".0%", "tickCount": 5}
+      },
+      "y": {
+        "field": "women",
+        "type": "quantitative",
+        "title": "% of all Women",
+        "scale": {"constant": 0.0001, "type": "symlog"},
+        "axis": {"format": ".0%", "tickCount": 5}
+      },
+      "tooltip": [
+        {"field": "job", "type": "nominal"},
+        {"field": "men", "type": "quantitative", "title": "% of Men", "format": ".1%"},
+        {"field": "women", "type": "quantitative", "title": "% of Women", "format": ".1%"}
+      ]
+    }
+  },
+  "title": {
+    "text": "Job Distribution Within Genders",
+    "subtitle": "Each axis shows the % of that gender specifically (Sum of each axis = 100%)"
+  }
+}' |> as_vegaspec()
+```
+
+## Exercise 3: Price at the Pump
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "pump_price_for_gasoline_us_per_liter.csv"
+  },
+  "title": "Gasoline Prices per Gallon by Country and Region (2016)",
+  "width": 600,
+  "height": {"step": 18},
+  "transform": [
+    {
+      "fold": ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"],
+      "as": ["year", "price_liter"]
+    },
+    {"filter": "datum.year == \'2016\'"},
+    {"filter": "datum.price_liter != null"},
+    {"calculate": "datum.price_liter * 3.78541", "as": "price_gallon"},
+    {
+      "lookup": "country",
+      "from": {
+        "data": {
+          "url": " https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv"
+        },
+        "key": "name",
+        "fields": ["alpha-3", "region"]
+      }
+    },
+    {"filter": "datum.region != null"}
+  ],
+  "mark": {"type": "bar", "size": 14},
+  "encoding": {
+    "x": {
+      "field": "price_gallon",
+      "type": "quantitative",
+      "title": "Price ($ per Gallon)"
+    },
+    "y": {
+      "field": "alpha-3",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Country"
+    },
+    "color": {
+      "field": "region",
+      "type": "nominal",
+      "title": "World Region"
+    },
+    "tooltip": [
+      {"field": "country", "type": "nominal"},
+      {"field": "price_gallon", "type": "quantitative", "format": "$.2f"}
+    ]
+  }
+}' |> as_vegaspec()
+```
+
+The countries that did get matched but have no data for 2016 are shown as empty values in the graph. They are Andorra, Antigua and Barbuda, Barbados, Cuba, Liechtenstein, Monaco, Maldives, Marshall Islands, Nauru, Papua New Guinea, French Polynesia, and Suriname. THe countries that did not get matched include the following: USA / United States of America, UK / United Kingdom of Great Britain and Northern Ireland, UAE / United Arab Emirates, Russia / Russian Federation, Vietnam / Viet Nam, South Korea / Korea, Republic of, Iran / Iran (Islamic Republic of), Bolivia / Bolivia (Plurinational State of), and Venezuela / Venezuela (Bolivarian Republic of). This is because of the mismatched names as shown above. They are not shown on the graph at all.
