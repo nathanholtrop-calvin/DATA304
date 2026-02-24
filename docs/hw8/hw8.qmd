@@ -387,8 +387,7 @@ As shown on the graph above, the variable 'perc' is the total percentage of peop
   "facet": {
     "column": {
       "field": "year",
-      "type": "ordinal",
-      "title": "Normalized: % of Gender in Job"
+      "type": "ordinal"
     }
   },
   "spec": {
@@ -419,7 +418,7 @@ As shown on the graph above, the variable 'perc' is the total percentage of peop
   },
   "title": {
     "text": "Job Distribution Within Genders",
-    "subtitle": "Each axis shows the % of that gender specifically (Sum of each axis = 100%)"
+    "subtitle": "Each axis shows the percentage of that specific gender"
   }
 }' |> as_vegaspec()
 ```
@@ -482,4 +481,4 @@ As shown on the graph above, the variable 'perc' is the total percentage of peop
 }' |> as_vegaspec()
 ```
 
-The countries that did get matched but have no data for 2016 are shown as empty values in the graph. They are Andorra, Antigua and Barbuda, Barbados, Cuba, Liechtenstein, Monaco, Maldives, Marshall Islands, Nauru, Papua New Guinea, French Polynesia, and Suriname. THe countries that did not get matched include the following: USA / United States of America, UK / United Kingdom of Great Britain and Northern Ireland, UAE / United Arab Emirates, Russia / Russian Federation, Vietnam / Viet Nam, South Korea / Korea, Republic of, Iran / Iran (Islamic Republic of), Bolivia / Bolivia (Plurinational State of), and Venezuela / Venezuela (Bolivarian Republic of). This is because of the mismatched names as shown above. They are not shown on the graph at all.
+The countries that did get matched but have no data for 2016 are shown as empty values in the graph. They are Andorra, Antigua and Barbuda, Barbados, Cuba, Liechtenstein, Monaco, Maldives, Marshall Islands, Nauru, Papua New Guinea, French Polynesia, and Suriname. The countries that did not get matched include the following: USA / United States of America, UK / United Kingdom of Great Britain and Northern Ireland, UAE / United Arab Emirates, Russia / Russian Federation, Vietnam / Viet Nam, South Korea / Korea, Republic of, Iran / Iran (Islamic Republic of), Bolivia / Bolivia (Plurinational State of), and Venezuela / Venezuela (Bolivarian Republic of). This is because of the mismatched names as shown above. They are not shown on the graph at all.
