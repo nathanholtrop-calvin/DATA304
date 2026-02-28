@@ -1,0 +1,77 @@
+---
+title: "Final Portfolio"
+author: "Nathan Holtrop"
+format: 
+  html:
+    output-file: "index"
+    theme: lux
+    toc: true
+    code-fold: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+[← Back to Home](../index.html){.btn .btn-outline-secondary .btn-sm
+role="button"}
+
+----------------
+
+## Exercise 1: HW #4 Revision
+
+1. Scroll through the HW 4 Gallery to see the plots we created at that time. Find an example that has that has something you like about it and explain what you like.
+
+2. Find an example that has something you don’t like, and explain what you don’t like about it.
+
+3. Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data. 
+
+4. For each graphic, include a paragraph that tells the story of your graphic.
+
+## Exercise 2: Data and Graphics Challenge
+
+## Exercise 3: A New Challenge
+
+1. Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?
+
+2. Use these data to create a visualization that tells a story.
+
+3. Write a few sentences explaining the story told.
+
+4. Technical notes.
+
+## Exercise #4: My Masterpiece
+
+1. Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.
+
+2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.
+
+3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.
+
+## Exercise #5: Using your palette
+
+1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used
+
+    a. an encoding channel other than x or y.
+    b. layers
+    c. facets
+    d. concatenation or repeat
+    e. non-default settings for a channel’s scale or guide
+    f. tooltips
+    g. another kind of interaction (panning/zooming, brushing, sliders, etc.)
+
+## Exercise #6: Using your palette
+
+1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…
+
+2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)
+
+## References
+Healy, K. 2019. Data Visualization: A Practical Introduction. Princeton University Press. https://socviz.co/.
+Heer, Dominik, Jeffrey AND Moritz. 2024. “Mosaic: An Architecture for Scalable & Interoperable Data Views.” IEEE Trans. Visualization & Comp. Graphics (Proc. VIS). https://doi.org/10.1109/TVCG.2023.3327189.
+Knaflic, C. N. 2015. Storytelling with Data: A Data Visualization Guide for Business Professionals. Wiley. https://github.com/Saurav6789/Books-/blob/master/storytelling-with-data-cole-nussbaumer-knaflic.pdf.
+———. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%
+E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.
+Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%
+20quantitative%20information.pdf.
+Wilke, C. O. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O’Reilly Media. https://clauswilke.com/dataviz/.
+

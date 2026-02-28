@@ -43,3 +43,9 @@ Visualizations and responses from the reading.
 Graphical Recreations and modification reflections.
 [View Assignment 8](hw8/){.btn .btn-outline-primary .btn-sm}
 :::
+
+::: {.callout-note appearance="simple"}
+## Final Portfolio
+Culmination of Data Visualizations
+[View Final Portfolio](FP/){.btn .btn-outline-primary .btn-sm}
+:::
