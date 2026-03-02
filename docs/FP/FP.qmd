@@ -31,6 +31,8 @@ role="button"}
 
 4. For each graphic, include a paragraph that tells the story of your graphic.
 
+    - See above
+
 ## Exercise 2: Data and Graphics Challenge
 
 ## Exercise 3: A New Challenge
