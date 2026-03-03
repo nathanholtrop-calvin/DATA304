@@ -29,6 +29,127 @@ role="button"}
 
 3. Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data.
 
+```{r}
+library(vegawidget)
+```
+
+```{r}
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "DNA Kit Profile Comparison",
+    "subtitle": "How different laboratories interpret the same 12 individuals",
+    "anchor": "start",
+    "fontSize": 18
+  },
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
+  },
+  "width": 600,
+  "height": 100,
+  "spacing": 15,
+  "facet": {
+    "row": {
+      "field": "kit",
+      "type": "nominal",
+      "title": null,
+      "header": {"labelFontSize": 12, "labelFontWeight": "bold"}
+    }
+  },
+  "spec": {
+    "mark": {"type": "bar", "tooltip": true},
+    "encoding": {
+      "x": {
+        "field": "twin",
+        "type": "nominal",
+        "title": "Individual Participant",
+        "axis": {"labelAngle": 0}
+      },
+      "y": {
+        "field": "genetic share",
+        "type": "quantitative",
+        "title": "Genetic Share",
+        "axis": {"format": "%"}
+      },
+      "color": {
+        "field": "region",
+        "type": "nominal",
+        "scale": {"scheme": "tableau10"},
+        "title": "World Region"
+      }
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}' |> as_vegaspec()
+
+```
+
+This visualization highlights the inherent subjectivity in genetic testing. By aligning the results of Ancestry, 23andMe, and MyHeritage into three distinct rows, we can see that the "DNA story" for a single person (such as 1A or 4B) changes depending on the kit they use. For example, some kits are much more aggressive in identifying specific regions like "SE Europe," while others lump that same genetic material into "NW Europe." The visual consistency of the bars across the X-axis for each individual demonstrates that while the underlying DNA is constant, the algorithms used by these labs create varying interpretations of one’s heritage.
+
+```{r}
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Twin Genetic Consistency Analysis",
+    "subtitle": "Comparing identical twin pairs (A & B) across three DNA kits",
+    "anchor": "start",
+    "fontSize": 18
+  },
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
+  },
+  "width": 180,
+  "height": 250,
+  "facet": {
+    "column": {
+      "field": "kit",
+      "type": "nominal",
+      "title": "Testing Kit",
+      "header": {"labelFontSize": 14}
+    }
+  },
+  "spec": {
+    "mark": {"type": "bar", "stroke": "white", "strokeWidth": 0.5},
+    "encoding": {
+      "x": {
+        "field": "pair",
+        "type": "nominal",
+        "title": "Twin Pair Number"
+      },
+      "xOffset": {"field": "id"},
+      "y": {
+        "field": "genetic share",
+        "type": "quantitative",
+        "title": "Genetic Share",
+        "axis": {"format": "%"}
+      },
+      "color": {
+        "field": "region",
+        "type": "nominal",
+        "title": "Region",
+        "scale": {"scheme": "tableau10"}
+      },
+      "tooltip": [
+        {"field": "twin", "title": "Person"},
+        {"field": "region", "title": "Region"},
+        {"field": "genetic share", "format": ".1%", "title": "Share"}
+      ]
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}' |> as_vegaspec()
+
+```
+
+Because identical twins share 100% of their DNA, their ancestry results should, in theory, be identical. This graphic tests that theory by pairing twins 1A/1B through 6A/6B side-by-side. The results show a surprising lack of consistency: even within the same company (like MyHeritage), twins in Pair 1 and Pair 4 received noticeably different regional estimates. The white borders between the bars help to emphasize these "steps" in height where the twins' data diverges. This visualization reveals that the minute variations in how DNA is sampled and processed can lead to different results for the exact same genetic code, posing a challenge to the perceived precision of consumer DNA kits.
+
 4. For each graphic, include a paragraph that tells the story of your graphic.
 
     - See above
