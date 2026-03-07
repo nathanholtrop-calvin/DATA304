@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="FP_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="FP_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="FP_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="FP_files/libs/bootstrap/bootstrap-87d7f20ddd27ff6aa9f71b7714f2df21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="FP_files/libs/bootstrap/bootstrap-9b93e615b1908c23f64f9d4affd147ac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="FP_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="FP_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
 <script src="FP_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
@@ -250,8 +250,8 @@ strong, b {
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-335c2466814fb5589c03" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-335c2466814fb5589c03">{"x":{
+<div id="htmlwidget-c92eb3dbe1b0505e8fb0" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c92eb3dbe1b0505e8fb0">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -466,8 +466,8 @@ strong, b {
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-29b9177947e7b99219ee" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-29b9177947e7b99219ee">{"x":{
+<div id="htmlwidget-a03d52ec478bf6fbff8d" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a03d52ec478bf6fbff8d">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -581,16 +581,19 @@ strong, b {
 <p><img src="images/tickets.png" class="img-fluid" style="border-radius: 10px;" alt="Ticket volume and related metrics"> <strong>1. Write a sentence describing a key takeaway for each graph shown in the report.</strong></p>
 <p><strong>a. Graph #1: Monthly Ticket Volume by Channel: Last 12 Months</strong></p>
 <ul>
-<li>While requests spiked significantly in the middle of the year (reaching a peak of 25,284 in August), the team’s capacity to process them stayed relatively flat, leading to a massive backlog.</li>
+<li>While the average daily volume stayed fairly consistent between 300 and 375 tickets the total monthly ticket volume showed large fluctuations in the range of ~5,700 to ~7,800.</li>
 </ul>
 <p><strong>b. Graph #2: Work-In-Process Inventory Level at Month-End</strong></p>
 <ul>
-<li>Despite the volume surge, the “Front Office Reachability” stayed remarkably high (consistently above 98%), suggesting the team is answering the phone but can’t finish the actual work.</li>
+<li>The Work-in-Progress Inventory level spiked significantly in both May and November, also highlighted by the sudden spikes in ‘Unprocessed Inbox’, leading to a backlog prior to both the summer and Christmas seasons.</li>
 </ul>
 <p><strong>c.&nbsp;Graph #3: % of Requests Within Standard Service Levels</strong></p>
+<ul>
+<li>The organization did a great job of steadily increasing the percentage of requests within standard service levels starting from just above 80% in January to 97% by year-end, easily surpassing their goal of 90%.</li>
+</ul>
 <p><strong>d.&nbsp;Graph #4: Front Office Reachability % and Avg Time to Answer (goal &lt;8 seconds)</strong></p>
 <ul>
-<li>Wait times spiked alongside volume, jumping from ~8 seconds in early 2019 to over 25 seconds by the end of the year, indicating a degrading customer experience.</li>
+<li>Throughout the year, the “Front Office Reachability” stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 second) suggesting the team maintain solid, open lines of communication.</li>
 </ul>
 <p><strong>2. Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.</strong></p>
 <p><strong>a. Focus on:</strong></p>
@@ -679,8 +682,8 @@ Storyline
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-110ed7f8d9202db63d23" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-110ed7f8d9202db63d23">{"x":{
+<div id="htmlwidget-01fa392899d3f07f6e48" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-01fa392899d3f07f6e48">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -831,8 +834,8 @@ Storyline
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-7e707c2e15ece157608e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7e707c2e15ece157608e">{"x":{
+<div id="htmlwidget-75d618194bfd41fdb878" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-75d618194bfd41fdb878">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {

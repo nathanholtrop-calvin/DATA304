@@ -229,17 +229,19 @@ Challenge #4: Tickets
 
   **a.  Graph #1: Monthly Ticket Volume by Channel: Last 12 Months**
 
-  - While requests spiked significantly in the middle of the year (reaching a peak of 25,284 in August), the team's capacity to process them stayed relatively flat, leading to a massive backlog.
+  - While the average daily volume stayed fairly consistent between 300 and 375 tickets the total monthly ticket volume showed large fluctuations in the range of ~5,700 to ~7,800.
 
   **b.  Graph #2: Work-In-Process Inventory Level at Month-End**
   
-  - Despite the volume surge, the "Front Office Reachability" stayed remarkably high (consistently above 98%), suggesting the team is answering the phone but can't finish the actual work.
+  - The Work-in-Progress Inventory level spiked significantly in both May and November, also highlighted by the sudden spikes in 'Unprocessed Inbox', leading to a backlog prior to both the summer and Christmas seasons.
 
   **c.  Graph #3: % of Requests Within Standard Service Levels**
 
+  - The organization did a great job of steadily increasing the percentage of requests within standard service levels starting from just above 80% in January to 97% by year-end, easily surpassing their goal of 90%.
+
   **d.  Graph #4: Front Office Reachability % and Avg Time to Answer (goal <8 seconds)**
   
-  - Wait times spiked alongside volume, jumping from ~8 seconds in early 2019 to over 25 seconds by the end of the year, indicating a degrading customer experience.
+  - Throughout the year, the "Front Office Reachability" stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 second) suggesting the team maintain solid, open lines of communication.
 
 **2.  Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.**
 
@@ -452,4 +454,3 @@ E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.
 Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%
 20quantitative%20information.pdf.
 Wilke, C. O. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O’Reilly Media. https://clauswilke.com/dataviz/.
-
