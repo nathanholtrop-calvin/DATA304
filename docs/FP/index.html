@@ -126,6 +126,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<style>
+strong, b {
+    font-weight: 900 !important;
+    color: #222 !important; /* Makes it a darker black */
+}
+</style>
 <p><a href="../index.html" class="btn btn-outline-secondary btn-sm" role="button">← Back to Home</a></p>
 <hr>
 <section id="datasets" class="level2">
@@ -138,17 +144,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-1-hw-4-revision" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1-hw-4-revision">Exercise 1: HW #4 Revision</h2>
-<ol type="1">
-<li><p>Scroll through the HW 4 Gallery to see the plots we created at that time. Find an example that has that has something you like about it and explain what you like.</p>
+<p><strong>1. Scroll through the HW 4 Gallery to see the plots we created at that time. Find an example that has that has something you like about it and explain what you like.</strong></p>
 <ul>
 <li>One of my favourite graphs from the gallery was Example 2B “Comparing Kits”. I found the main goal of the graph, kit comparison, especially easy to interpret (once the mapping of the color scheme to region was memorized) due to the distinctly clear comparison of genetic share proportion by kit. For instance, for the first set of twins, it was clear that Ancestry “favored” NW Europe over SE Europe or potentially used different geographical definitions.</li>
-</ul></li>
-<li><p>Find an example that has something you don’t like, and explain what you don’t like about it.</p>
+</ul>
+<p><strong>2. Find an example that has something you don’t like, and explain what you don’t like about it.</strong></p>
 <ul>
 <li>I was unable to see the full value of Example #4B. While I appreciate the attempted use of different shapes, there was a lot of overlap on the graph and a complete lack of notation regarding geographics. While I understand that the point of the graph was to instead compare the similarities/differences between twins, I feel as though the geographical data was lost and the scale of the facets was too small to see the minute differences between twins.</li>
-</ul></li>
-<li><p>Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data.</p></li>
-</ol>
+</ul>
+<p><strong>3. Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data.</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -210,8 +214,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-9ddd198b0861b6df883e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ddd198b0861b6df883e">{"x":{
+<div id="htmlwidget-1e67bf703bce03532aaa" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1e67bf703bce03532aaa">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -342,8 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-cb0007941bb6a0d2a20b" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cb0007941bb6a0d2a20b">{"x":{
+<div id="htmlwidget-d9d9661a4569a163b322" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d9d9661a4569a163b322">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -429,47 +433,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Because identical twins share 100% of their DNA, their ancestry results should, in theory, be identical. This graphic tests that theory by pairing twins 1A/1B through 6A/6B side-by-side. The results show a surprising lack of consistency: even within the same company (like MyHeritage), twins in Pair 1 and Pair 4 received noticeably different regional estimates. The white borders between the bars help to emphasize these “steps” in height where the twins’ data diverges. This visualization reveals that the minute variations in how DNA is sampled and processed can lead to different results for the exact same genetic code, posing a challenge to the perceived precision of consumer DNA kits.</p>
-<ol start="4" type="1">
-<li><p>For each graphic, include a paragraph that tells the story of your graphic.</p>
+<p><strong>4. For each graphic, include a paragraph that tells the story of your graphic.</strong></p>
 <ul>
 <li>See above</li>
-</ul></li>
-</ol>
+</ul>
 </section>
 <section id="exercise-2-data-and-graphics-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2-data-and-graphics-challenge">Exercise 2: Data and Graphics Challenge</h2>
 <p>Challenge #4: Tickets</p>
-<p><img src="images/tickets.png" class="img-fluid" style="border-radius: 10px;" alt="Ticket volume and related metrics"> 1. Write a sentence describing a key takeaway for each graph shown in the report.</p>
-<ol type="a">
-<li>Graph #1: Monthly Ticket Volume by Channel: Last 12 Months</li>
-</ol>
-<p>While requests spiked significantly in the middle of the year (reaching a peak of 25,284 in August), the team’s capacity to process them stayed relatively flat, leading to a massive backlog.</p>
-<ol start="2" type="a">
-<li>Graph #2: Work-In-Process Inventory Level at Month-End</li>
-</ol>
-<p>Despite the volume surge, the “Front Office Reachability” stayed remarkably high (consistently above 98%), suggesting the team is answering the phone but can’t finish the actual work.</p>
-<ol start="3" type="a">
-<li><p>Graph #3: % of Requests Within Standard Service Levels</p></li>
-<li><p>Graph #4: Front Office Reachability % and Avg Time to Answer (goal &lt;8 seconds)</p></li>
-</ol>
-<p>Wait times spiked alongside volume, jumping from ~8 seconds in early 2019 to over 25 seconds by the end of the year, indicating a degrading customer experience.</p>
-<ol start="2" type="1">
-<li>Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.</li>
-</ol>
-<p>Focus on:</p>
-<ol type="a">
+<p><img src="images/tickets.png" class="img-fluid" style="border-radius: 10px;" alt="Ticket volume and related metrics"> <strong>1. Write a sentence describing a key takeaway for each graph shown in the report.</strong></p>
+<p><strong>a. Graph #1: Monthly Ticket Volume by Channel: Last 12 Months</strong></p>
+<ul>
+<li>While requests spiked significantly in the middle of the year (reaching a peak of 25,284 in August), the team’s capacity to process them stayed relatively flat, leading to a massive backlog.</li>
+</ul>
+<p><strong>b. Graph #2: Work-In-Process Inventory Level at Month-End</strong></p>
+<ul>
+<li>Despite the volume surge, the “Front Office Reachability” stayed remarkably high (consistently above 98%), suggesting the team is answering the phone but can’t finish the actual work.</li>
+</ul>
+<p><strong>c.&nbsp;Graph #3: % of Requests Within Standard Service Levels</strong></p>
+<p><strong>d.&nbsp;Graph #4: Front Office Reachability % and Avg Time to Answer (goal &lt;8 seconds)</strong></p>
+<ul>
+<li>Wait times spiked alongside volume, jumping from ~8 seconds in early 2019 to over 25 seconds by the end of the year, indicating a degrading customer experience.</li>
+</ul>
+<p><strong>2. Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.</strong></p>
+<p><strong>a. Focus on:</strong></p>
+<ul>
 <li><p>The Gap: The relationship between Requests and Processed Orders. This is the “conflict” in your story.</p></li>
 <li><p>The Consequence: The Unprocessed Inbox (backlog). This shows the weight of the problem.</p></li>
 <li><p>The Trend: The Average Answer Speed. This adds a human element—customers are waiting longer.</p></li>
-</ol>
-<p>Omit (or De-emphasize):</p>
-<ol type="a">
-<li><p>Front Office Reachability: Because it is consistently “good” (near 100%), it doesn’t explain the crisis. It’s a “distractor” metric in a story about a backlog.</p></li>
+</ul>
+<p><strong>b. Omit (or De-emphasize):</strong></p>
+<ul>
+<li><p>Front Office Reachability:** Because it is consistently “good” (near 100%), it doesn’t explain the crisis. It’s a “distractor” metric in a story about a backlog.</p></li>
 <li><p>Target Inventory: Unless you are discussing budget or resource planning, a static target line of 1700 is less interesting than the actual skyrocketing backlog.</p></li>
-</ol>
-<ol start="3" type="1">
-<li>Use the data to create a webpage or slide deck to tell a visual story with the elements you selected to include in Step 2. Imagine this will be read by someone who is somewhat familiar with the data, but doesn’t deal with on a daily basis. Be sure to include enough text/context to walk them through your story.</li>
-</ol>
+</ul>
+<p><strong>c.&nbsp;Use the data to create a webpage or slide deck to tell a visual story with the elements you selected to include in Step 2. Imagine this will be read by someone who is somewhat familiar with the data, but doesn’t deal with on a daily basis. Be sure to include enough text/context to walk them through your story.</strong></p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -487,16 +485,12 @@ Storyline
 </section>
 <section id="exercise-3-a-new-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3-a-new-challenge">Exercise 3: A New Challenge</h2>
-<ol type="1">
-<li>Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?</li>
-</ol>
+<p><strong>1. Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?</strong></p>
 <ol type="a">
 <li><p>See link above: <a href="#top">Back to Top</a></p></li>
 <li><p>I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a “Nominal” type in Vega-Lite. This preserves the accuracy of the DHS survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.</p></li>
 </ol>
-<ol start="2" type="1">
-<li>Use these data to create a visualization that tells a story.</li>
-</ol>
+<p><strong>2. Use these data to create a visualization that tells a story.</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -548,8 +542,8 @@ Storyline
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-c61b4640890d94daba32" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c61b4640890d94daba32">{"x":{
+<div id="htmlwidget-808ec92dbf737a6a3d5d" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-808ec92dbf737a6a3d5d">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -626,24 +620,18 @@ Storyline
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<ol start="3" type="1">
-<li>Write a few sentences explaining the story told.</li>
-</ol>
+<p><strong>3. Write a few sentences explaining the story told.</strong></p>
 <p>Between 1991 and 2016, Tanzania underwent a significant shift in family planning dynamics. The data reveals an inverse relationship: as the “Current Use of Modern Contraception” climbed steadily from a low of 5.9% to 38.4%, the “Total Fertility Rate” (TFR) dropped from 6.2 to 5.2 children per woman.</p>
 <p>The most compelling part of this story is the “Unmet Need.” Despite the rise in contraception use, the unmet need for family planning remained stubbornly stagnant (hovering around 22–27%). This suggests that while more women are accessing modern methods, the demand for family planning is growing just as fast as the services are being provided—indicating that there is still significant room for public health intervention to support women’s reproductive goals.</p>
-<ol start="4" type="1">
-<li><p>Technical notes.</p>
+<p><strong>4. Technical notes.</strong></p>
 <ol type="a">
 <li><p>Visual Polish: Note that I used Independent Y-Axes in the code above (resolve). This is crucial because “Fertility Rate” is a small number (5-6) while “Contraception Use” is a large percentage (up to 40%). Without independent axes, the fertility line would look like a flat line at the bottom of the graph.</p></li>
 <li><p>The “Year” Solution: By using “type”: “nominal” and an explicit sort array, you avoid the browser getting confused by the “2015-2016” strings.</p></li>
-</ol></li>
 </ol>
 </section>
 <section id="exercise-4-my-masterpiece" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4-my-masterpiece">Exercise #4: My Masterpiece</h2>
-<ol type="1">
-<li>Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.</li>
-</ol>
+<p><strong>1. Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -706,8 +694,8 @@ Storyline
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-9d321ded57b3220f7bb7" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9d321ded57b3220f7bb7">{"x":{
+<div id="htmlwidget-66dda245bef2d2b54c50" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-66dda245bef2d2b54c50">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -833,49 +821,33 @@ Storyline
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<ol start="2" type="1">
-<li><p>Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</p>
-<ol type="a">
-<li><p>Principles of Good Graphics (Tufte &amp; Beyond):</p>
+<p><strong>2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</strong></p>
+<p><strong>a. Principles of Good Graphics (Tufte &amp; Beyond):</strong></p>
 <ul>
 <li><p>Layering and Separation: I used a light-gray bar chart for “Matches Played” to serve as a structural background. This represents the scale of the event. The bright orange line for “Goals per Match” is the hero of the story. By using independent Y-axes (resolve), both trends are visible without one squashing the other.</p></li>
 <li><p>Data-Ink Ratio: I removed the outer box/border and unnecessary gridlines. The focus remains entirely on the relationship between the rising bars (expansion) and the falling line (tactical evolution).</p></li>
 <li><p>Contextual Annotation: Rather than just showing a line, I specifically labeled the 1954 Peak (the highest scoring tournament in history) and the 1990 Defensive Low. This transforms a data points into a narrative.</p></li>
-</ul></li>
-<li><p>Alternatives Considered:</p>
+</ul>
+<p><strong>b. Alternatives Considered:</strong></p>
 <ul>
 <li><p>A Stacked Area Chart: I considered showing total goals broken down by the winning team’s continent. However, this became “Chartjunk” very quickly because the high number of matches in later years dominated the visual, making it hard to see the intensity of individual games.</p></li>
 <li><p>A Geographic Winner Map: While a map of “Winners” is popular, it is a static story. It tells you who won, but not how the game itself changed. I opted for a time-series to capture the transition of football from a high-scoring amateur-style sport to a professionalized, defensive industry.</p></li>
-</ul></li>
-</ol></li>
-<li><p>Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.</p>
+</ul>
+<p><strong>3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.</strong></p>
 <ol type="a">
 <li><p>Data acquired from: <a href="https://public.tableau.com/app/learn/sample-data" target="_blank">Tableau Public Datasets</a></p></li>
 <li><p>See link above for the data: <a href="#top">Back to Top</a></p></li>
-</ol></li>
 </ol>
 </section>
 <section id="exercise-5-using-your-palette" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-5-using-your-palette">Exercise #5: Using your palette</h2>
-<ol type="1">
-<li><p>The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:</p>
-<ol type="a">
-<li>an encoding channel other than x or y.</li>
-<li>layers</li>
-<li>facets</li>
-<li>concatenation or repeat</li>
-<li>non-default settings for a channel’s scale or guide</li>
-<li>tooltips</li>
-<li>another kind of interaction (panning/zooming, brushing, sliders, etc.)</li>
-</ol></li>
-</ol>
+<p><strong>1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:</strong></p>
+<p><strong>a. an encoding channel other than x or y.</strong> <strong>b. layers</strong> <strong>c.&nbsp;facets</strong> <strong>d.&nbsp;concatenation or repeat</strong> <strong>e. non-default settings for a channel’s scale or guide</strong> <strong>f.&nbsp;tooltips</strong> <strong>g. another kind of interaction (panning/zooming, brushing, sliders, etc.)</strong></p>
 </section>
 <section id="exercise-6-using-your-palette" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6-using-your-palette">Exercise #6: Using your palette</h2>
-<ol type="1">
-<li><p>Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…</p></li>
-<li><p>You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)</p></li>
-</ol>
+<p><strong>1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…</strong></p>
+<p><strong>2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)</strong></p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
