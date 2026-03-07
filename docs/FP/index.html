@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="FP_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="FP_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="FP_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="FP_files/libs/bootstrap/bootstrap-40ab3196b41b042d4647fd6b6021c65a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="FP_files/libs/bootstrap/bootstrap-87d7f20ddd27ff6aa9f71b7714f2df21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="FP_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="FP_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
 <script src="FP_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
@@ -150,7 +150,7 @@ strong, b {
 </ul>
 <p><strong>2. Find an example that has something you don’t like, and explain what you don’t like about it.</strong></p>
 <ul>
-<li>I was unable to see the full value of Example #4B. While I appreciate the attempted use of different shapes, there was a lot of overlap on the graph and a complete lack of notation regarding geographics. While I understand that the point of the graph was to instead compare the similarities/differences between twins, I feel as though the geographical data was lost and the scale of the facets was too small to see the minute differences between twins.</li>
+<li>I was unable to see the full value of Example 4B. While I appreciate the attempted use of different shapes, there was a lot of overlap on the graph and a complete lack of notation regarding geographics. While I understand that the point of the graph was to instead compare the similarities/differences between twins, I feel as though the geographical data was lost and the scale of the facets was too small to see the minute differences between twins.</li>
 </ul>
 <p><strong>3. Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data.</strong></p>
 <div class="cell">
@@ -166,75 +166,118 @@ strong, b {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "DNA Kit Profile Comparison",</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "How different laboratories interpret the same 12 individuals",</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start",</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "fontSize": 18</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 100,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">  "spacing": 15,</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "row": {</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "kit",</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": null,</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "header": {"labelFontSize": 12, "labelFontWeight": "bold"}</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="st">    "mark": {"type": "bar", "tooltip": true},</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="st">    "encoding": {</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="st">      "x": {</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "twin",</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Individual Participant",</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">        "axis": {"labelAngle": 0}</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="st">      "y": {</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "genetic share",</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "quantitative",</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Genetic Share",</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="st">        "axis": {"format": "%"}</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="st">      "color": {</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "region",</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="st">        "scale": {"scheme": "tableau10"},</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "World Region"</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"}</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "DNA Kit Consistency: Twin A vs. Twin B",</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Points off the diagonal line represent inconsistencies in twin results",</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">      "pivot": "id",</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">      "value": "genetic share",</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "groupby": ["pair", "kit", "region"]</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "column": {</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "kit", </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal", </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "DNA Testing Lab",</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "header": {"labelFontSize": 12, "labelFontWeight": "bold"}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">    "width": 160,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">    "height": 160,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">    "layer": [</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">      {</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">        "mark": {"type": "line", "color": "lightgray", "strokeDash": [4,4]},</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="st">        "encoding": {</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="st">          "x": {"datum": 0}, "x2": {"datum": 1},</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="st">          "y": {"datum": 0}, "y2": {"datum": 1}</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="st">      {</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "mark": {"type": "point", "filled": true, "size": 60, "opacity": 0.7, "tooltip": true},</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "encoding": {</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="st">          "x": {</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="st">            "field": "A", </span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="st">            "type": "quantitative", </span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">            "title": "Twin A Share", </span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">            "axis": {</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">              "format": "%", </span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">              "values": [0, 0.25, 0.5, 0.75, 1],</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">              "labelFontSize": 9</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">            } </span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">          },</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="st">          "y": {</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="st">            "field": "B", </span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="st">            "type": "quantitative", </span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="st">            "title": "Twin B Share", </span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="st">            "axis": {</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="st">              "format": "%", </span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="st">              "values": [0, 0.25, 0.5, 0.75, 1],</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="st">              "labelFontSize": 9</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="st">          },</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="st">          "color": {</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="st">            "field": "region", </span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="st">            "type": "nominal", </span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="st">            "legend": {</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="st">              "orient": "right", </span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">              "title": "Regions"</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="st">          },</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="st">          "tooltip": [</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="st">            {"field": "pair", "title": "Twin Pair"},</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="st">            {"field": "region", "title": "Region"},</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="st">            {"field": "A", "title": "Twin A Result", "format": ".1%"},</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="st">            {"field": "B", "title": "Twin B Result", "format": ".1%"}</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="st">          ]</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="st">    ]</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="st">  "resolve": {</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="st">    "axis": {"x": "independent", "y": "independent"}</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="st">    "facet": {"spacing": 10},</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"}</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-1e67bf703bce03532aaa" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1e67bf703bce03532aaa">{"x":{
+<div id="htmlwidget-335c2466814fb5589c03" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-335c2466814fb5589c03">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "DNA Kit Profile Comparison",
-      "subtitle": "How different laboratories interpret the same 12 individuals",
-      "anchor": "start",
-      "fontSize": 18
+      "text": "DNA Kit Consistency: Twin A vs. Twin B",
+      "subtitle": "Points off the diagonal line represent inconsistencies in twin results",
+      "anchor": "start"
     },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
     },
-    "width": 600,
-    "height": 100,
-    "spacing": 15,
+    "transform": [
+      {
+        "pivot": "id",
+        "value": "genetic share",
+        "groupby": [
+          "pair",
+          "kit",
+          "region"
+        ]
+      }
+    ],
     "facet": {
-      "row": {
+      "column": {
         "field": "kit",
         "type": "nominal",
-        "title": null,
+        "title": "DNA Testing Lab",
         "header": {
           "labelFontSize": 12,
           "labelFontWeight": "bold"
@@ -242,38 +285,116 @@ strong, b {
       }
     },
     "spec": {
-      "mark": {
-        "type": "bar",
-        "tooltip": true
-      },
-      "encoding": {
-        "x": {
-          "field": "twin",
-          "type": "nominal",
-          "title": "Individual Participant",
-          "axis": {
-            "labelAngle": 0
-          }
-        },
-        "y": {
-          "field": "genetic share",
-          "type": "quantitative",
-          "title": "Genetic Share",
-          "axis": {
-            "format": "%"
-          }
-        },
-        "color": {
-          "field": "region",
-          "type": "nominal",
-          "scale": {
-            "scheme": "tableau10"
+      "width": 160,
+      "height": 160,
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "color": "lightgray",
+            "strokeDash": [
+              4,
+              4
+            ]
           },
-          "title": "World Region"
+          "encoding": {
+            "x": {
+              "datum": 0
+            },
+            "x2": {
+              "datum": 1
+            },
+            "y": {
+              "datum": 0
+            },
+            "y2": {
+              "datum": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 60,
+            "opacity": 0.7,
+            "tooltip": true
+          },
+          "encoding": {
+            "x": {
+              "field": "A",
+              "type": "quantitative",
+              "title": "Twin A Share",
+              "axis": {
+                "format": "%",
+                "values": [
+                  0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1
+                ],
+                "labelFontSize": 9
+              }
+            },
+            "y": {
+              "field": "B",
+              "type": "quantitative",
+              "title": "Twin B Share",
+              "axis": {
+                "format": "%",
+                "values": [
+                  0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1
+                ],
+                "labelFontSize": 9
+              }
+            },
+            "color": {
+              "field": "region",
+              "type": "nominal",
+              "legend": {
+                "orient": "right",
+                "title": "Regions"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "pair",
+                "title": "Twin Pair"
+              },
+              {
+                "field": "region",
+                "title": "Region"
+              },
+              {
+                "field": "A",
+                "title": "Twin A Result",
+                "format": ".1%"
+              },
+              {
+                "field": "B",
+                "title": "Twin B Result",
+                "format": ".1%"
+              }
+            ]
+          }
         }
+      ]
+    },
+    "resolve": {
+      "axis": {
+        "x": "independent",
+        "y": "independent"
       }
     },
     "config": {
+      "facet": {
+        "spacing": 10
+      },
       "view": {
         "stroke": "transparent"
       }
@@ -286,7 +407,9 @@ strong, b {
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>This visualization highlights the inherent subjectivity in genetic testing. By aligning the results of Ancestry, 23andMe, and MyHeritage into three distinct rows, we can see that the “DNA story” for a single person (such as 1A or 4B) changes depending on the kit they use. For example, some kits are much more aggressive in identifying specific regions like “SE Europe,” while others lump that same genetic material into “NW Europe.” The visual consistency of the bars across the X-axis for each individual demonstrates that while the underlying DNA is constant, the algorithms used by these labs create varying interpretations of one’s heritage.</p>
+<p>Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share 100% of their genetic code, any variation in their ancestry reports is not a biological reality, but a “noise” artifact of the laboratory’s algorithm.</p>
+<p>This visualization uses a 45-degree identity line to measure this noise. In a perfect system, every colored dot—representing a specific regional genetic share—would sit exactly on the dashed line. However, the scatter plot reveals frequent “divergence”, these are shown as points off the line.These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.</p>
+<p>While this graph demonstrates the reported differences in twins; ultimately, this graphic demonstrates that while consumer DNA kits are powerful tools, they are not yet precise enough to deliver identical results to individuals with identical DNA. The dispersion seen here serves as a visual margin of error for the entire industry.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -294,135 +417,143 @@ strong, b {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "Twin Genetic Consistency Analysis",</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Comparing identical twin pairs (A &amp; B) across three DNA kits",</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start",</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "fontSize": 18</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "Where do the Labs Disagree?",</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Average percentage difference between twin results by genetic region",</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "autosize": {"type": "fit", "contains": "padding"},</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 180,</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 250,</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "column": {</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "kit",</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Testing Kit",</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "header": {"labelFontSize": 14}</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">    "mark": {"type": "bar", "stroke": "white", "strokeWidth": 0.5},</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">    "encoding": {</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">      "x": {</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "pair",</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Twin Pair Number"</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">      "xOffset": {"field": "id"},</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">      "y": {</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "genetic share",</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "quantitative",</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Genetic Share",</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">        "axis": {"format": "%"}</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">      "color": {</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "region",</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Region",</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="st">        "scale": {"scheme": "tableau10"}</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">      "tooltip": [</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "twin", "title": "Person"},</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "region", "title": "Region"},</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "genetic share", "format": ".1%", "title": "Share"}</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"}</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">      "pivot": "id",</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "value": "genetic share",</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "groupby": ["pair", "kit", "region"]</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "calculate": "abs(datum.A - datum.B)",</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "as": "discrepancy"</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "aggregate": [{"op": "mean", "field": "discrepancy", "as": "avg_error"}],</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">      "groupby": ["kit", "region"]</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 400,</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": {"type": "point", "filled": true, "size": 100},</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "region", </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal", </span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": null,</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">      "axis": {"minExtent": 150} </span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "avg_error", </span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative", </span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Avg. Difference Between Twins", </span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="st">      "axis": {"format": "%"}</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {"field": "kit", "type": "nominal", "title": "DNA Kit"},</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="st">    "tooltip": [</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="st">      {"field": "kit", "title": "Kit"},</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="st">      {"field": "region", "title": "Region"},</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="st">      {"field": "avg_error", "title": "Avg Error", "format": ".1%"}</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="st">    ]</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-d9d9661a4569a163b322" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9d9661a4569a163b322">{"x":{
+<div id="htmlwidget-29b9177947e7b99219ee" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-29b9177947e7b99219ee">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "Twin Genetic Consistency Analysis",
-      "subtitle": "Comparing identical twin pairs (A & B) across three DNA kits",
-      "anchor": "start",
-      "fontSize": 18
+      "text": "Where do the Labs Disagree?",
+      "subtitle": "Average percentage difference between twin results by genetic region",
+      "anchor": "start"
+    },
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
     },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
     },
-    "width": 180,
-    "height": 250,
-    "facet": {
-      "column": {
-        "field": "kit",
-        "type": "nominal",
-        "title": "Testing Kit",
-        "header": {
-          "labelFontSize": 14
-        }
-      }
-    },
-    "spec": {
-      "mark": {
-        "type": "bar",
-        "stroke": "white",
-        "strokeWidth": 0.5
+    "transform": [
+      {
+        "pivot": "id",
+        "value": "genetic share",
+        "groupby": [
+          "pair",
+          "kit",
+          "region"
+        ]
       },
-      "encoding": {
-        "x": {
-          "field": "pair",
-          "type": "nominal",
-          "title": "Twin Pair Number"
-        },
-        "xOffset": {
-          "field": "id"
-        },
-        "y": {
-          "field": "genetic share",
-          "type": "quantitative",
-          "title": "Genetic Share",
-          "axis": {
-            "format": "%"
-          }
-        },
-        "color": {
-          "field": "region",
-          "type": "nominal",
-          "title": "Region",
-          "scale": {
-            "scheme": "tableau10"
-          }
-        },
-        "tooltip": [
+      {
+        "calculate": "abs(datum.A - datum.B)",
+        "as": "discrepancy"
+      },
+      {
+        "aggregate": [
           {
-            "field": "twin",
-            "title": "Person"
-          },
-          {
-            "field": "region",
-            "title": "Region"
-          },
-          {
-            "field": "genetic share",
-            "format": ".1%",
-            "title": "Share"
+            "op": "mean",
+            "field": "discrepancy",
+            "as": "avg_error"
           }
+        ],
+        "groupby": [
+          "kit",
+          "region"
         ]
       }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+      "type": "point",
+      "filled": true,
+      "size": 100
     },
-    "config": {
-      "view": {
-        "stroke": "transparent"
-      }
+    "encoding": {
+      "y": {
+        "field": "region",
+        "type": "nominal",
+        "title": null,
+        "axis": {
+          "minExtent": 150
+        }
+      },
+      "x": {
+        "field": "avg_error",
+        "type": "quantitative",
+        "title": "Avg. Difference Between Twins",
+        "axis": {
+          "format": "%"
+        }
+      },
+      "color": {
+        "field": "kit",
+        "type": "nominal",
+        "title": "DNA Kit"
+      },
+      "tooltip": [
+        {
+          "field": "kit",
+          "title": "Kit"
+        },
+        {
+          "field": "region",
+          "title": "Region"
+        },
+        {
+          "field": "avg_error",
+          "title": "Avg Error",
+          "format": ".1%"
+        }
+      ]
     }
   },
   "embed_options": {
@@ -432,7 +563,13 @@ strong, b {
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Because identical twins share 100% of their DNA, their ancestry results should, in theory, be identical. This graphic tests that theory by pairing twins 1A/1B through 6A/6B side-by-side. The results show a surprising lack of consistency: even within the same company (like MyHeritage), twins in Pair 1 and Pair 4 received noticeably different regional estimates. The white borders between the bars help to emphasize these “steps” in height where the twins’ data diverges. This visualization reveals that the minute variations in how DNA is sampled and processed can lead to different results for the exact same genetic code, posing a challenge to the perceived precision of consumer DNA kits.</p>
+<p>While individual results vary, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the noise inherent in genetic testing.</p>
+<p>The visualization reveals two primary insights:</p>
+<ul>
+<li><p>Precision vs Accuracy: Broad categories (like NW Europe) show high consistency, whereas specific regions (like SE Europe) show much wider margins of error. This suggests that the “precision” promised by testing labs often comes at the expense of accuracy.</p></li>
+<li><p>Algorithmic Discrepancy: Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.</p></li>
+</ul>
+<p>Simply put, these data points show that a DNA report is not a concrete biological fact, but a variable interpretation. The “DNA story” provided to consumers is highly dependent on the algorithm used to read it.</p>
 <p><strong>4. For each graphic, include a paragraph that tells the story of your graphic.</strong></p>
 <ul>
 <li>See above</li>
@@ -542,8 +679,8 @@ Storyline
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-808ec92dbf737a6a3d5d" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-808ec92dbf737a6a3d5d">{"x":{
+<div id="htmlwidget-110ed7f8d9202db63d23" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-110ed7f8d9202db63d23">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -694,8 +831,8 @@ Storyline
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-66dda245bef2d2b54c50" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-66dda245bef2d2b54c50">{"x":{
+<div id="htmlwidget-7e707c2e15ece157608e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e707c2e15ece157608e">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {

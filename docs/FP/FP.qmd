@@ -45,7 +45,7 @@ role="button"}
 
 **2. Find an example that has something you don’t like, and explain what you don’t like about it.**
 
-  - I was unable to see the full value of Example #4B. While I appreciate the attempted use of different shapes, there was a lot of overlap on the graph and a complete lack of notation regarding geographics. While I understand that the point of the graph was to instead compare the similarities/differences between twins, I feel as though the geographical data was lost and the scale of the facets was too small to see the minute differences between twins.
+  - I was unable to see the full value of Example 4B. While I appreciate the attempted use of different shapes, there was a lot of overlap on the graph and a complete lack of notation regarding geographics. While I understand that the point of the graph was to instead compare the similarities/differences between twins, I feel as though the geographical data was lost and the scale of the facets was too small to see the minute differences between twins.
 
 **3. Now create two graphics, one that helps compare the kits and one that helps compare twins. Give your graphics good titles, use use other principles of good visualization, and do not restrict your plot to just a small subset of the data.**
 
@@ -59,116 +59,162 @@ library(vegawidget)
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "DNA Kit Profile Comparison",
-    "subtitle": "How different laboratories interpret the same 12 individuals",
-    "anchor": "start",
-    "fontSize": 18
+    "text": "DNA Kit Consistency: Twin A vs. Twin B",
+    "subtitle": "Points off the diagonal line represent inconsistencies in twin results",
+    "anchor": "start"
   },
   "data": {
     "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
   },
-  "width": 600,
-  "height": 100,
-  "spacing": 15,
+  "transform": [
+    {
+      "pivot": "id",
+      "value": "genetic share",
+      "groupby": ["pair", "kit", "region"]
+    }
+  ],
   "facet": {
-    "row": {
-      "field": "kit",
-      "type": "nominal",
-      "title": null,
+    "column": {
+      "field": "kit", 
+      "type": "nominal", 
+      "title": "DNA Testing Lab",
       "header": {"labelFontSize": 12, "labelFontWeight": "bold"}
     }
   },
   "spec": {
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "twin",
-        "type": "nominal",
-        "title": "Individual Participant",
-        "axis": {"labelAngle": 0}
+    "width": 160,
+    "height": 160,
+    "layer": [
+      {
+        "mark": {"type": "line", "color": "lightgray", "strokeDash": [4,4]},
+        "encoding": {
+          "x": {"datum": 0}, "x2": {"datum": 1},
+          "y": {"datum": 0}, "y2": {"datum": 1}
+        }
       },
-      "y": {
-        "field": "genetic share",
-        "type": "quantitative",
-        "title": "Genetic Share",
-        "axis": {"format": "%"}
-      },
-      "color": {
-        "field": "region",
-        "type": "nominal",
-        "scale": {"scheme": "tableau10"},
-        "title": "World Region"
+      {
+        "mark": {"type": "point", "filled": true, "size": 60, "opacity": 0.7, "tooltip": true},
+        "encoding": {
+          "x": {
+            "field": "A", 
+            "type": "quantitative", 
+            "title": "Twin A Share", 
+            "axis": {
+              "format": "%", 
+              "values": [0, 0.25, 0.5, 0.75, 1],
+              "labelFontSize": 9
+            } 
+          },
+          "y": {
+            "field": "B", 
+            "type": "quantitative", 
+            "title": "Twin B Share", 
+            "axis": {
+              "format": "%", 
+              "values": [0, 0.25, 0.5, 0.75, 1],
+              "labelFontSize": 9
+            }
+          },
+          "color": {
+            "field": "region", 
+            "type": "nominal", 
+            "legend": {
+              "orient": "right", 
+              "title": "Regions"
+            }
+          },
+          "tooltip": [
+            {"field": "pair", "title": "Twin Pair"},
+            {"field": "region", "title": "Region"},
+            {"field": "A", "title": "Twin A Result", "format": ".1%"},
+            {"field": "B", "title": "Twin B Result", "format": ".1%"}
+          ]
+        }
       }
-    }
+    ]
+  },
+  "resolve": {
+    "axis": {"x": "independent", "y": "independent"}
   },
   "config": {
+    "facet": {"spacing": 10},
     "view": {"stroke": "transparent"}
   }
 }' |> as_vegaspec()
-
+  
 ```
 
-This visualization highlights the inherent subjectivity in genetic testing. By aligning the results of Ancestry, 23andMe, and MyHeritage into three distinct rows, we can see that the "DNA story" for a single person (such as 1A or 4B) changes depending on the kit they use. For example, some kits are much more aggressive in identifying specific regions like "SE Europe," while others lump that same genetic material into "NW Europe." The visual consistency of the bars across the X-axis for each individual demonstrates that while the underlying DNA is constant, the algorithms used by these labs create varying interpretations of one’s heritage.
+Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share 100% of their genetic code, any variation in their ancestry reports is not a biological reality, but a "noise" artifact of the laboratory's algorithm.
+
+This visualization uses a 45-degree identity line to measure this noise. In a perfect system, every colored dot—representing a specific regional genetic share—would sit exactly on the dashed line. However, the scatter plot reveals frequent "divergence", these are shown as points off the line.These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.
+
+While this graph demonstrates the reported differences in twins; ultimately, this graphic demonstrates that while consumer DNA kits are powerful tools, they are not yet precise enough to deliver identical results to individuals with identical DNA. The dispersion seen here serves as a visual margin of error for the entire industry.
 
 ```{r}
+
 '
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Twin Genetic Consistency Analysis",
-    "subtitle": "Comparing identical twin pairs (A & B) across three DNA kits",
-    "anchor": "start",
-    "fontSize": 18
+    "text": "Where do the Labs Disagree?",
+    "subtitle": "Average percentage difference between twin results by genetic region",
+    "anchor": "start"
   },
+  "autosize": {"type": "fit", "contains": "padding"},
   "data": {
     "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
   },
-  "width": 180,
-  "height": 250,
-  "facet": {
-    "column": {
-      "field": "kit",
-      "type": "nominal",
-      "title": "Testing Kit",
-      "header": {"labelFontSize": 14}
+  "transform": [
+    {
+      "pivot": "id",
+      "value": "genetic share",
+      "groupby": ["pair", "kit", "region"]
+    },
+    {
+      "calculate": "abs(datum.A - datum.B)",
+      "as": "discrepancy"
+    },
+    {
+      "aggregate": [{"op": "mean", "field": "discrepancy", "as": "avg_error"}],
+      "groupby": ["kit", "region"]
     }
-  },
-  "spec": {
-    "mark": {"type": "bar", "stroke": "white", "strokeWidth": 0.5},
-    "encoding": {
-      "x": {
-        "field": "pair",
-        "type": "nominal",
-        "title": "Twin Pair Number"
-      },
-      "xOffset": {"field": "id"},
-      "y": {
-        "field": "genetic share",
-        "type": "quantitative",
-        "title": "Genetic Share",
-        "axis": {"format": "%"}
-      },
-      "color": {
-        "field": "region",
-        "type": "nominal",
-        "title": "Region",
-        "scale": {"scheme": "tableau10"}
-      },
-      "tooltip": [
-        {"field": "twin", "title": "Person"},
-        {"field": "region", "title": "Region"},
-        {"field": "genetic share", "format": ".1%", "title": "Share"}
-      ]
-    }
-  },
-  "config": {
-    "view": {"stroke": "transparent"}
+  ],
+  "width": 600,
+  "height": 400,
+  "mark": {"type": "point", "filled": true, "size": 100},
+  "encoding": {
+    "y": {
+      "field": "region", 
+      "type": "nominal", 
+      "title": null,
+      "axis": {"minExtent": 150} 
+    },
+    "x": {
+      "field": "avg_error", 
+      "type": "quantitative", 
+      "title": "Avg. Difference Between Twins", 
+      "axis": {"format": "%"}
+    },
+    "color": {"field": "kit", "type": "nominal", "title": "DNA Kit"},
+    "tooltip": [
+      {"field": "kit", "title": "Kit"},
+      {"field": "region", "title": "Region"},
+      {"field": "avg_error", "title": "Avg Error", "format": ".1%"}
+    ]
   }
 }' |> as_vegaspec()
 
 ```
 
-Because identical twins share 100% of their DNA, their ancestry results should, in theory, be identical. This graphic tests that theory by pairing twins 1A/1B through 6A/6B side-by-side. The results show a surprising lack of consistency: even within the same company (like MyHeritage), twins in Pair 1 and Pair 4 received noticeably different regional estimates. The white borders between the bars help to emphasize these "steps" in height where the twins' data diverges. This visualization reveals that the minute variations in how DNA is sampled and processed can lead to different results for the exact same genetic code, posing a challenge to the perceived precision of consumer DNA kits.
+While individual results vary, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the noise inherent in genetic testing.
+
+The visualization reveals two primary insights:
+
+  - Precision vs Accuracy: Broad categories (like NW Europe) show high consistency, whereas specific regions (like SE Europe) show much wider margins of error. This suggests that the "precision" promised by testing labs often comes at the expense of accuracy.
+
+  - Algorithmic Discrepancy: Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.
+
+Simply put, these data points show that a DNA report is not a concrete biological fact, but a variable interpretation. The "DNA story" provided to consumers is highly dependent on the algorithm used to read it.
 
 **4. For each graphic, include a paragraph that tells the story of your graphic.**
 
