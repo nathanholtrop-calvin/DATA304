@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-1-hw-4-revision" id="toc-exercise-1-hw-4-revision" class="nav-link active" data-scroll-target="#exercise-1-hw-4-revision">Exercise 1: HW #4 Revision</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a></li>
+  <li><a href="#exercise-1-hw-4-revision" id="toc-exercise-1-hw-4-revision" class="nav-link" data-scroll-target="#exercise-1-hw-4-revision">Exercise 1: HW #4 Revision</a></li>
   <li><a href="#exercise-2-data-and-graphics-challenge" id="toc-exercise-2-data-and-graphics-challenge" class="nav-link" data-scroll-target="#exercise-2-data-and-graphics-challenge">Exercise 2: Data and Graphics Challenge</a></li>
   <li><a href="#exercise-3-a-new-challenge" id="toc-exercise-3-a-new-challenge" class="nav-link" data-scroll-target="#exercise-3-a-new-challenge">Exercise 3: A New Challenge</a></li>
   <li><a href="#exercise-4-my-masterpiece" id="toc-exercise-4-my-masterpiece" class="nav-link" data-scroll-target="#exercise-4-my-masterpiece">Exercise #4: My Masterpiece</a></li>
@@ -127,6 +128,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><a href="../index.html" class="btn btn-outline-secondary btn-sm" role="button">← Back to Home</a></p>
 <hr>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<p><a href="https://calvin-data304.netlify.app/data/twins-genetics-long.json" target="_blank">Exercise #1 - Twin Genetics</a></p>
+<p><a href="knaflic-6-11.xlsx" download="knaflic-6-11.xlsx" target="_blank">Exercise #2 - Tickets</a></p>
+<p><a href="Tanzania.xlsx" download="Tanzania.xlsx" target="_blank">Exercise #3 - Tanzania Fertility Rates</a></p>
+<p><a href="world_cup_results.xlsx" download="world_cup_results.xlsx" target="_blank">Exercise #4 - World Cup Data</a></p>
+<hr>
+</section>
 <section id="exercise-1-hw-4-revision" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1-hw-4-revision">Exercise 1: HW #4 Revision</h2>
 <ol type="1">
@@ -201,8 +210,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-3d0c1690128b6444d256" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3d0c1690128b6444d256">{"x":{
+<div id="htmlwidget-9ddd198b0861b6df883e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ddd198b0861b6df883e">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -333,8 +342,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-bcb18cc569a0fbc2cc52" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bcb18cc569a0fbc2cc52">{"x":{
+<div id="htmlwidget-cb0007941bb6a0d2a20b" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb0007941bb6a0d2a20b">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -429,22 +438,421 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-2-data-and-graphics-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2-data-and-graphics-challenge">Exercise 2: Data and Graphics Challenge</h2>
+<p>Challenge #4: Tickets</p>
+<p><img src="images/tickets.png" class="img-fluid" style="border-radius: 10px;" alt="Ticket volume and related metrics"> 1. Write a sentence describing a key takeaway for each graph shown in the report.</p>
+<ol type="a">
+<li>Graph #1: Monthly Ticket Volume by Channel: Last 12 Months</li>
+</ol>
+<p>While requests spiked significantly in the middle of the year (reaching a peak of 25,284 in August), the team’s capacity to process them stayed relatively flat, leading to a massive backlog.</p>
+<ol start="2" type="a">
+<li>Graph #2: Work-In-Process Inventory Level at Month-End</li>
+</ol>
+<p>Despite the volume surge, the “Front Office Reachability” stayed remarkably high (consistently above 98%), suggesting the team is answering the phone but can’t finish the actual work.</p>
+<ol start="3" type="a">
+<li><p>Graph #3: % of Requests Within Standard Service Levels</p></li>
+<li><p>Graph #4: Front Office Reachability % and Avg Time to Answer (goal &lt;8 seconds)</p></li>
+</ol>
+<p>Wait times spiked alongside volume, jumping from ~8 seconds in early 2019 to over 25 seconds by the end of the year, indicating a degrading customer experience.</p>
+<ol start="2" type="1">
+<li>Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.</li>
+</ol>
+<p>Focus on:</p>
+<ol type="a">
+<li><p>The Gap: The relationship between Requests and Processed Orders. This is the “conflict” in your story.</p></li>
+<li><p>The Consequence: The Unprocessed Inbox (backlog). This shows the weight of the problem.</p></li>
+<li><p>The Trend: The Average Answer Speed. This adds a human element—customers are waiting longer.</p></li>
+</ol>
+<p>Omit (or De-emphasize):</p>
+<ol type="a">
+<li><p>Front Office Reachability: Because it is consistently “good” (near 100%), it doesn’t explain the crisis. It’s a “distractor” metric in a story about a backlog.</p></li>
+<li><p>Target Inventory: Unless you are discussing budget or resource planning, a static target line of 1700 is less interesting than the actual skyrocketing backlog.</p></li>
+</ol>
+<ol start="3" type="1">
+<li>Use the data to create a webpage or slide deck to tell a visual story with the elements you selected to include in Step 2. Imagine this will be read by someone who is somewhat familiar with the data, but doesn’t deal with on a daily basis. Be sure to include enough text/context to walk them through your story.</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Storyline
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Deep dive into the ticket data</p>
+<p><a href="./TicketsStoryline.html" class="btn btn-outline-primary" role="button" target="_blank">Explore Slideshow</a></p>
+</div>
+</div>
 </section>
 <section id="exercise-3-a-new-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3-a-new-challenge">Exercise 3: A New Challenge</h2>
 <ol type="1">
-<li><p>Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?</p></li>
-<li><p>Use these data to create a visualization that tells a story.</p></li>
-<li><p>Write a few sentences explaining the story told.</p></li>
-<li><p>Technical notes.</p></li>
+<li>Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?</li>
+</ol>
+<ol type="a">
+<li><p>See link above: <a href="#top">Back to Top</a></p></li>
+<li><p>I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a “Nominal” type in Vega-Lite. This preserves the accuracy of the DHS survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.</p></li>
+</ol>
+<ol start="2" type="1">
+<li>Use these data to create a visualization that tells a story.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Demographic Transition in Tanzania",</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Comparing Fertility Rates to Modern Contraception Use (1991-2016)",</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "Tanzania.csv"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 500,</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 300,</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "DHS Survey Year",</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Survey Period"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">  "layer": [</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#2c7fb8", "point": true},</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Current Use of a Modern Method of Contraception-All Women (%)",</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Modern Contraception Use (%)",</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 60]}</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#e34a33", "point": true},</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Total Fertility Rate, All Women Ages 15-49",</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Total Fertility Rate (Children per Woman)"</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="st">  "resolve": {"scale": {"y": "independent"}}</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-c61b4640890d94daba32" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c61b4640890d94daba32">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "The Demographic Transition in Tanzania",
+      "subtitle": "Comparing Fertility Rates to Modern Contraception Use (1991-2016)",
+      "anchor": "start"
+    },
+    "data": {
+      "url": "Tanzania.csv"
+    },
+    "width": 500,
+    "height": 300,
+    "encoding": {
+      "x": {
+        "field": "DHS Survey Year",
+        "type": "nominal",
+        "sort": [
+          "1991-1992",
+          "1996",
+          "1999",
+          "2004-2005",
+          "2010",
+          "2015-2016"
+        ],
+        "title": "Survey Period"
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "color": "#2c7fb8",
+          "point": true
+        },
+        "encoding": {
+          "y": {
+            "field": "Current Use of a Modern Method of Contraception-All Women (%)",
+            "type": "quantitative",
+            "title": "Modern Contraception Use (%)",
+            "scale": {
+              "domain": [
+                0,
+                60
+              ]
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "#e34a33",
+          "point": true
+        },
+        "encoding": {
+          "y": {
+            "field": "Total Fertility Rate, All Women Ages 15-49",
+            "type": "quantitative",
+            "title": "Total Fertility Rate (Children per Woman)"
+          }
+        }
+      }
+    ],
+    "resolve": {
+      "scale": {
+        "y": "independent"
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Write a few sentences explaining the story told.</li>
+</ol>
+<p>Between 1991 and 2016, Tanzania underwent a significant shift in family planning dynamics. The data reveals an inverse relationship: as the “Current Use of Modern Contraception” climbed steadily from a low of 5.9% to 38.4%, the “Total Fertility Rate” (TFR) dropped from 6.2 to 5.2 children per woman.</p>
+<p>The most compelling part of this story is the “Unmet Need.” Despite the rise in contraception use, the unmet need for family planning remained stubbornly stagnant (hovering around 22–27%). This suggests that while more women are accessing modern methods, the demand for family planning is growing just as fast as the services are being provided—indicating that there is still significant room for public health intervention to support women’s reproductive goals.</p>
+<ol start="4" type="1">
+<li><p>Technical notes.</p>
+<ol type="a">
+<li><p>Visual Polish: Note that I used Independent Y-Axes in the code above (resolve). This is crucial because “Fertility Rate” is a small number (5-6) while “Contraception Use” is a large percentage (up to 40%). Without independent axes, the fertility line would look like a flat line at the bottom of the graph.</p></li>
+<li><p>The “Year” Solution: By using “type”: “nominal” and an explicit sort array, you avoid the browser getting confused by the “2015-2016” strings.</p></li>
+</ol></li>
 </ol>
 </section>
 <section id="exercise-4-my-masterpiece" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4-my-masterpiece">Exercise #4: My Masterpiece</h2>
 <ol type="1">
-<li><p>Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.</p></li>
-<li><p>Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</p></li>
-<li><p>Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.</p></li>
+<li>Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Evolution of the World Cup: Scale vs. Scoring",</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "How the tournament grew while the goals per game settled into a defensive normal",</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start",</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "fontSize": 20,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitleFontSize": 14,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitleColor": "gray"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "world_cup_results.csv"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 700,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 400,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">    {"calculate": "datum.GoalsScored / datum.MatchesPlayed", "as": "GoalsPerMatch"}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "layer": [</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "bar", "color": "#e0e0e0", "opacity": 0.6, "tooltip": true},</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Year", "type": "ordinal", "title": "Tournament Year"},</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "MatchesPlayed", "type": "quantitative", "title": "Total Matches Played"}</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#D55E00", "strokeWidth": 3, "point": {"size": 80, "color": "#D55E00"}},</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Year", "type": "ordinal"},</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "GoalsPerMatch", "type": "quantitative", "title": "Avg Goals Per Match"}</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "text", "dy": -20, "fontSize": 12, "fontWeight": "bold"},</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"datum": "1954"},</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"datum": 5.38},</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "text": {"value": "1954: The Goal Explosion (5.4/game)"}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "text", "dy": 25, "fontSize": 12, "color": "#555"},</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"datum": "1990"},</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"datum": 2.21},</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="st">        "text": {"value": "The Defensive Low (2.2/game)"}</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="st">  "resolve": {"scale": {"y": "independent"}},</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="st">    "axis": {"grid": false, "labelFontSize": 11}</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-9d321ded57b3220f7bb7" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9d321ded57b3220f7bb7">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "The Evolution of the World Cup: Scale vs. Scoring",
+      "subtitle": "How the tournament grew while the goals per game settled into a defensive normal",
+      "anchor": "start",
+      "fontSize": 20,
+      "subtitleFontSize": 14,
+      "subtitleColor": "gray"
+    },
+    "data": {
+      "url": "world_cup_results.csv"
+    },
+    "width": 700,
+    "height": 400,
+    "transform": [
+      {
+        "calculate": "datum.GoalsScored / datum.MatchesPlayed",
+        "as": "GoalsPerMatch"
+      }
+    ],
+    "layer": [
+      {
+        "mark": {
+          "type": "bar",
+          "color": "#e0e0e0",
+          "opacity": 0.6,
+          "tooltip": true
+        },
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Tournament Year"
+          },
+          "y": {
+            "field": "MatchesPlayed",
+            "type": "quantitative",
+            "title": "Total Matches Played"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "#D55E00",
+          "strokeWidth": 3,
+          "point": {
+            "size": 80,
+            "color": "#D55E00"
+          }
+        },
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          "y": {
+            "field": "GoalsPerMatch",
+            "type": "quantitative",
+            "title": "Avg Goals Per Match"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "dy": -20,
+          "fontSize": 12,
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "x": {
+            "datum": "1954"
+          },
+          "y": {
+            "datum": 5.38
+          },
+          "text": {
+            "value": "1954: The Goal Explosion (5.4/game)"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "dy": 25,
+          "fontSize": 12,
+          "color": "#555"
+        },
+        "encoding": {
+          "x": {
+            "datum": "1990"
+          },
+          "y": {
+            "datum": 2.21
+          },
+          "text": {
+            "value": "The Defensive Low (2.2/game)"
+          }
+        }
+      }
+    ],
+    "resolve": {
+      "scale": {
+        "y": "independent"
+      }
+    },
+    "config": {
+      "view": {
+        "stroke": "transparent"
+      },
+      "axis": {
+        "grid": false,
+        "labelFontSize": 11
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</p>
+<ol type="a">
+<li><p>Principles of Good Graphics (Tufte &amp; Beyond):</p>
+<ul>
+<li><p>Layering and Separation: I used a light-gray bar chart for “Matches Played” to serve as a structural background. This represents the scale of the event. The bright orange line for “Goals per Match” is the hero of the story. By using independent Y-axes (resolve), both trends are visible without one squashing the other.</p></li>
+<li><p>Data-Ink Ratio: I removed the outer box/border and unnecessary gridlines. The focus remains entirely on the relationship between the rising bars (expansion) and the falling line (tactical evolution).</p></li>
+<li><p>Contextual Annotation: Rather than just showing a line, I specifically labeled the 1954 Peak (the highest scoring tournament in history) and the 1990 Defensive Low. This transforms a data points into a narrative.</p></li>
+</ul></li>
+<li><p>Alternatives Considered:</p>
+<ul>
+<li><p>A Stacked Area Chart: I considered showing total goals broken down by the winning team’s continent. However, this became “Chartjunk” very quickly because the high number of matches in later years dominated the visual, making it hard to see the intensity of individual games.</p></li>
+<li><p>A Geographic Winner Map: While a map of “Winners” is popular, it is a static story. It tells you who won, but not how the game itself changed. I opted for a time-series to capture the transition of football from a high-scoring amateur-style sport to a professionalized, defensive industry.</p></li>
+</ul></li>
+</ol></li>
+<li><p>Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.</p>
+<ol type="a">
+<li><p>Data acquired from: <a href="https://public.tableau.com/app/learn/sample-data" target="_blank">Tableau Public Datasets</a></p></li>
+<li><p>See link above for the data: <a href="#top">Back to Top</a></p></li>
+</ol></li>
 </ol>
 </section>
 <section id="exercise-5-using-your-palette" class="level2">

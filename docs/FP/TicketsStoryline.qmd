@@ -1,0 +1,25 @@
+---
+title: "The Support Crisis of 2019"
+subtitle: "Volume, Capacity, and the Customer Experience"
+author: "Nathan Holtrop"
+format: 
+  revealjs:
+    theme: simple
+    transition: slide
+    incremental: true 
+---
+
+## The Calm Before the Storm
+* In early 2019, the support team was in a state of equilibrium.
+* **Requests** (incoming) and **Orders** (processed) were balanced.
+* Customer wait times averaged under **9 seconds**.
+
+## The Surge (May - August)
+* Starting in May, ticket volume skyrocketed.
+* By August, requests peaked at **25,284**—a massive increase from January.
+* Despite the team reaching a maximum processing capacity of ~20,000 orders, a gap began to widen.
+
+## Visualizing the Capacity Gap
+```{json}
+// Insert the Layered Area/Line Chart here 
+// showing Requests (Area) vs Orders (Line)
