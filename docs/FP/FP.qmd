@@ -241,23 +241,21 @@ Challenge #4: Tickets
 
   **d.  Graph #4: Front Office Reachability % and Avg Time to Answer (goal <8 seconds)**
   
-  - Throughout the year, the "Front Office Reachability" stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 second) suggesting the team maintain solid, open lines of communication.
+  - Throughout the year, the "Front Office Reachability" stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 second) suggesting the team maintained solid, open lines of communication.
 
 **2.  Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.**
 
-  **a. Focus on:**
+  **a. Focus on: Challenges to Successes**
 
-  - The Gap: The relationship between Requests and Processed Orders. This is the "conflict" in your story.
+  - Graph #3 (% of Requests Within Service Levels): This is the "Hero" metric. It shows steady growth and the team winning as the year goes on.
 
-  - The Consequence: The Unprocessed Inbox (backlog). This shows the weight of the problem.
+  - Graph #2 (Inventory Level/Backlog): This is the dramatic piece. It shows the May and November spikes that threatened the team's success.
 
-  - The Trend: The Average Answer Speed. This adds a human element—customers are waiting longer.
+  - Graph #4 (Reachability/Answer Speed): This is the information that corroborates and complements the story. It proves that even when the backlog was high at times, the front office maintained a high level of reachability.
 
   **b.  Omit (or De-emphasize):**
 
-  - Front Office Reachability:** Because it is consistently "good" (near 100%), it doesn't explain the crisis. It’s a "distractor" metric in a story about a backlog.
-
-  - Target Inventory: Unless you are discussing budget or resource planning, a static target line of 1700 is less interesting than the actual skyrocketing backlog.
+  - Graph #1 (Channel Volume): While this information is useful for managers to see how tickets come in, it doesn't add much to the performance story unless one specific channel seemed to cause the failure. For a general audience, other metrics like total volume, are probably enough.
   
   **c.  Use the data to create a webpage or slide deck to tell a visual story with the elements you selected to include in Step 2. Imagine this will be read by someone who is somewhat familiar with the data, but doesn’t deal with on a daily basis. Be sure to include enough text/context to walk them through your story.**
 
@@ -431,13 +429,20 @@ The most compelling part of this story is the "Unmet Need." Despite the rise in 
 
 **1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:**
 
-  **a. an encoding channel other than x or y.**
-  **b. layers**
-  **c. facets**
-  **d. concatenation or repeat**
-  **e. non-default settings for a channel’s scale or guide**
-  **f. tooltips**
-  **g. another kind of interaction (panning/zooming, brushing, sliders, etc.)**
+  **a. an encoding channel other than x or y: **
+  
+  **b. layers: **
+  
+  **c. facets: **
+  
+  **d. concatenation or repeat: **
+  
+  **e. non-default settings for a channel’s scale or guide: **
+  
+  **f. tooltips: **
+  
+  **g. another kind of interaction (panning/zooming, brushing, sliders, etc.): **
+  
 
 ## Exercise #6: Using your palette
 

@@ -1,25 +1,179 @@
 ---
-title: "The Support Crisis of 2019"
-subtitle: "Volume, Capacity, and the Customer Experience"
-author: "Nathan Holtrop"
+title: "Annual Ticket Performance Report"
+subtitle: "How the team mastered seasonal surges to deliver record service levels"
+author: Nathan Holtrop
 format: 
   revealjs:
     theme: simple
     transition: slide
     incremental: true 
+    code-fold: true
 ---
 
-## The Calm Before the Storm
-* In early 2019, the support team was in a state of equilibrium.
-* **Requests** (incoming) and **Orders** (processed) were balanced.
-* Customer wait times averaged under **9 seconds**.
+## Executive Summary
 
-## The Surge (May - August)
-* Starting in May, ticket volume skyrocketed.
-* By August, requests peaked at **25,284**—a massive increase from January.
-* Despite the team reaching a maximum processing capacity of ~20,000 orders, a gap began to widen.
+This year was defined by two significant periods of seasonal pressure in **May** and **November**. Despite these inventory spikes, the team achieved a landmark turnaround in service quality, ending the year significantly above our 90% performance goal.
 
-## Visualizing the Capacity Gap
-```{json}
-// Insert the Layered Area/Line Chart here 
-// showing Requests (Area) vs Orders (Line)
+---
+
+## 1. The Pressure: Seasonal Inventory Spikes
+
+To understand our year, we must look at the "Work-in-Process" (WIP). Our inventory levels are not static; they are heavily influenced by seasonal demand.
+
+```{r}
+#| label: inventory-spikes
+
+library(vegawidget)
+
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "knaflic-6-11.csv"},
+  "width": 600,
+  "height": 300,
+  "title": "Inventory Levels & Backlog Surges",
+  "layer": [
+    {
+      "mark": {"type": "area", "opacity": 0.3, "color": "#8884d8"},
+      "encoding": {
+        "x": {"field": "Month", "type": "nominal", "sort": null},
+        "y": {"field": "Unprocessed Inbox", "type": "quantitative", "title": "Ticket Volume"}
+      }
+    },
+    {
+      "mark": {"type": "line", "point": true, "color": "#ff7300"},
+      "encoding": {
+        "x": {"field": "Month", "type": "nominal", "sort": null},
+        "y": {"field": "Pending eFile", "type": "quantitative"}
+      }
+    }
+  ]
+}
+' |> as_vegaspec()
+```
+
+---
+
+**Key Takeaway:** The Work-in-Progress Inventory level spiked significantly in both May and November. This was driven primarily by sudden jumps in the "Unprocessed Inbox," creating a backlog leading into the summer and Christmas seasons.
+
+---
+
+## 2. Front-Office Consistency
+While the back office dealt with inventory surges, the front office remained remarkably stable. This metric is crucial because it proves that we did not sacrifice customer access even when internal backlogs were high.
+
+```{r}
+#| label: reachability-performance-plot
+#| warning: false
+#| message: false
+#| fig-width: 9
+#| fig-height: 5
+
+library(ggplot2)
+library(readr)
+library(scales)
+library(dplyr)
+
+# 1. Load and clean the data
+# Using the exact filename from your environment
+reachability_data <- read_csv("knaflic-6-11.csv") %>%
+  mutate(
+    # parse_number handles "99%", "0.99", or "99" and cleans it
+    Reach_Value = parse_number(as.character(`Front Office Reachability`)),
+    # Standardize to 0-1 range (e.g., if it's 99.2, make it 0.992)
+    Reach_Value = ifelse(Reach_Value > 1, Reach_Value / 100, Reach_Value),
+    # Keep months in order
+    Month = factor(Month, levels = unique(Month))
+  )
+
+# 2. Create the Bar Chart
+ggplot(reachability_data, aes(x = Month, y = Reach_Value)) +
+  # The Bars - using a distinct green to differentiate from Part 3
+  geom_col(fill = "#2ca02c", alpha = 0.8) + 
+  # The 90% Goal Line
+  geom_hline(yintercept = 0.90, linetype = "dashed", color = "red", size = 1.2) +
+  # Data Labels on top of bars
+  geom_text(aes(label = percent(Reach_Value, accuracy = 0.1)), 
+            vjust = -0.5, size = 4, fontface = "bold") +
+  # Axes and Scales
+  # We zoom the Y axis to 80%-100% to show the detail since performance is so high
+  scale_y_continuous(labels = percent_format(), limits = c(0, 1.1)) +
+  labs(
+    title = "Front Office Reachability: Monthly Consistency",
+    subtitle = "Performance remained near-perfect (97%+) regardless of back-office volume",
+    x = NULL, y = "Calls Reached (%)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(face = "bold")
+  ) +
+  # Goal Label
+  annotate("text", x = 1.5, y = 0.88, label = "GOAL: 90%", color = "red", fontface = "bold")
+
+```
+
+---
+
+**Key Takeaway:** Throughout the year, Front Office Reachability stayed remarkably high (consistently above 97%). While average answer times hovered slightly above our 8-second goal, the lines of communication remained open and reliable regardless of volume.
+
+---
+
+## 3. Scaling the Standard Service Levels
+The "Hero Metric" of the year is our Service Level Agreement (SLA) percentage. We moved from a position of failure in January to a position of mastery by December.
+
+```{r}
+#| label: sla-performance-final-fix
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(readr)
+library(scales)
+library(dplyr)
+
+# 1. Load and fix the data
+ticket_data <- read_csv("knaflic-6-11.csv") %>%
+  mutate(
+    # parse_number turns "82%" into 82. 
+    # We then divide by 100 to get 0.82 for the graph scale.
+    SLA_Value = parse_number(as.character(`Overall Result`)),
+    SLA_Value = ifelse(SLA_Value > 1, SLA_Value / 100, SLA_Value),
+    
+    # Keep months in order
+    Month = factor(Month, levels = unique(Month))
+  )
+
+# 2. Create the Bar Chart
+ggplot(ticket_data, aes(x = Month, y = SLA_Value)) +
+  # The Bars
+  geom_col(fill = "#4682b4", alpha = 0.9) + 
+  # The 90% Goal Line
+  geom_hline(yintercept = 0.90, linetype = "dashed", color = "red", size = 1.2) +
+  # The Data Labels on top of bars
+  geom_text(aes(label = percent(SLA_Value, accuracy = 1)), 
+            vjust = -0.5, size = 4.5, fontface = "bold") +
+  # Axes and Scales
+  scale_y_continuous(labels = percent_format(), limits = c(0, 1.1)) +
+  labs(
+    title = "Monthly Service Level Performance (SLA %)",
+    subtitle = "Consistent growth from 82% in January to 97% by December",
+    x = NULL, y = "SLA Achievement Rate"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(face = "bold")
+  ) +
+  annotate("text", x = 1.5, y = 0.94, label = "GOAL: 90%", color = "red", fontface = "bold")
+
+```
+
+---
+
+**Key Takeaway:** The organization successfully transformed its delivery model. Starting from just 82% in January, we steadily increased our efficiency, easily surpassing the 90% goal and ending the year at a record 97% success rate.
+
+---
+
+## Conclusion
+
+The data confirms that the team is now better equipped to handle seasonality than it was twelve months ago. Even during the massive November inventory spike, we maintained higher service levels than we did during the smaller May spike, a clear indicator of operational maturity.
