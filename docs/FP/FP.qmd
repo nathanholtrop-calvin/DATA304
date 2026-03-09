@@ -295,7 +295,12 @@ Deep dive into the ticket data
       "field": "DHS Survey Year",
       "type": "nominal",
       "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],
-      "title": "Survey Period"
+      "title": "Survey Period",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "titlePadding": 15
+      }
     }
   },
   "layer": [
@@ -306,7 +311,10 @@ Deep dive into the ticket data
           "field": "Current Use of a Modern Method of Contraception-All Women (%)",
           "type": "quantitative",
           "title": "Modern Contraception Use (%)",
-          "scale": {"domain": [0, 60]}
+          "scale": {"domain": [0, 60]},
+          "axis": {
+            "titleColor": "#2c7fb8"
+          }
         }
       }
     },
@@ -316,7 +324,10 @@ Deep dive into the ticket data
         "y": {
           "field": "Total Fertility Rate, All Women Ages 15-49",
           "type": "quantitative",
-          "title": "Total Fertility Rate (Children per Woman)"
+          "title": "Total Fertility Rate (Children per Woman)",
+          "axis": {
+            "titleColor": "#e34a33"
+          }
         }
       }
     }
