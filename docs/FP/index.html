@@ -250,8 +250,8 @@ strong, b {
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-1ff9d779e50ef19a2b15" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ff9d779e50ef19a2b15">{"x":{
+<div id="htmlwidget-103c6de5475a2bbc69d8" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-103c6de5475a2bbc69d8">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -466,8 +466,8 @@ strong, b {
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-291697c0c4a62f7ef1fb" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-291697c0c4a62f7ef1fb">{"x":{
+<div id="htmlwidget-2c2639aec7c9809d7295" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2c2639aec7c9809d7295">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -692,8 +692,8 @@ Storyline
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-077cf6773d86498b1049" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-077cf6773d86498b1049">{"x":{
+<div id="htmlwidget-193e8ac49be6275ef53d" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-193e8ac49be6275ef53d">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -799,179 +799,187 @@ Storyline
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Evolution of the World Cup: Scale vs. Scoring",</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "How the tournament grew while the goals per game settled into a defensive normal",</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start",</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "fontSize": 20,</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitleFontSize": 14,</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitleColor": "gray"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "world_cup_results.csv"</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 700,</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 400,</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">    {"calculate": "datum.GoalsScored / datum.MatchesPlayed", "as": "GoalsPerMatch"}</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "layer": [</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "bar", "color": "#e0e0e0", "opacity": 0.6, "tooltip": true},</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Year", "type": "ordinal", "title": "Tournament Year"},</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "MatchesPlayed", "type": "quantitative", "title": "Total Matches Played"}</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#D55E00", "strokeWidth": 3, "point": {"size": 80, "color": "#D55E00"}},</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Year", "type": "ordinal"},</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "GoalsPerMatch", "type": "quantitative", "title": "Avg Goals Per Match"}</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "text", "dy": -20, "fontSize": 12, "fontWeight": "bold"},</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"datum": "1954"},</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"datum": 5.38},</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "text": {"value": "1954: The Goal Explosion (5.4/game)"}</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "text", "dy": 25, "fontSize": 12, "color": "#555"},</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"datum": "1990"},</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"datum": 2.21},</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="st">        "text": {"value": "The Defensive Low (2.2/game)"}</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="st">  "resolve": {"scale": {"y": "independent"}},</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="st">    "axis": {"grid": false, "labelFontSize": 11}</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "world_cup_results.csv"},</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "World Cup Winners Evolution",</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Drag the slider to see how the statistics of the victorious changed over the decades",</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "params": [</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">      "name": "YearLimit",</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">      "value": 2014,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">      "bind": {</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">        "input": "range",</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">        "min": 1930,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">        "max": 2014,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">        "step": 4,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">        "name": "Show years up to: "</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">    {"calculate": "toNumber(join(split(datum.Attendance, </span><span class="sc">\'</span><span class="st">.</span><span class="sc">\'</span><span class="st">), </span><span class="sc">\'\'</span><span class="st">))", "as": "AttendanceNum"},</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">    {"calculate": "datum.GoalsScored / datum.MatchesPlayed", "as": "GoalsPerMatch"},</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="st">    {"filter": "datum.Year &lt;= YearLimit"}</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 300,</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "point", "filled": true, "size": 200, "stroke": "black", "strokeWidth": 1},</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "AttendanceNum", "type": "quantitative", "title": "Total Attendance (of the final)", "axis": {"format": "~s"}},</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "GoalsScored", "type": "quantitative", "title": "Total Goals Scored"},</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="st">        "color": {</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Year", </span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative", </span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"scheme": "viridis"},</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="st">          "legend": {"title": "Tournament Year"}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="st">        "tooltip": [</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Year", "type": "ordinal"},</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Country", "type": "nominal"},</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Winner", "type": "nominal"},</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "GoalsPerMatch", "type": "quantitative", "format": ".2f", "title": "Goals/Match"}</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="st">        ]</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 100,</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "bar", "color": "#4682b4"},</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "Year", "type": "ordinal", "title": "Tournament Timeline"},</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "GoalsPerMatch", "type": "quantitative", "title": "Goals/Match"}</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"}</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-96d53b8335a917db1cff" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-96d53b8335a917db1cff">{"x":{
+<div id="htmlwidget-1ceb8e46f5b3c9adde19" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ceb8e46f5b3c9adde19">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-      "text": "The Evolution of the World Cup: Scale vs. Scoring",
-      "subtitle": "How the tournament grew while the goals per game settled into a defensive normal",
-      "anchor": "start",
-      "fontSize": 20,
-      "subtitleFontSize": 14,
-      "subtitleColor": "gray"
-    },
     "data": {
       "url": "world_cup_results.csv"
     },
-    "width": 700,
-    "height": 400,
+    "title": {
+      "text": "World Cup Winners Evolution",
+      "subtitle": "Drag the slider to see how the statistics of the victorious changed over the decades",
+      "anchor": "start"
+    },
+    "params": [
+      {
+        "name": "YearLimit",
+        "value": 2014,
+        "bind": {
+          "input": "range",
+          "min": 1930,
+          "max": 2014,
+          "step": 4,
+          "name": "Show years up to: "
+        }
+      }
+    ],
     "transform": [
+      {
+        "calculate": "toNumber(join(split(datum.Attendance, '.'), ''))",
+        "as": "AttendanceNum"
+      },
       {
         "calculate": "datum.GoalsScored / datum.MatchesPlayed",
         "as": "GoalsPerMatch"
+      },
+      {
+        "filter": "datum.Year <= YearLimit"
       }
     ],
-    "layer": [
+    "vconcat": [
       {
+        "width": 600,
+        "height": 300,
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 200,
+          "stroke": "black",
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "x": {
+            "field": "AttendanceNum",
+            "type": "quantitative",
+            "title": "Total Attendance (of the final)",
+            "axis": {
+              "format": "~s"
+            }
+          },
+          "y": {
+            "field": "GoalsScored",
+            "type": "quantitative",
+            "title": "Total Goals Scored"
+          },
+          "color": {
+            "field": "Year",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "viridis"
+            },
+            "legend": {
+              "title": "Tournament Year"
+            }
+          },
+          "tooltip": [
+            {
+              "field": "Year",
+              "type": "ordinal"
+            },
+            {
+              "field": "Country",
+              "type": "nominal"
+            },
+            {
+              "field": "Winner",
+              "type": "nominal"
+            },
+            {
+              "field": "GoalsPerMatch",
+              "type": "quantitative",
+              "format": ".2f",
+              "title": "Goals/Match"
+            }
+          ]
+        }
+      },
+      {
+        "width": 600,
+        "height": 100,
         "mark": {
           "type": "bar",
-          "color": "#e0e0e0",
-          "opacity": 0.6,
-          "tooltip": true
+          "color": "#4682b4"
         },
         "encoding": {
           "x": {
             "field": "Year",
             "type": "ordinal",
-            "title": "Tournament Year"
-          },
-          "y": {
-            "field": "MatchesPlayed",
-            "type": "quantitative",
-            "title": "Total Matches Played"
-          }
-        }
-      },
-      {
-        "mark": {
-          "type": "line",
-          "color": "#D55E00",
-          "strokeWidth": 3,
-          "point": {
-            "size": 80,
-            "color": "#D55E00"
-          }
-        },
-        "encoding": {
-          "x": {
-            "field": "Year",
-            "type": "ordinal"
+            "title": "Tournament Timeline"
           },
           "y": {
             "field": "GoalsPerMatch",
             "type": "quantitative",
-            "title": "Avg Goals Per Match"
-          }
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "dy": -20,
-          "fontSize": 12,
-          "fontWeight": "bold"
-        },
-        "encoding": {
-          "x": {
-            "datum": "1954"
-          },
-          "y": {
-            "datum": 5.38
-          },
-          "text": {
-            "value": "1954: The Goal Explosion (5.4/game)"
-          }
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "dy": 25,
-          "fontSize": 12,
-          "color": "#555"
-        },
-        "encoding": {
-          "x": {
-            "datum": "1990"
-          },
-          "y": {
-            "datum": 2.21
-          },
-          "text": {
-            "value": "The Defensive Low (2.2/game)"
+            "title": "Goals/Match"
           }
         }
       }
     ],
-    "resolve": {
-      "scale": {
-        "y": "independent"
-      }
-    },
     "config": {
       "view": {
         "stroke": "transparent"
-      },
-      "axis": {
-        "grid": false,
-        "labelFontSize": 11
       }
     }
   },
@@ -985,14 +993,14 @@ Storyline
 <p><strong>2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</strong></p>
 <p><strong>a. Principles of Good Graphics (Tufte &amp; Beyond):</strong></p>
 <ul>
-<li><p>Layering and Separation: I used a light-gray bar chart for “Matches Played” to serve as a structural background. This represents the scale of the event. The bright orange line for “Goals per Match” is the hero of the story. By using independent Y-axes (resolve), both trends are visible without one squashing the other.</p></li>
-<li><p>Data-Ink Ratio: I removed the outer box/border and unnecessary gridlines. The focus remains entirely on the relationship between the rising bars (expansion) and the falling line (tactical evolution).</p></li>
-<li><p>Contextual Annotation: Rather than just showing a line, I specifically labeled the 1954 Peak (the highest scoring tournament in history) and the 1990 Defensive Low. This transforms a data points into a narrative.</p></li>
+<li><p>Composition and Concatenation: I used vertical concatenation (vconcat) to create a “Master-Detail” relationship. The top scatter plot shows the relationship between total goals and attendance (the “volume”), while the bottom bar chart provides a timeline of scoring efficiency (the “quality”). Stacking them allows the reader to see how a specific year’s popularity relates to its actual game-play intensity.</p></li>
+<li><p>The Power of Interaction: Following the principle that “Overview first, zoom and filter, then details-on-demand,” I implemented a range slider. This allows the user to explore the data chronologically. It demonstrates how the World Cup transitioned from a high-scoring but low-attendance “amateur” era to the modern, professionalized, high-capacity mega-event.</p></li>
+<li><p>Data-Ink and Visual Cleanliness: In accordance with Tufte’s “Data-Ink Ratio,” I removed unnecessary chart borders and gridlines. I also used a custom viridis color scale for the years, providing a natural chronological gradient that guides the eye from the oldest tournaments (darker) to the most recent (lighter).</p></li>
 </ul>
 <p><strong>b. Alternatives Considered:</strong></p>
 <ul>
-<li><p>A Stacked Area Chart: I considered showing total goals broken down by the winning team’s continent. However, this became “Chartjunk” very quickly because the high number of matches in later years dominated the visual, making it hard to see the intensity of individual games.</p></li>
-<li><p>A Geographic Winner Map: While a map of “Winners” is popular, it is a static story. It tells you who won, but not how the game itself changed. I opted for a time-series to capture the transition of football from a high-scoring amateur-style sport to a professionalized, defensive industry.</p></li>
+<li><p>A Static Dual-Axis Chart: I initially considered a single chart with two lines (Goals vs.&nbsp;Attendance). However, the units are so different (millions of people vs.&nbsp;dozens of goals) that the chart became cluttered and confusing. The interactive scatter-bar dashboard is much cleaner and encourages the user to “play” with the history.</p></li>
+<li><p>A Bubble Map: I considered a map showing the location of each World Cup with bubble sizes representing attendance. While visually appealing, it failed to show the “Evolution of the Game” over time as effectively as a timeline-linked dashboard.</p></li>
 </ul>
 <p><strong>3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.</strong></p>
 <ol type="a">
@@ -1003,18 +1011,26 @@ Storyline
 <section id="exercise-5-using-your-palette" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-5-using-your-palette">Exercise #5: Using your palette</h2>
 <p><strong>1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:</strong></p>
-<p><strong>a. an encoding channel other than x or y: </strong></p>
-<p><strong>b. layers: </strong></p>
-<p><strong>c.&nbsp;facets: </strong></p>
-<p><strong>d.&nbsp;concatenation or repeat: </strong></p>
-<p><strong>e. non-default settings for a channel’s scale or guide: </strong></p>
-<p><strong>f.&nbsp;tooltips: </strong></p>
-<p><strong>g. another kind of interaction (panning/zooming, brushing, sliders, etc.): </strong></p>
+<p><strong>a. an encoding channel other than x or y: </strong> The first graph of <em>Exercise #1</em>, to map the region to color and assign a respective legend.</p>
+<p><strong>b. layers: </strong> The first graph of <em>Exercise #1</em>, to show the dashed gray stroke to emphasize discrepancies.</p>
+<p><strong>c.&nbsp;facets: </strong> The first graph of <em>Exercise #1</em>, the graphs are faceted by DNA kit to more effectively compare both twin and kit results.</p>
+<p><strong>d.&nbsp;concatenation or repeat: </strong> <em>Exercise #4</em>, vertical concatenation to display the relationship between Total Goals and Attendance in the top view, and Goals Per Match in the bottom timeline.</p>
+<p><strong>e. non-default settings for a channel’s scale or guide: </strong> The graph in part two of <em>Exercise #3</em>, the Modern Contraception Percentage on the y-axis is limited to the range of 0 to 60.</p>
+<p><strong>f.&nbsp;tooltips: </strong> The second graph of <em>Exercise #1</em>, the graph has a tooltip to display the kit, region, and average error information for the points on the graph.</p>
+<p><strong>g. another kind of interaction (panning/zooming, brushing, sliders, etc.): </strong> <em>Exercise #4</em>, the dynamic filter controlled by a slider to control the given years up to a certain selected point on the timeline.</p>
 </section>
 <section id="exercise-6-using-your-palette" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6-using-your-palette">Exercise #6: Using your palette</h2>
 <p><strong>1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…</strong></p>
+<ul>
+<li><p>In Exercise #4, I utilized Advanced Axis Formatting by applying the “format”: “~s” shorthand to the Attendance axis. This automatically converts large, cumbersome numbers into a human-readable “SI” format (e.g., turning 3,500,000 into “3.5M”). This level of customization ensures that the “data-ink” is used efficiently, preventing the x-axis from becoming crowded with zeros and keeping the focus on the scale of the tournament.</p></li>
+<li><p>In Exercise #4, I encountered a data quality issue where attendance numbers used periods as thousands-separators (e.g., 1.563.135), causing Vega-Lite to misinterpret them as small decimals. I used a nested transform with split and join functions such as “calculate”: “toNumber(join(split(datum.Attendance, ‘.’), ’’))” to strip non-numeric characters and cast the result to a quantitative type. This avoided the need for external pre-processing and kept the visualization self-contained.</p></li>
+</ul>
 <p><strong>2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)</strong></p>
+<ul>
+<li><p>Following Edward Tufte’s principles in The Visual Display of Quantitative Information (specifically the focus on “Erasing Non-Data-Ink”, p.&nbsp;91-105), I customized the config in nearly all my plots to remove outer view borders (“stroke”: “transparent”) and unnecessary gridlines. This is most evident in the Twin Genetics scatter plots, where the focus remains on the data points and the identity line rather than the chart’s frame.</p></li>
+<li><p>In Exercise #3, I followed the advice found in Claus Wilke’s Fundamentals of Data Visualization regarding secondary axes (Chapter 3, “Visualizing amounts”). To mitigate the confusion often caused by dual y-axes, I matched the titleColor of the axes directly to the line colors they represent (Blue for Contraception, Red for Fertility). This creates an immediate pre-attentive link for the reader.</p></li>
+</ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
