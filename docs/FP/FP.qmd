@@ -499,7 +499,7 @@ However, I feel as though this graph provides a much more nuanced view. While it
   
   **d. concatenation or repeat: ** *Exercise #4*, vertical concatenation to display the relationship between Total Goals and Attendance in the top view, and Goals Per Match in the bottom timeline.
   
-  **e. non-default settings for a channel’s scale or guide: ** The graph in part two of *Exercise #3*, the Modern Contraception Percentage on the y-axis is limited to the range of 0 to 60.
+  **e. non-default settings for a channel’s scale or guide: ** The graph in part two of *Exercise #3*, the Modern Contraception Percentage on the y-axis is limited to the range of 0 to 50.
   
   **f. tooltips: ** The second graph of *Exercise #1*, the graph has a tooltip to display the kit, region, and average error information for the points on the graph.
   
@@ -510,15 +510,15 @@ However, I feel as though this graph provides a much more nuanced view. While it
 
 **1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…**
 
-  - In Exercise #4, I utilized Advanced Axis Formatting by applying the "format": "~s" shorthand to the Attendance axis. This automatically converts large, cumbersome numbers into a human-readable "SI" format (e.g., turning 3,500,000 into "3.5M"). This level of customization ensures that the "data-ink" is used efficiently, preventing the x-axis from becoming crowded with zeros and keeping the focus on the scale of the tournament.
+  - In Exercise #4, I used a complex JavaScript-based Label Expression with a substring to format the years. This allowed for a high-density "YY" format that isn't available as a standard Vega-Lite time format.
   
-  - In Exercise #4, I encountered a data quality issue where attendance numbers used periods as thousands-separators (e.g., 1.563.135), causing Vega-Lite to misinterpret them as small decimals. I used a nested transform with split and join functions such as "calculate": "toNumber(join(split(datum.Attendance, '.'), ''))" to strip non-numeric characters and cast the result to a quantitative type. This avoided the need for external pre-processing and kept the visualization self-contained.
+  - In Exercise #2, I used ifelse statements to mutate the data to get the correct percentage values.
 
 **2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)**
 
   - Following Edward Tufte's principles in The Visual Display of Quantitative Information (specifically the focus on "Erasing Non-Data-Ink", p. 91-105), I customized the config in nearly all my plots to remove outer view borders ("stroke": "transparent") and unnecessary gridlines. This is most evident in the Twin Genetics scatter plots, where the focus remains on the data points and the identity line rather than the chart's frame.
   
-  - In Exercise #3, I followed the advice found in Claus Wilke's Fundamentals of Data Visualization regarding secondary axes (Chapter 3, "Visualizing amounts"). To mitigate the confusion often caused by dual y-axes, I matched the titleColor of the axes directly to the line colors they represent (Blue for Contraception, Red for Fertility). This creates an immediate pre-attentive link for the reader.
+  - In Exercise #4, I followed the advice found in Claus Wilke's Fundamentals of Data Visualization regarding secondary axes ([Chapter 3, "Visualizing amounts"](https://clauswilke.com/dataviz/coordinate-systems-axes.html)). Instead of overlaying "Total Goals" and "Goals Per Match" on one graph, I used vertical concatenation to create separate panels. This maintains the visual integrity of both scales while still allowing for a direct comparison across the shared timeline.
 
 ## References
 Healy, K. 2019. Data Visualization: A Practical Introduction. Princeton University Press. https://socviz.co/.
