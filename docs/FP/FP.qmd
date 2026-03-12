@@ -138,7 +138,7 @@ library(vegawidget)
     "axis": {"x": "independent", "y": "independent"}
   },
   "config": {
-    "facet": {"spacing": 10},
+    "facet": {"spacing": 5},
     "view": {"stroke": "transparent"}
   }
 }' |> as_vegaspec()
@@ -242,13 +242,13 @@ Challenge #4: Tickets
 
   **d.  Graph #4: Front Office Reachability % and Avg Time to Answer (goal <8 seconds)**
   
-  - Throughout the year, the "Front Office Reachability" stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 second) suggesting the team maintained solid, open lines of communication.
+  - Throughout the year, the "Front Office Reachability" stayed remarkably high (consistently above 97%) and the average answer time hovered around 8 to 10 seconds (slightly above the goal of 8 seconds), suggesting the team maintained solid, open lines of communication.
 
 **2.  Imagine you need to tell a story with this data: which parts of the report would you focus on and which (if any) would you omit? It may be important to look at all of these things as we are exploring the data, but not all of the data is necessarily equally interesting when it comes to communicating it to our audience.**
 
   **a. Focus on: Challenges to Successes**
 
-  - Graph #3 (% of Requests Within Service Levels): This is the "Hero" metric. It shows steady growth and the team winning as the year goes on.
+  - Graph #3 (% of Requests Within Service Levels): This is the "focus" metric. It shows steady growth and the team winning as the year goes on.
 
   - Graph #2 (Inventory Level/Backlog): This is the dramatic piece. It shows the May and November spikes that threatened the team's success.
 

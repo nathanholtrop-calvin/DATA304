@@ -152,24 +152,73 @@ Nathan Holtrop
 <section id="the-pressure-seasonal-inventory-spikes" class="slide level2">
 <h2>1. The Pressure: Seasonal Inventory Spikes</h2>
 <p>To understand our year, we must look at the “Work-in-Process” (WIP). Our inventory levels are not static; they are heavily influenced by seasonal demand.</p>
+</section>
+<section class="slide level2">
+
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-0b8960bdfec768cd807a" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0b8960bdfec768cd807a">{"x":{
+<div id="htmlwidget-f108ca9b59ffb758da34" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f108ca9b59ffb758da34">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
       "url": "knaflic-6-11.csv"
     },
-    "width": 600,
-    "height": 300,
-    "title": "Inventory Levels & Backlog Surges",
+    "width": 800,
+    "height": 450,
+    "title": {
+      "text": "Total Work-in-Progress vs. Pending eFile",
+      "subtitle": "Combined volume across all channels compared to the eFile bottleneck",
+      "anchor": "start",
+      "fontSize": 24,
+      "subtitleFontSize": 16
+    },
+    "transform": [
+      {
+        "calculate": "toNumber(datum.Requests) + toNumber(datum.Orders) + toNumber(datum['Pending eFile']) + toNumber(datum['Unprocessed Inbox'])",
+        "as": "TotalVolume"
+      }
+    ],
     "layer": [
       {
         "mark": {
           "type": "area",
-          "opacity": 0.3,
-          "color": "#8884d8"
+          "opacity": 0.1,
+          "color": "gray"
+        },
+        "encoding": {
+          "x": {
+            "field": "Month",
+            "type": "nominal",
+            "sort": null,
+            "axis": {
+              "labelAngle": 0,
+              "titlePadding": 15,
+              "labelFontSize": 14,
+              "titleFontSize": 16
+            }
+          },
+          "y": {
+            "field": "TotalVolume",
+            "type": "quantitative",
+            "title": "Ticket Volume",
+            "axis": {
+              "labelFontSize": 14,
+              "titleFontSize": 16
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "point": true,
+          "color": "black",
+          "strokeDash": [
+            4,
+            2
+          ],
+          "size": 2
         },
         "encoding": {
           "x": {
@@ -178,17 +227,19 @@ Nathan Holtrop
             "sort": null
           },
           "y": {
-            "field": "Unprocessed Inbox",
-            "type": "quantitative",
-            "title": "Ticket Volume"
+            "field": "TotalVolume",
+            "type": "quantitative"
           }
         }
       },
       {
         "mark": {
           "type": "line",
-          "point": true,
-          "color": "#ff7300"
+          "point": {
+            "size": 60
+          },
+          "color": "#ff7300",
+          "size": 4
         },
         "encoding": {
           "x": {
@@ -201,8 +252,77 @@ Nathan Holtrop
             "type": "quantitative"
           }
         }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.Month == 'DEC'"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "Month",
+            "type": "nominal",
+            "sort": null
+          },
+          "y": {
+            "field": "TotalVolume",
+            "type": "quantitative"
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "dx": 15,
+              "dy": -10,
+              "fontWeight": "bold",
+              "fontSize": 14
+            },
+            "encoding": {
+              "text": {
+                "value": "TOTAL VOLUME"
+              },
+              "color": {
+                "value": "black"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "dx": 15,
+              "dy": 15,
+              "fontWeight": "bold",
+              "fontSize": 14
+            },
+            "encoding": {
+              "y": {
+                "field": "Pending eFile",
+                "type": "quantitative"
+              },
+              "text": {
+                "value": "PENDING EFILE"
+              },
+              "color": {
+                "value": "#ff7300"
+              }
+            }
+          }
+        ]
       }
-    ]
+    ],
+    "config": {
+      "view": {
+        "stroke": "transparent"
+      },
+      "autosize": {
+        "type": "pad",
+        "resize": true
+      }
+    }
   },
   "embed_options": {
     "renderer": "canvas",
@@ -214,29 +334,35 @@ Nathan Holtrop
 </section>
 <section class="slide level2">
 
-<p><strong>Key Takeaway:</strong> The Work-in-Progress Inventory level spiked significantly in both May and November. This was driven primarily by sudden jumps in the “Unprocessed Inbox,” creating a backlog leading into the summer and Christmas seasons.</p>
+<p><strong>Key Takeaway:</strong> The Work-in-Progress Inventory level spiked significantly in both May and November. This was driven primarily by (or clearly correlated with) sudden jumps in the “Pending eFile,” creating a backlog leading into the summer and Christmas seasons.</p>
 </section>
 <section id="front-office-consistency" class="slide level2">
 <h2>2. Front-Office Consistency</h2>
-<p>While the back office dealt with inventory surges, the front office remained remarkably stable. This metric is crucial because it proves that we did not sacrifice customer access even when internal backlogs were high.</p>
+<p>While the back office dealt with inventory surges, the front office remained remarkably stable. This metric is crucial because it proves that they did not sacrifice customer access even when internal backlogs were high.</p>
+</section>
+<section class="slide level2">
+
 
 <img data-src="TicketsStoryline_files/figure-revealjs/reachability-performance-plot-1.png" width="864" class="r-stretch"></section>
 <section class="slide level2">
 
-<p><strong>Key Takeaway:</strong> Throughout the year, Front Office Reachability stayed remarkably high (consistently above 97%). While average answer times hovered slightly above our 8-second goal, the lines of communication remained open and reliable regardless of volume.</p>
+<p><strong>Key Takeaway:</strong> Throughout the year, Front Office Reachability stayed remarkably high (consistently above 97%). While average answer times hovered slightly above their 8-second goal, the lines of communication remained open and reliable regardless of volume.</p>
 </section>
 <section id="scaling-the-standard-service-levels" class="slide level2">
 <h2>3. Scaling the Standard Service Levels</h2>
-<p>The “Hero Metric” of the year is our Service Level Agreement (SLA) percentage. We moved from a position of failure in January to a position of mastery by December.</p>
+<p>The focus metric of the year is their Service Level Agreement (SLA) percentage. They moved from a position of failure in January to a position of mastery by December.</p>
+</section>
+<section class="slide level2">
+
 
 <img data-src="TicketsStoryline_files/figure-revealjs/sla-performance-final-fix-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2">
 
-<p><strong>Key Takeaway:</strong> The organization successfully transformed its delivery model. Starting from just 82% in January, we steadily increased our efficiency, easily surpassing the 90% goal and ending the year at a record 97% success rate.</p>
+<p><strong>Key Takeaway:</strong> The organization successfully transformed its delivery model. Starting from just 82% in January, they steadily increased their efficiency, easily surpassing the 90% goal and ending the year at a record 97% success rate.</p>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
-<p>The data confirms that the team is now better equipped to handle seasonality than it was twelve months ago. Even during the massive November inventory spike, we maintained higher service levels than we did during the smaller May spike, a clear indicator of operational maturity.</p>
+<p>The data confirms that the team is now better equipped to handle seasonality than it was twelve months ago. Even during the massive November inventory spike, they maintained higher service levels than they did during the smaller May spike, a clear indicator of operational maturity.</p>
 
 </section>
     </div>
