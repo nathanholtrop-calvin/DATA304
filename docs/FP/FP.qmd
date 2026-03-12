@@ -271,9 +271,9 @@ Deep dive into the ticket data
 
 **1. Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?**
 
-  a.  See link above: [Back to Top](#top)
+  a.  See dataset link above: [Back to Top](#top)
   
-  b.  I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a "Nominal" type in Vega-Lite. This preserves the accuracy of the DHS survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.
+  b.  I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a "Nominal" type in Vega-Lite. This preserves the accuracy of the Demographic and Health Survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.
 
 **2. Use these data to create a visualization that tells a story.**
 
@@ -282,73 +282,87 @@ Deep dive into the ticket data
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "The Demographic Transition in Tanzania",
-    "subtitle": "Comparing Fertility Rates to Modern Contraception Use (1991-2016)",
+    "text": "The Access Gap: Contraception vs. Unmet Need",
+    "subtitle": "Tanzania DHS Data (1991-2016): Closing the gap in family planning services",
     "anchor": "start"
   },
   "data": {
     "url": "Tanzania.csv"
   },
-  "width": 500,
-  "height": 300,
+  "width": 600,
+  "height": 350,
+  "padding": {"right": 20},
   "encoding": {
     "x": {
       "field": "DHS Survey Year",
       "type": "nominal",
       "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],
       "title": "Survey Period",
-      "axis": {
-        "labelAngle": 0,
-        "labelFontSize": 11,
-        "titlePadding": 15
-      }
+      "axis": {"labelAngle": 0, "titlePadding": 15}
     }
   },
   "layer": [
     {
-      "mark": {"type": "line", "color": "#2c7fb8", "point": true},
+      "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},
       "encoding": {
         "y": {
           "field": "Current Use of a Modern Method of Contraception-All Women (%)",
           "type": "quantitative",
-          "title": "Modern Contraception Use (%)",
-          "scale": {"domain": [0, 60]},
-          "axis": {
-            "titleColor": "#2c7fb8"
-          }
+          "title": "Percentage of Women (%)",
+          "scale": {"domain": [0, 50]},
+          "axis": {"grid": true}
         }
       }
     },
     {
-      "mark": {"type": "line", "color": "#e34a33", "point": true},
+      "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},
       "encoding": {
         "y": {
-          "field": "Total Fertility Rate, All Women Ages 15-49",
+          "field": "Unmet Need for Family Planning-All Women (%)",
           "type": "quantitative",
-          "title": "Total Fertility Rate (Children per Woman)",
-          "axis": {
-            "titleColor": "#e34a33"
-          }
+          "scale": {"domain": [0, 50]}
         }
       }
+    },
+    {
+      "transform": [{"filter": "datum[\'DHS Survey Year\'] == \'2015-2016\'"}],
+      "encoding": {
+        "x": {"field": "DHS Survey Year", "type": "nominal", "sort": null},
+        "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "align": "right", "dx": -10, "dy": -10, "fontWeight": "bold"},
+          "encoding": {
+            "text": {"value": "MODERN CONTRACEPTION USE"},
+            "color": {"value": "#2c7fb8"}
+          }
+        },
+        {
+          "mark": {"type": "text", "align": "right", "dx": -10, "dy": 15, "fontWeight": "bold"},
+          "encoding": {
+            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},
+            "text": {"value": "UNMET NEED"},
+            "color": {"value": "#756bb1"}
+          }
+        }
+      ]
     }
   ],
-  "resolve": {"scale": {"y": "independent"}}
-}' |> as_vegaspec()
+  "config": {
+    "view": {"stroke": "transparent"},
+    "autosize": {"type": "pad", "resize": true}
+  }
+}
+' |> as_vegaspec()
 
 ```
 
 **3. Write a few sentences explaining the story told.**
 
-Between 1991 and 2016, Tanzania underwent a significant shift in family planning dynamics. The data reveals an inverse relationship: as the "Current Use of Modern Contraception" climbed steadily from a low of 5.9% to 38.4%, the "Total Fertility Rate" (TFR) dropped from 6.2 to 5.2 children per woman.
+Initially, you might assume that the story would sound something like this: "The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the "supply" of modern contraception and family planning has caught up to and begun to surpass the "unmet demand," indicating a move toward a more sustainable and equitable public health model."
 
-The most compelling part of this story is the "Unmet Need." Despite the rise in contraception use, the unmet need for family planning remained stubbornly stagnant (hovering around 22–27%). This suggests that while more women are accessing modern methods, the demand for family planning is growing just as fast as the services are being provided—indicating that there is still significant room for public health intervention to support women's reproductive goals.
-
-**4. Technical notes.**
-
-  a.  Visual Polish: Note that I used Independent Y-Axes in the code above (resolve). This is crucial because "Fertility Rate" is a small number (5-6) while "Contraception Use" is a large percentage (up to 40%). Without independent axes, the fertility line would look like a flat line at the bottom of the graph.
-
-  b.  The "Year" Solution: By using "type": "nominal" and an explicit sort array, you avoid the browser getting confused by the "2015-2016" strings.
+However, I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down, they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10%, indicating that while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.
 
 ## Exercise #4: My Masterpiece
 
