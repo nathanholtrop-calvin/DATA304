@@ -374,8 +374,8 @@ However, I feel as though this graph provides a much more nuanced view. While it
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "world_cup_results.csv"},
   "title": {
-    "text": "World Cup Winners Evolution",
-    "subtitle": "Drag the slider to see how the statistics of the victorious changed over the decades",
+    "text": "The Golden Age of Scoring: World Cup Efficiency",
+    "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",
     "anchor": "start"
   },
   "params": [
@@ -383,73 +383,103 @@ However, I feel as though this graph provides a much more nuanced view. While it
       "name": "YearLimit",
       "value": 2014,
       "bind": {
-        "input": "range",
-        "min": 1930,
-        "max": 2014,
-        "step": 4,
-        "name": "Show years up to: "
+        "input": "range", "min": 1930, "max": 2014, "step": 4, "name": "Year Limit: "
       }
+    },
+    {
+      "name": "pts",
+      "select": {"type": "point", "fields": ["Year"]}
     }
   ],
   "transform": [
-    {"calculate": "toNumber(join(split(datum.Attendance, \'.\'), \'\'))", "as": "AttendanceNum"},
-    {"calculate": "datum.GoalsScored / datum.MatchesPlayed", "as": "GoalsPerMatch"},
+    {
+      "calculate": "toNumber(datum.GoalsScored) / (toNumber(datum.MatchesPlayed) > 0 ? toNumber(datum.MatchesPlayed) : 1)", 
+      "as": "GoalsPerMatch"
+    },
     {"filter": "datum.Year <= YearLimit"}
   ],
   "vconcat": [
     {
       "width": 600,
       "height": 300,
-      "mark": {"type": "point", "filled": true, "size": 200, "stroke": "black", "strokeWidth": 1},
+      "mark": {"type": "point", "filled": true, "size": 200, "stroke": "white", "strokeWidth": 1},
       "encoding": {
-        "x": {"field": "AttendanceNum", "type": "quantitative", "title": "Total Attendance (of the final)", "axis": {"format": "~s"}},
-        "y": {"field": "GoalsScored", "type": "quantitative", "title": "Total Goals Scored"},
-        "color": {
+        "x": {
           "field": "Year", 
+          "type": "ordinal", 
+          "axis": null
+        },
+        "y": {
+          "field": "GoalsScored", 
           "type": "quantitative", 
-          "scale": {"scheme": "viridis"},
-          "legend": {"title": "Tournament Year"}
+          "title": "Total Goals Scored"
+        },
+        "color": {
+          "condition": {
+            "param": "pts", 
+            "field": "MatchesPlayed", 
+            "type": "quantitative", 
+            "scale": {"scheme": "magma", "reverse": true}
+          },
+          "value": "#e0e0e0"
+        },
+        "opacity": {
+          "condition": {"param": "pts", "value": 1},
+          "value": 0.3
         },
         "tooltip": [
           {"field": "Year", "type": "ordinal"},
-          {"field": "Country", "type": "nominal"},
           {"field": "Winner", "type": "nominal"},
-          {"field": "GoalsPerMatch", "type": "quantitative", "format": ".2f", "title": "Goals/Match"}
+          {"field": "GoalsPerMatch", "type": "quantitative", "format": ".2f"}
         ]
       }
     },
     {
       "width": 600,
       "height": 100,
-      "mark": {"type": "bar", "color": "#4682b4"},
+      "mark": {"type": "bar"},
       "encoding": {
-        "x": {"field": "Year", "type": "ordinal", "title": "Tournament Timeline"},
-        "y": {"field": "GoalsPerMatch", "type": "quantitative", "title": "Goals/Match"}
+        "x": {
+          "field": "Year", 
+          "type": "ordinal", 
+          "title": "Tournament Timeline (Year)",
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "(substring(datum.label, 2, 4))"
+          }
+        },
+        "y": {
+          "field": "GoalsPerMatch", 
+          "type": "quantitative", 
+          "title": "Avg GPM"
+        },
+        "color": {
+          "condition": {"param": "pts", "value": "#4682b4"},
+          "value": "#d1dae0"
+        }
       }
     }
   ],
-  "config": {
-    "view": {"stroke": "transparent"}
-  }
-}' |> as_vegaspec()
-
+  "config": {"view": {"stroke": "transparent"}}
+}
+' |> as_vegaspec()
 ```
 
 **2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.**
 
   **a.  Principles of Good Graphics (Tufte & Beyond):**
   
-  - Composition and Concatenation: I used vertical concatenation (vconcat) to create a "Master-Detail" relationship. The top scatter plot shows the relationship between total goals and attendance (the "volume"), while the bottom bar chart provides a timeline of scoring efficiency (the "quality"). Stacking them allows the reader to see how a specific year's popularity relates to its actual game-play intensity.
+  - Maximizing the Data-Ink Ratio: I removed the X-axis from the top scatter plot because it was redundant. Tufte argues that "non-data ink" (like repeated labels) should be erased to reduce cognitive load. Since the charts are vertically aligned, the bottom axis serves both plots perfectly.
 
-  - The Power of Interaction: Following the principle that "Overview first, zoom and filter, then details-on-demand," I implemented a range slider. This allows the user to explore the data chronologically. It demonstrates how the World Cup transitioned from a high-scoring but low-attendance "amateur" era to the modern, professionalized, high-capacity mega-event.
+  - Focus + Context through Interaction: By linking the scatter plot and bar chart via a "Year" selection, I implemented a system that allows for the user to see the 80-year macro-trend while clicking to isolate specific/micro tournament stats.
 
-  - Data-Ink and Visual Cleanliness: In accordance with Tufte’s "Data-Ink Ratio," I removed unnecessary chart borders and gridlines. I also used a custom viridis color scale for the years, providing a natural chronological gradient that guides the eye from the oldest tournaments (darker) to the most recent (lighter).
+  - Avoiding Chartjunk: I used a transparent view configuration and minimized grid lines. This ensures the "ink" is used almost exclusively for the data points themselves, preventing decorative elements from competing with the information.
+
+  - Visual Integrity: I maintained a zero-baseline for both Y-axes. This avoids the "Lie Factor," ensuring the decline in scoring efficiency is represented accurately rather than exaggerated by a clipped axis.
 
   **b.  Alternatives Considered:**
 
-  - A Static Dual-Axis Chart: I initially considered a single chart with two lines (Goals vs. Attendance). However, the units are so different (millions of people vs. dozens of goals) that the chart became cluttered and confusing. The interactive scatter-bar dashboard is much cleaner and encourages the user to "play" with the history.
-
-  - A Bubble Map: I considered a map showing the location of each World Cup with bubble sizes representing attendance. While visually appealing, it failed to show the "Evolution of the Game" over time as effectively as a timeline-linked dashboard.
+  - Dual-Axis Chart: I considered overlaying Goals and GPM on a single plot. I rejected this because dual-axes often violate visual integrity by suggesting correlations that depend entirely on how the scales are manipulated. Vertical concatenation is a much more "honest Tuftean" approach.
 
 **3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.**
 
