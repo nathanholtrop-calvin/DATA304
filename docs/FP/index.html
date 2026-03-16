@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="FP_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="FP_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="FP_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="FP_files/libs/bootstrap/bootstrap-87d7f20ddd27ff6aa9f71b7714f2df21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="FP_files/libs/bootstrap/bootstrap-40ab3196b41b042d4647fd6b6021c65a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="FP_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="FP_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
 <script src="FP_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
@@ -250,8 +250,8 @@ strong, b {
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-b7d1ab692ebb0f9b719d" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b7d1ab692ebb0f9b719d">{"x":{
+<div id="htmlwidget-00c137431307d53d968e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-00c137431307d53d968e">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -407,9 +407,9 @@ strong, b {
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or a “noise” artifact of the laboratory’s algorithm.</p>
-<p>This visualization uses a 45-degree identity line to measure this noise. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent “divergence”, these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.</p>
-<p>While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact, we can draw two possible conclusions: 1) <em>There are high rates of post-zygotic mutations among identical twins</em>, 2) <em>While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA</em>. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.</p>
+<p>Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or an imperfection within the laboratory’s algorithm.</p>
+<p>This visualization uses a 45-degree identity line to measure this defect. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent divergence, these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.</p>
+<p>While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact (that is based on some limited research; I do not claim to have a complete understanding of twin genetics), we can draw two possible conclusions: 1) <em>There are high rates of post-zygotic mutations among identical twins</em>, 2) <em>While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA</em>. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -466,8 +466,8 @@ strong, b {
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-0f4691fc42484fbc1924" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0f4691fc42484fbc1924">{"x":{
+<div id="htmlwidget-d77a052c5ed6314557f0" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d77a052c5ed6314557f0">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -563,11 +563,11 @@ strong, b {
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing ‘noise’ rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the noise inherent in genetic testing.</p>
+<p>While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing imperfections rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the faults inherent in genetic testing.</p>
 <p>The visualization reveals two primary insights:</p>
 <ul>
-<li><p>Precision vs Accuracy: Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the “precision” promised by testing labs often comes at the expense of accuracy.</p></li>
-<li><p>Algorithmic Discrepancy: Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.</p></li>
+<li><p>Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the “precision” promised by testing labs often comes at the expense of accuracy.</p></li>
+<li><p>Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.</p></li>
 </ul>
 <p>Simply put, these data points show that a DNA report is not a concrete biological fact, but a variable interpretation. The “DNA story” provided to consumers is highly dependent on the algorithm used to read it.</p>
 <p><strong>4. For each graphic, include a paragraph that tells the story of your graphic.</strong></p>
@@ -712,8 +712,8 @@ Storyline
 <span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-0ab5374c41bfe296f9ab" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ab5374c41bfe296f9ab">{"x":{
+<div id="htmlwidget-6e4b9a741e9119ca29aa" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6e4b9a741e9119ca29aa">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -979,8 +979,8 @@ Storyline
 <span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-d83e65cd3e3af2fb96e8" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d83e65cd3e3af2fb96e8">{"x":{
+<div id="htmlwidget-726c39b530f615c33533" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-726c39b530f615c33533">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -1771,11 +1771,11 @@ Storyline
 <span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or a "noise" artifact of the laboratory's algorithm.</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or an imperfection within the laboratory's algorithm.</span>
 <span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>This visualization uses a 45-degree identity line to measure this noise. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent "divergence", these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>This visualization uses a 45-degree identity line to measure this defect. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent divergence, these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.</span>
 <span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact, we can draw two possible conclusions: 1) *There are high rates of post-zygotic mutations among identical twins*, 2) *While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA*. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact (that is based on some limited research; I do not claim to have a complete understanding of twin genetics), we can draw two possible conclusions: 1) *There are high rates of post-zygotic mutations among identical twins*, 2) *While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA*. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.</span>
 <span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
@@ -1832,13 +1832,13 @@ Storyline
 <span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing 'noise' rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the noise inherent in genetic testing.</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing imperfections rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the faults inherent in genetic testing.</span>
 <span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>The visualization reveals two primary insights:</span>
 <span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Precision vs Accuracy: Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the "precision" promised by testing labs often comes at the expense of accuracy.</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the "precision" promised by testing labs often comes at the expense of accuracy.</span>
 <span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Algorithmic Discrepancy: Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.</span>
 <span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>Simply put, these data points show that a DNA report is not a concrete biological fact, but a variable interpretation. The "DNA story" provided to consumers is highly dependent on the algorithm used to read it.</span>
 <span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a></span>

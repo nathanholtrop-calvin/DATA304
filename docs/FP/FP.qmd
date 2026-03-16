@@ -145,11 +145,11 @@ library(vegawidget)
   
 ```
 
-Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or a "noise" artifact of the laboratory's algorithm.
+Identical twins provide the perfect control group for testing the reliability of genetic sequencing. Because identical twins share nearly identical genetics, any variation in their ancestry reports is either caused by post-zygotic mutations or an imperfection within the laboratory's algorithm.
 
-This visualization uses a 45-degree identity line to measure this noise. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent "divergence", these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.
+This visualization uses a 45-degree identity line to measure this defect. In a perfect system, every colored dot (representing a specific regional genetic share) would sit exactly on the dashed line. However, the scatter plot reveals frequent divergence, these are shown as points off the line. These represent instances where one twin was told they have a specific heritage while their identical sibling was given a different number.
 
-While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact, we can draw two possible conclusions: 1) *There are high rates of post-zygotic mutations among identical twins*, 2) *While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA*. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.
+While this graph is faceted by the genetic testing kit used, it ultimately demonstrates the reported differences in twins. From this fact (that is based on some limited research; I do not claim to have a complete understanding of twin genetics), we can draw two possible conclusions: 1) *There are high rates of post-zygotic mutations among identical twins*, 2) *While consumer DNA kits are powerful tools, they are not yet precise enough to deliver nearly identical results to individuals with nearly identical DNA*. Therefore, the dispersion seen on the graphs serves either as clear evidence for mutations during post-split development or as a visual margin of error for the entire industry.
 
 ```{r}
 
@@ -207,13 +207,13 @@ While this graph is faceted by the genetic testing kit used, it ultimately demon
 
 ```
 
-While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing 'noise' rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the noise inherent in genetic testing.
+While individual results vary, assuming that the discrepancies observed in the previous visualization are primarily a result of testing imperfections rather than biological divergence, this aggregated view identifies systemic patterns in laboratory interpretation. By calculating the average difference between identical twins across all six pairs, we can measure the faults inherent in genetic testing.
 
 The visualization reveals two primary insights:
 
-  - Precision vs Accuracy: Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the "precision" promised by testing labs often comes at the expense of accuracy.
+  - Broad categories (like NW Europe) show high consistency, whereas more specific regions (like SE Europe) show much wider margins of error. This suggests that the "precision" promised by testing labs often comes at the expense of accuracy.
 
-  - Algorithmic Discrepancy: Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.
+  - Inconsistency is not uniform. A lab may be highly accurate with one regional marker but struggle with another, proving that results are heavily dependent on a company’s specific internal model.
 
 Simply put, these data points show that a DNA report is not a concrete biological fact, but a variable interpretation. The "DNA story" provided to consumers is highly dependent on the algorithm used to read it.
 
