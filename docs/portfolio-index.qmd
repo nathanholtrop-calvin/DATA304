@@ -46,6 +46,6 @@ Graphical Recreations and modification reflections.
 
 ::: {.callout-note appearance="simple"}
 ## Final Portfolio
-Culmination of Data Visualizations [DONE? Waiting for email response]
+Culmination of Data Visualizations [DONE]
 [View Final Portfolio](FP/){.btn .btn-outline-primary .btn-sm}
 :::

@@ -475,8 +475,7 @@ However I feel as though this graph provides a much more nuanced view. While it 
           "type": "ordinal", 
           "title": "Tournament Timeline (Year)",
           "axis": {
-            "labelAngle": 0,
-            "labelExpr": "(substring(datum.label, 2, 4))"
+            "labelAngle": 0
           }
         },
         "y": {
@@ -498,8 +497,6 @@ However I feel as though this graph provides a much more nuanced view. While it 
 
 The graph shown above is my masterpiece. Not only does it demonstrate changes to the World Cup, as a tournament, over time, but it highlights the statistics from the winning country each year. While it may seem obvious that more goals would be scored as the number of games played by the winning team increased, this is crucial to highlight when shown in contrast to the inverse trend of decreasing Goals Per Match shown in the lower graph.
 
-The slider is especially useful because it allows the viewer to start at the base year of 1930 and slowly increase the number of years displayed. This manual animation makes it much easier to see when the "Golden Age of Scoring" ended after the 1950s. Furthermore, it acts as a boundary to allow for the comparison of eras, encouraging actice learning from the viewer.
-
 **2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.**
 
   **a.  Principles of Good Graphics (Tufte & Beyond):**
@@ -511,10 +508,12 @@ The slider is especially useful because it allows the viewer to start at the bas
   - Avoiding Chartjunk: I used a transparent view configuration and minimized grid lines. This ensures the "ink" is used almost exclusively for the data points themselves, preventing decorative elements from competing with the information.
 
   - Visual Integrity: I maintained a zero-baseline for both Y-axes. This avoids the "Lie Factor," ensuring the decline in scoring efficiency is represented accurately rather than exaggerated by a clipped axis.
+  
+  - More Interaction: The slider is especially useful because it allows the viewer to start at the base year of 1930 and slowly increase the number of years displayed. This manual animation makes it much easier to see when the "Golden Age of Scoring" ended after the 1950s. Furthermore, it acts as a boundary to allow for the comparison of eras, encouraging active learning from the viewer (taught by Ben Shneiderman, whom I researched on my own time).
 
   **b.  Alternatives Considered:**
 
-  - Dual-Axis Chart: I considered overlaying Goals and GPM on a single plot. I rejected this because dual-axes often violate visual integrity by suggesting correlations that depend entirely on how the scales are manipulated. Vertical concatenation is a much more "honest Tuftean" approach.
+  - Dual-Axis Chart: I considered overlaying Goals and GPM on a single plot. I rejected this because dual-axes often violate visual integrity by suggesting correlations that depend entirely on how the scales are manipulated. Vertical concatenation is a much more honest "Tuftean" approach.
 
 **3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.**
 
@@ -548,12 +547,16 @@ The slider is especially useful because it allows the viewer to start at the bas
   - In Exercise #4, I used a complex JavaScript-based Label Expression with a substring to format the years. This allowed for a high-density "YY" format that isn't available as a standard Vega-Lite time format.
   
   - In Exercise #2, I used ifelse statements to mutate the data to get the correct percentage values.
+  
+  - In Exercises #3 and #4, I vertically concatenated the graphs (something we did learn in class) but also went ahead and hid the upper axis in order to reduce the data-to-ink ratio.
 
 **2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)**
 
   - Following Edward Tufte's principles in The Visual Display of Quantitative Information (specifically the focus on "Erasing Non-Data-Ink", p. 91-105), I customized the config in nearly all my plots to remove outer view borders ("stroke": "transparent") and unnecessary gridlines. This is most evident in the Twin Genetics scatter plots, where the focus remains on the data points and the identity line rather than the chart's frame.
   
   - In Exercise #4, I followed the advice found in Claus Wilke's Fundamentals of Data Visualization regarding secondary axes ([Chapter 3, "Visualizing amounts"](https://clauswilke.com/dataviz/coordinate-systems-axes.html)). Instead of overlaying "Total Goals" and "Goals Per Match" on one graph, I used vertical concatenation to create separate panels. This maintains the visual integrity of both scales while still allowing for a direct comparison across the shared timeline.
+  
+  - In Exercise #4, I used the interactive slider to promote active learning by the viewer. This is something taught by Ben Shneiderman, whom I researched on my own time ([Wikipedia Profile](https://en.wikipedia.org/wiki/Ben_Shneiderman)).
 
 ## References
 Healy, K. 2019. Data Visualization: A Practical Introduction. Princeton University Press. https://socviz.co/.
