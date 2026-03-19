@@ -250,8 +250,8 @@ strong, b {
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-cb28df85a80deffa4f7c" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cb28df85a80deffa4f7c">{"x":{
+<div id="htmlwidget-56cbb46a8dd5a7d0e2d8" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-56cbb46a8dd5a7d0e2d8">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -466,8 +466,8 @@ strong, b {
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-9c69fa9842f91baaa2c8" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9c69fa9842f91baaa2c8">{"x":{
+<div id="htmlwidget-4f9cfc3e5be8f028dcc3" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4f9cfc3e5be8f028dcc3">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -627,7 +627,7 @@ Storyline
 <p><strong>1. Enter the data into Excel, a CSV, or JSON file. You will have some decisions to make about things like variable names, etc. Be sure to include a link to the data set you create on your portfolio website. Notice that some of the surveys were conducted all in one year and some spanned two calendar years. How will you deal with that?</strong></p>
 <ol type="a">
 <li><p>See dataset link above: <a href="#top">Back to Top</a></p></li>
-<li><p>I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a “Nominal” type in Vega-Lite. This preserves the accuracy of the Demographic and Health Survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.</p></li>
+<li><p>I am going to use a quantitative approach by taking the first of the two years when applicable but labeling with the full string (e.g., using the value 2015, but marking it as ‘2015-2016’). This preserves the more accurate spacing between the years (as opposed to treating x as a ‘Nominal’ type).</p></li>
 </ol>
 <p><strong>2. Use these data to create a visualization that tells a story.</strong></p>
 <div class="cell">
@@ -637,233 +637,306 @@ Storyline
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Access Gap: Contraception vs. Unmet Need",</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Tanzania DHS Data (1991-2016): Closing the gap in family planning services",</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Access Gap and Fertility Trends",</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Tanzania DHS Data (1991-2016): Impact of family planning on fertility rates",</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "Tanzania.csv"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 350,</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">  "padding": {"right": 20},</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "DHS Survey Year",</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Survey Period",</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "axis": {"labelAngle": 0, "titlePadding": 15}</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">  "layer": [</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Current Use of a Modern Method of Contraception-All Women (%)",</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Percentage of Women (%)",</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 50]},</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {"grid": true}</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Unmet Need for Family Planning-All Women (%)",</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 50]}</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="st">      "transform": [{"filter": "datum[</span><span class="sc">\'</span><span class="st">DHS Survey Year</span><span class="sc">\'</span><span class="st">] == </span><span class="sc">\'</span><span class="st">2015-2016</span><span class="sc">\'</span><span class="st">"}],</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "DHS Survey Year", "type": "nominal", "sort": null},</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"}</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="st">      "layer": [</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "text", "align": "right", "dx": -10, "dy": -10, "fontWeight": "bold"},</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="st">            "text": {"value": "MODERN CONTRACEPTION USE"},</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="st">            "color": {"value": "#2c7fb8"}</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "text", "align": "right", "dx": -10, "dy": 15, "fontWeight": "bold"},</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="st">            "text": {"value": "UNMET NEED"},</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="st">            "color": {"value": "#756bb1"}</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="st">    "autosize": {"type": "pad", "resize": true}</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "Tanzania.csv"},</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">      "calculate": "toNumber(split(datum[</span><span class="sc">\'</span><span class="st">DHS Survey Year</span><span class="sc">\'</span><span class="st">], </span><span class="sc">\'</span><span class="st">-</span><span class="sc">\'</span><span class="st">)[0])",</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">      "as": "year_start"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Family Planning Access",</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 350,</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">      "layer": [</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">            "x": {</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">              "field": "year_start",</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">              "type": "quantitative",</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">              "axis": {"labels": false, "title": null, "values": [1991, 1996, 1999, 2004, 2010, 2015]}</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">            },</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">              "field": "Current Use of a Modern Method of Contraception-All Women (%)",</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">              "type": "quantitative",</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">              "title": "% of Women",</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">              "scale": {"domain": [0, 50]}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="st">            "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"}</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">          "transform": [{"filter": "datum[</span><span class="sc">\'</span><span class="st">year_start</span><span class="sc">\'</span><span class="st">] == 2015"}],</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="st">          "layer": [</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="st">            {</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="st">              "mark": {"type": "text", "align": "left", "dx": -100, "dy": -10, "fontWeight": "bold"},</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="st">              "encoding": {</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="st">                "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="st">                "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"},</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="st">                "text": {"value": "Contraception Use"},</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="st">                "color": {"value": "#2c7fb8"}</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="st">              }</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="st">            },</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="st">            {</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="st">              "mark": {"type": "text", "align": "left", "dx": -60, "dy": 15, "fontWeight": "bold"},</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="st">              "encoding": {</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="st">                "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="st">                "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="st">                "text": {"value": "Unmet Need"},</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="st">                "color": {"value": "#756bb1"}</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="st">              }</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="st">          ]</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Total Fertility Rate (TFR)",</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 100,</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#111184", "point": true, "size": 3},</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "year_start",</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Survey Period",</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="st">            "format": "d",</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="st">            "values": [1991, 1996, 1999, 2004, 2010, 2015],</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelExpr": "datum.value == 1991 ? </span><span class="sc">\'</span><span class="st">1991-92</span><span class="sc">\'</span><span class="st"> : datum.value == 2004 ? </span><span class="sc">\'</span><span class="st">2004-05</span><span class="sc">\'</span><span class="st"> : datum.value == 2015 ? </span><span class="sc">\'</span><span class="st">2015-16</span><span class="sc">\'</span><span class="st"> : datum.value"</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Total Fertility Rate All Women Ages 15-49",</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "TFR"</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="st">    "title": {</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="st">      "fontSize": 22,</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="st">      "subtitleFontSize": 16,</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="st">      "subtitlePadding": 10</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="st">    "axis": {</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="st">      "labelFontSize": 13,</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="st">      "titleFontSize": 14</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="st">    "spacing": 15</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-3a3a6fdd214d39e25d32" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3a3a6fdd214d39e25d32">{"x":{
+<div id="htmlwidget-6eca1c4320fa21bc18b5" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6eca1c4320fa21bc18b5">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "The Access Gap: Contraception vs. Unmet Need",
-      "subtitle": "Tanzania DHS Data (1991-2016): Closing the gap in family planning services",
+      "text": "The Access Gap and Fertility Trends",
+      "subtitle": "Tanzania DHS Data (1991-2016): Impact of family planning on fertility rates",
       "anchor": "start"
     },
     "data": {
       "url": "Tanzania.csv"
     },
-    "width": 600,
-    "height": 350,
-    "padding": {
-      "right": 20
-    },
-    "encoding": {
-      "x": {
-        "field": "DHS Survey Year",
-        "type": "nominal",
-        "sort": [
-          "1991-1992",
-          "1996",
-          "1999",
-          "2004-2005",
-          "2010",
-          "2015-2016"
-        ],
-        "title": "Survey Period",
-        "axis": {
-          "labelAngle": 0,
-          "titlePadding": 15
-        }
-      }
-    },
-    "layer": [
+    "transform": [
       {
+        "calculate": "toNumber(split(datum['DHS Survey Year'], '-')[0])",
+        "as": "year_start"
+      }
+    ],
+    "vconcat": [
+      {
+        "title": "Family Planning Access",
+        "width": 600,
+        "height": 350,
+        "layer": [
+          {
+            "mark": {
+              "type": "line",
+              "color": "#2c7fb8",
+              "point": true,
+              "size": 3
+            },
+            "encoding": {
+              "x": {
+                "field": "year_start",
+                "type": "quantitative",
+                "axis": {
+                  "labels": false,
+                  "title": null,
+                  "values": [
+                    1991,
+                    1996,
+                    1999,
+                    2004,
+                    2010,
+                    2015
+                  ]
+                }
+              },
+              "y": {
+                "field": "Current Use of a Modern Method of Contraception-All Women (%)",
+                "type": "quantitative",
+                "title": "% of Women",
+                "scale": {
+                  "domain": [
+                    0,
+                    50
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "line",
+              "color": "#756bb1",
+              "point": true,
+              "size": 3,
+              "strokeDash": [
+                4,
+                2
+              ]
+            },
+            "encoding": {
+              "x": {
+                "field": "year_start",
+                "type": "quantitative"
+              },
+              "y": {
+                "field": "Unmet Need for Family Planning-All Women (%)",
+                "type": "quantitative"
+              }
+            }
+          },
+          {
+            "transform": [
+              {
+                "filter": "datum['year_start'] == 2015"
+              }
+            ],
+            "layer": [
+              {
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "dx": -100,
+                  "dy": -10,
+                  "fontWeight": "bold"
+                },
+                "encoding": {
+                  "x": {
+                    "field": "year_start",
+                    "type": "quantitative"
+                  },
+                  "y": {
+                    "field": "Current Use of a Modern Method of Contraception-All Women (%)",
+                    "type": "quantitative"
+                  },
+                  "text": {
+                    "value": "Contraception Use"
+                  },
+                  "color": {
+                    "value": "#2c7fb8"
+                  }
+                }
+              },
+              {
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "dx": -60,
+                  "dy": 15,
+                  "fontWeight": "bold"
+                },
+                "encoding": {
+                  "x": {
+                    "field": "year_start",
+                    "type": "quantitative"
+                  },
+                  "y": {
+                    "field": "Unmet Need for Family Planning-All Women (%)",
+                    "type": "quantitative"
+                  },
+                  "text": {
+                    "value": "Unmet Need"
+                  },
+                  "color": {
+                    "value": "#756bb1"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Total Fertility Rate (TFR)",
+        "width": 600,
+        "height": 100,
         "mark": {
           "type": "line",
-          "color": "#2c7fb8",
+          "color": "#111184",
           "point": true,
           "size": 3
         },
         "encoding": {
-          "y": {
-            "field": "Current Use of a Modern Method of Contraception-All Women (%)",
-            "type": "quantitative",
-            "title": "Percentage of Women (%)",
-            "scale": {
-              "domain": [
-                0,
-                50
-              ]
-            },
-            "axis": {
-              "grid": true
-            }
-          }
-        }
-      },
-      {
-        "mark": {
-          "type": "line",
-          "color": "#756bb1",
-          "point": true,
-          "size": 3,
-          "strokeDash": [
-            4,
-            2
-          ]
-        },
-        "encoding": {
-          "y": {
-            "field": "Unmet Need for Family Planning-All Women (%)",
-            "type": "quantitative",
-            "scale": {
-              "domain": [
-                0,
-                50
-              ]
-            }
-          }
-        }
-      },
-      {
-        "transform": [
-          {
-            "filter": "datum['DHS Survey Year'] == '2015-2016'"
-          }
-        ],
-        "encoding": {
           "x": {
-            "field": "DHS Survey Year",
-            "type": "nominal",
-            "sort": null
+            "field": "year_start",
+            "type": "quantitative",
+            "title": "Survey Period",
+            "axis": {
+              "format": "d",
+              "values": [
+                1991,
+                1996,
+                1999,
+                2004,
+                2010,
+                2015
+              ],
+              "labelExpr": "datum.value == 1991 ? '1991-92' : datum.value == 2004 ? '2004-05' : datum.value == 2015 ? '2015-16' : datum.value"
+            }
           },
           "y": {
-            "field": "Current Use of a Modern Method of Contraception-All Women (%)",
-            "type": "quantitative"
+            "field": "Total Fertility Rate All Women Ages 15-49",
+            "type": "quantitative",
+            "title": "TFR"
           }
-        },
-        "layer": [
-          {
-            "mark": {
-              "type": "text",
-              "align": "right",
-              "dx": -10,
-              "dy": -10,
-              "fontWeight": "bold"
-            },
-            "encoding": {
-              "text": {
-                "value": "MODERN CONTRACEPTION USE"
-              },
-              "color": {
-                "value": "#2c7fb8"
-              }
-            }
-          },
-          {
-            "mark": {
-              "type": "text",
-              "align": "right",
-              "dx": -10,
-              "dy": 15,
-              "fontWeight": "bold"
-            },
-            "encoding": {
-              "y": {
-                "field": "Unmet Need for Family Planning-All Women (%)",
-                "type": "quantitative"
-              },
-              "text": {
-                "value": "UNMET NEED"
-              },
-              "color": {
-                "value": "#756bb1"
-              }
-            }
-          }
-        ]
+        }
       }
     ],
     "config": {
+      "title": {
+        "fontSize": 22,
+        "subtitleFontSize": 16,
+        "subtitlePadding": 10
+      },
+      "axis": {
+        "labelFontSize": 13,
+        "titleFontSize": 14
+      },
       "view": {
         "stroke": "transparent"
       },
-      "autosize": {
-        "type": "pad",
-        "resize": true
-      }
+      "spacing": 15
     }
   },
   "embed_options": {
@@ -874,8 +947,8 @@ Storyline
 </div>
 </div>
 <p><strong>3. Write a few sentences explaining the story told.</strong></p>
-<p>Initially, you might assume that the story would sound something like this: “The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the”supply” of modern contraception and family planning has caught up to and begun to surpass the “unmet demand,” indicating a move toward a more sustainable and equitable public health model.”</p>
-<p>However, I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down, they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10%, indicating that while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.</p>
+<p>Initially, you might assume that the story would sound something like this: “The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the”supply” of modern contraception and family planning has caught up to and begun to surpass the “unmet demand,” indicating a move toward a more sustainable and equitable public health model. This is corroborated by the downward trend in Total Fertility Rate, decreasing from 6.2 to 5.2 over the 26 year period.”</p>
+<p>However I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down (clearly correlated with the fertility rates), they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10% and fertility rate has decreased by 1, indicating that, while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.</p>
 </section>
 <section id="exercise-4-my-masterpiece" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4-my-masterpiece">Exercise #4: My Masterpiece</h2>
@@ -888,7 +961,7 @@ Storyline
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "world_cup_results.csv"},</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Golden Age of Scoring: World Cup Efficiency",</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "World Cup Winners: The Golden Age of Scoring",</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
@@ -979,15 +1052,15 @@ Storyline
 <span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-c238c39f96878cbdd389" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c238c39f96878cbdd389">{"x":{
+<div id="htmlwidget-999d75b71bffd0622219" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-999d75b71bffd0622219">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
       "url": "world_cup_results.csv"
     },
     "title": {
-      "text": "The Golden Age of Scoring: World Cup Efficiency",
+      "text": "World Cup Winners: The Golden Age of Scoring",
       "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",
       "anchor": "start"
     },
@@ -1124,6 +1197,8 @@ Storyline
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+<p>The graph shown above is my masterpiece. Not only does it demonstrate changes to the World Cup, as a tournament, over time, but it highlights the statistics from the winning country each year. While it may seem obvious that more goals would be scored as the number of games played by the winning team increased, this is crucial to highlight when shown in contrast to the inverse trend of decreasing Goals Per Match shown in the lower graph.</p>
+<p>The slider is especially useful because it allows the viewer to start at the base year of 1930 and slowly increase the number of years displayed. This manual animation makes it much easier to see when the “Golden Age of Scoring” ended after the 1950s. Furthermore, it acts as a boundary to allow for the comparison of eras, encouraging actice learning from the viewer.</p>
 <p><strong>2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.</strong></p>
 <p><strong>a. Principles of Good Graphics (Tufte &amp; Beyond):</strong></p>
 <ul>
@@ -1898,7 +1973,7 @@ Storyline
 <span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>  a.  See dataset link above: <span class="co">[</span><span class="ot">Back to Top</span><span class="co">](#top)</span></span>
 <span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>  b.  I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a "Nominal" type in Vega-Lite. This preserves the accuracy of the Demographic and Health Survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.</span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>  b.  I am going to use a quantitative approach by taking the first of the two years when applicable but labeling with the full string (e.g., using the value 2015, but marking it as '2015-2016'). This preserves the more accurate spacing between the years (as opposed to treating x as a 'Nominal' type).</span>
 <span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>**2. Use these data to create a visualization that tells a story.**</span>
 <span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a></span>
@@ -1907,253 +1982,288 @@ Storyline
 <span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
 <span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
 <span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Access Gap: Contraception vs. Unmet Need",</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Tanzania DHS Data (1991-2016): Closing the gap in family planning services",</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Access Gap and Fertility Trends",</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Tanzania DHS Data (1991-2016): Impact of family planning on fertility rates",</span></span>
 <span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
 <span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "Tanzania.csv"</span></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 350,</span></span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="st">  "padding": {"right": 20},</span></span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {</span></span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "DHS Survey Year",</span></span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "nominal",</span></span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="st">      "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],</span></span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Survey Period",</span></span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="st">      "axis": {"labelAngle": 0, "titlePadding": 15}</span></span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="st">  "layer": [</span></span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},</span></span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Current Use of a Modern Method of Contraception-All Women (%)",</span></span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
-<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Percentage of Women (%)",</span></span>
-<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 50]},</span></span>
-<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {"grid": true}</span></span>
-<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},</span></span>
-<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Unmet Need for Family Planning-All Women (%)",</span></span>
-<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
-<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a><span class="st">          "scale": {"domain": [0, 50]}</span></span>
-<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a><span class="st">      "transform": [{"filter": "datum[</span><span class="sc">\'</span><span class="st">DHS Survey Year</span><span class="sc">\'</span><span class="st">] == </span><span class="sc">\'</span><span class="st">2015-2016</span><span class="sc">\'</span><span class="st">"}],</span></span>
-<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {"field": "DHS Survey Year", "type": "nominal", "sort": null},</span></span>
-<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"}</span></span>
-<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
-<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a><span class="st">      "layer": [</span></span>
-<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
-<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "text", "align": "right", "dx": -10, "dy": -10, "fontWeight": "bold"},</span></span>
-<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
-<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a><span class="st">            "text": {"value": "MODERN CONTRACEPTION USE"},</span></span>
-<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a><span class="st">            "color": {"value": "#2c7fb8"}</span></span>
-<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
-<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "text", "align": "right", "dx": -10, "dy": 15, "fontWeight": "bold"},</span></span>
-<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
-<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},</span></span>
-<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a><span class="st">            "text": {"value": "UNMET NEED"},</span></span>
-<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a><span class="st">            "color": {"value": "#756bb1"}</span></span>
-<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
-<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
-<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
-<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a><span class="st">    "autosize": {"type": "pad", "resize": true}</span></span>
-<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
-<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a>**3. Write a few sentences explaining the story told.**</span>
-<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a>Initially, you might assume that the story would sound something like this: "The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the "supply" of modern contraception and family planning has caught up to and begun to surpass the "unmet demand," indicating a move toward a more sustainable and equitable public health model."</span>
-<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a>However, I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down, they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10%, indicating that while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.</span>
-<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #4: My Masterpiece</span></span>
-<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a>**1. Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.**</span>
-<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
-<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
-<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
-<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "world_cup_results.csv"},</span></span>
-<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
-<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "The Golden Age of Scoring: World Cup Efficiency",</span></span>
-<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",</span></span>
-<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
-<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
-<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="st">  "params": [</span></span>
-<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="st">      "name": "YearLimit",</span></span>
-<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a><span class="st">      "value": 2014,</span></span>
-<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a><span class="st">      "bind": {</span></span>
-<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a><span class="st">        "input": "range", "min": 1930, "max": 2014, "step": 4, "name": "Year Limit: "</span></span>
-<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a><span class="st">      "name": "pts",</span></span>
-<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a><span class="st">      "select": {"type": "point", "fields": ["Year"]}</span></span>
-<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
-<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a><span class="st">      "calculate": "toNumber(datum.GoalsScored) / (toNumber(datum.MatchesPlayed) &gt; 0 ? toNumber(datum.MatchesPlayed) : 1)", </span></span>
-<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a><span class="st">      "as": "GoalsPerMatch"</span></span>
-<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a><span class="st">    {"filter": "datum.Year &lt;= YearLimit"}</span></span>
-<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
-<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
-<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 300,</span></span>
-<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "point", "filled": true, "size": 200, "stroke": "white", "strokeWidth": 1},</span></span>
-<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
-<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Year", </span></span>
-<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "ordinal", </span></span>
-<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": null</span></span>
-<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "GoalsScored", </span></span>
-<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative", </span></span>
-<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Total Goals Scored"</span></span>
-<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a><span class="st">        "color": {</span></span>
-<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {</span></span>
-<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a><span class="st">            "param": "pts", </span></span>
-<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a><span class="st">            "field": "MatchesPlayed", </span></span>
-<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a><span class="st">            "type": "quantitative", </span></span>
-<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a><span class="st">            "scale": {"scheme": "magma", "reverse": true}</span></span>
-<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a><span class="st">          },</span></span>
-<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": "#e0e0e0"</span></span>
-<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a><span class="st">        "opacity": {</span></span>
-<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {"param": "pts", "value": 1},</span></span>
-<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": 0.3</span></span>
-<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a><span class="st">        "tooltip": [</span></span>
-<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Year", "type": "ordinal"},</span></span>
-<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Winner", "type": "nominal"},</span></span>
-<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "GoalsPerMatch", "type": "quantitative", "format": ".2f"}</span></span>
-<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a><span class="st">        ]</span></span>
-<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
-<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
-<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
-<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 100,</span></span>
-<span id="cb6-448"><a href="#cb6-448" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "bar"},</span></span>
-<span id="cb6-449"><a href="#cb6-449" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
-<span id="cb6-450"><a href="#cb6-450" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
-<span id="cb6-451"><a href="#cb6-451" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Year", </span></span>
-<span id="cb6-452"><a href="#cb6-452" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "ordinal", </span></span>
-<span id="cb6-453"><a href="#cb6-453" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Tournament Timeline (Year)",</span></span>
-<span id="cb6-454"><a href="#cb6-454" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {</span></span>
-<span id="cb6-455"><a href="#cb6-455" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelAngle": 0,</span></span>
-<span id="cb6-456"><a href="#cb6-456" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelExpr": "(substring(datum.label, 2, 4))"</span></span>
-<span id="cb6-457"><a href="#cb6-457" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb6-458"><a href="#cb6-458" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-459"><a href="#cb6-459" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
-<span id="cb6-460"><a href="#cb6-460" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "GoalsPerMatch", </span></span>
-<span id="cb6-461"><a href="#cb6-461" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative", </span></span>
-<span id="cb6-462"><a href="#cb6-462" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Avg GPM"</span></span>
-<span id="cb6-463"><a href="#cb6-463" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
-<span id="cb6-464"><a href="#cb6-464" aria-hidden="true" tabindex="-1"></a><span class="st">        "color": {</span></span>
-<span id="cb6-465"><a href="#cb6-465" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {"param": "pts", "value": "#4682b4"},</span></span>
-<span id="cb6-466"><a href="#cb6-466" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": "#d1dae0"</span></span>
-<span id="cb6-467"><a href="#cb6-467" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb6-468"><a href="#cb6-468" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb6-469"><a href="#cb6-469" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-470"><a href="#cb6-470" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
-<span id="cb6-471"><a href="#cb6-471" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {"view": {"stroke": "transparent"}}</span></span>
-<span id="cb6-472"><a href="#cb6-472" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb6-473"><a href="#cb6-473" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
-<span id="cb6-474"><a href="#cb6-474" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-475"><a href="#cb6-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-476"><a href="#cb6-476" aria-hidden="true" tabindex="-1"></a>**2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.**</span>
-<span id="cb6-477"><a href="#cb6-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-478"><a href="#cb6-478" aria-hidden="true" tabindex="-1"></a>  **a.  Principles of Good Graphics (Tufte &amp; Beyond):**</span>
-<span id="cb6-479"><a href="#cb6-479" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-480"><a href="#cb6-480" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Maximizing the Data-Ink Ratio: I removed the X-axis from the top scatter plot because it was redundant. Tufte argues that "non-data ink" (like repeated labels) should be erased to reduce cognitive load. Since the charts are vertically aligned, the bottom axis serves both plots perfectly.</span>
-<span id="cb6-481"><a href="#cb6-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-482"><a href="#cb6-482" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Focus + Context through Interaction: By linking the scatter plot and bar chart via a "Year" selection, I implemented a system that allows for the user to see the 80-year macro-trend while clicking to isolate specific/micro tournament stats.</span>
-<span id="cb6-483"><a href="#cb6-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-484"><a href="#cb6-484" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Avoiding Chartjunk: I used a transparent view configuration and minimized grid lines. This ensures the "ink" is used almost exclusively for the data points themselves, preventing decorative elements from competing with the information.</span>
-<span id="cb6-485"><a href="#cb6-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-486"><a href="#cb6-486" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Visual Integrity: I maintained a zero-baseline for both Y-axes. This avoids the "Lie Factor," ensuring the decline in scoring efficiency is represented accurately rather than exaggerated by a clipped axis.</span>
-<span id="cb6-487"><a href="#cb6-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-488"><a href="#cb6-488" aria-hidden="true" tabindex="-1"></a>  **b.  Alternatives Considered:**</span>
-<span id="cb6-489"><a href="#cb6-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-490"><a href="#cb6-490" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dual-Axis Chart: I considered overlaying Goals and GPM on a single plot. I rejected this because dual-axes often violate visual integrity by suggesting correlations that depend entirely on how the scales are manipulated. Vertical concatenation is a much more "honest Tuftean" approach.</span>
-<span id="cb6-491"><a href="#cb6-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-492"><a href="#cb6-492" aria-hidden="true" tabindex="-1"></a>**3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.**</span>
-<span id="cb6-493"><a href="#cb6-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-494"><a href="#cb6-494" aria-hidden="true" tabindex="-1"></a>  a.  Data acquired from: <span class="co">[</span><span class="ot">Tableau Public Datasets</span><span class="co">](https://public.tableau.com/app/learn/sample-data)</span>{target="_blank"}</span>
-<span id="cb6-495"><a href="#cb6-495" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-496"><a href="#cb6-496" aria-hidden="true" tabindex="-1"></a>  b.  See link above for the data: <span class="co">[</span><span class="ot">Back to Top</span><span class="co">](#top)</span></span>
-<span id="cb6-497"><a href="#cb6-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-498"><a href="#cb6-498" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #5: Using your palette</span></span>
-<span id="cb6-499"><a href="#cb6-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-500"><a href="#cb6-500" aria-hidden="true" tabindex="-1"></a>**1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:**</span>
-<span id="cb6-501"><a href="#cb6-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-502"><a href="#cb6-502" aria-hidden="true" tabindex="-1"></a>  **a. an encoding channel other than x or y: ** The first graph of *Exercise #1*, to map the region to color and assign a respective legend.</span>
-<span id="cb6-503"><a href="#cb6-503" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-504"><a href="#cb6-504" aria-hidden="true" tabindex="-1"></a>  **b. layers: ** The first graph of *Exercise #1*, to show the dashed gray stroke to emphasize discrepancies.</span>
-<span id="cb6-505"><a href="#cb6-505" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-506"><a href="#cb6-506" aria-hidden="true" tabindex="-1"></a>  **c. facets: ** The first graph of *Exercise #1*, the graphs are faceted by DNA kit to more effectively compare both twin and kit results.</span>
-<span id="cb6-507"><a href="#cb6-507" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-508"><a href="#cb6-508" aria-hidden="true" tabindex="-1"></a>  **d. concatenation or repeat: ** *Exercise #4*, vertical concatenation to display the relationship between Total Goals and Attendance in the top view, and Goals Per Match in the bottom timeline.</span>
-<span id="cb6-509"><a href="#cb6-509" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-510"><a href="#cb6-510" aria-hidden="true" tabindex="-1"></a>  **e. non-default settings for a channel’s scale or guide: ** The graph in part two of *Exercise #3*, the Modern Contraception Percentage on the y-axis is limited to the range of 0 to 50.</span>
-<span id="cb6-511"><a href="#cb6-511" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-512"><a href="#cb6-512" aria-hidden="true" tabindex="-1"></a>  **f. tooltips: ** The second graph of *Exercise #1*, the graph has a tooltip to display the kit, region, and average error information for the points on the graph.</span>
-<span id="cb6-513"><a href="#cb6-513" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-514"><a href="#cb6-514" aria-hidden="true" tabindex="-1"></a>  **g. another kind of interaction (panning/zooming, brushing, sliders, etc.): ** *Exercise #4*, the dynamic filter controlled by a slider to control the given years up to a certain selected point on the timeline.</span>
-<span id="cb6-515"><a href="#cb6-515" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "Tanzania.csv"},</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="st">      "calculate": "toNumber(split(datum[</span><span class="sc">\'</span><span class="st">DHS Survey Year</span><span class="sc">\'</span><span class="st">], </span><span class="sc">\'</span><span class="st">-</span><span class="sc">\'</span><span class="st">)[0])",</span></span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="st">      "as": "year_start"</span></span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Family Planning Access",</span></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 350,</span></span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="st">      "layer": [</span></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},</span></span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a><span class="st">            "x": {</span></span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="st">              "field": "year_start",</span></span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a><span class="st">              "type": "quantitative",</span></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="st">              "axis": {"labels": false, "title": null, "values": [1991, 1996, 1999, 2004, 2010, 2015]}</span></span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a><span class="st">            },</span></span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {</span></span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a><span class="st">              "field": "Current Use of a Modern Method of Contraception-All Women (%)",</span></span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a><span class="st">              "type": "quantitative",</span></span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a><span class="st">              "title": "% of Women",</span></span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a><span class="st">              "scale": {"domain": [0, 50]}</span></span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a><span class="st">          "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},</span></span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="st">          "encoding": {</span></span>
+<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a><span class="st">            "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a><span class="st">            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"}</span></span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="st">          "transform": [{"filter": "datum[</span><span class="sc">\'</span><span class="st">year_start</span><span class="sc">\'</span><span class="st">] == 2015"}],</span></span>
+<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="st">          "layer": [</span></span>
+<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a><span class="st">            {</span></span>
+<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a><span class="st">              "mark": {"type": "text", "align": "left", "dx": -100, "dy": -10, "fontWeight": "bold"},</span></span>
+<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="st">              "encoding": {</span></span>
+<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a><span class="st">                "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a><span class="st">                "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"},</span></span>
+<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a><span class="st">                "text": {"value": "Contraception Use"},</span></span>
+<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a><span class="st">                "color": {"value": "#2c7fb8"}</span></span>
+<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a><span class="st">              }</span></span>
+<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a><span class="st">            },</span></span>
+<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a><span class="st">            {</span></span>
+<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a><span class="st">              "mark": {"type": "text", "align": "left", "dx": -60, "dy": 15, "fontWeight": "bold"},</span></span>
+<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a><span class="st">              "encoding": {</span></span>
+<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a><span class="st">                "x": {"field": "year_start", "type": "quantitative"},</span></span>
+<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a><span class="st">                "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},</span></span>
+<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a><span class="st">                "text": {"value": "Unmet Need"},</span></span>
+<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a><span class="st">                "color": {"value": "#756bb1"}</span></span>
+<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a><span class="st">              }</span></span>
+<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a><span class="st">          ]</span></span>
+<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
+<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Total Fertility Rate (TFR)",</span></span>
+<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 100,</span></span>
+<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "line", "color": "#111184", "point": true, "size": 3},</span></span>
+<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
+<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "year_start",</span></span>
+<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Survey Period",</span></span>
+<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {</span></span>
+<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a><span class="st">            "format": "d",</span></span>
+<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a><span class="st">            "values": [1991, 1996, 1999, 2004, 2010, 2015],</span></span>
+<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelExpr": "datum.value == 1991 ? </span><span class="sc">\'</span><span class="st">1991-92</span><span class="sc">\'</span><span class="st"> : datum.value == 2004 ? </span><span class="sc">\'</span><span class="st">2004-05</span><span class="sc">\'</span><span class="st"> : datum.value == 2015 ? </span><span class="sc">\'</span><span class="st">2015-16</span><span class="sc">\'</span><span class="st"> : datum.value"</span></span>
+<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Total Fertility Rate All Women Ages 15-49",</span></span>
+<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative",</span></span>
+<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "TFR"</span></span>
+<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {</span></span>
+<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a><span class="st">    "title": {</span></span>
+<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="st">      "fontSize": 22,</span></span>
+<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="st">      "subtitleFontSize": 16,</span></span>
+<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a><span class="st">      "subtitlePadding": 10</span></span>
+<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a><span class="st">    "axis": {</span></span>
+<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="st">      "labelFontSize": 13,</span></span>
+<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a><span class="st">      "titleFontSize": 14</span></span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a><span class="st">    "view": {"stroke": "transparent"},</span></span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="st">    "spacing": 15</span></span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
+<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a>**3. Write a few sentences explaining the story told.**</span>
+<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a>Initially, you might assume that the story would sound something like this: "The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the "supply" of modern contraception and family planning has caught up to and begun to surpass the "unmet demand," indicating a move toward a more sustainable and equitable public health model. This is corroborated by the downward trend in Total Fertility Rate, decreasing from 6.2 to 5.2 over the 26 year period."</span>
+<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a>However I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down (clearly correlated with the fertility rates), they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10% and fertility rate has decreased by 1, indicating that, while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.</span>
+<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #4: My Masterpiece</span></span>
+<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a>**1. Using a data set of your choosing, create a graphic that demonstrates your abilities to design and create a graphic that tells a compelling story.**</span>
+<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {"url": "world_cup_results.csv"},</span></span>
+<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": {</span></span>
+<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a><span class="st">    "text": "World Cup Winners: The Golden Age of Scoring",</span></span>
+<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a><span class="st">    "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",</span></span>
+<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a><span class="st">    "anchor": "start"</span></span>
+<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a><span class="st">  "params": [</span></span>
+<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a><span class="st">      "name": "YearLimit",</span></span>
+<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a><span class="st">      "value": 2014,</span></span>
+<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a><span class="st">      "bind": {</span></span>
+<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a><span class="st">        "input": "range", "min": 1930, "max": 2014, "step": 4, "name": "Year Limit: "</span></span>
+<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a><span class="st">      "name": "pts",</span></span>
+<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a><span class="st">      "select": {"type": "point", "fields": ["Year"]}</span></span>
+<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a><span class="st">  "transform": [</span></span>
+<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a><span class="st">      "calculate": "toNumber(datum.GoalsScored) / (toNumber(datum.MatchesPlayed) &gt; 0 ? toNumber(datum.MatchesPlayed) : 1)", </span></span>
+<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a><span class="st">      "as": "GoalsPerMatch"</span></span>
+<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a><span class="st">    {"filter": "datum.Year &lt;= YearLimit"}</span></span>
+<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a><span class="st">  "vconcat": [</span></span>
+<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 300,</span></span>
+<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "point", "filled": true, "size": 200, "stroke": "white", "strokeWidth": 1},</span></span>
+<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
+<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Year", </span></span>
+<span id="cb6-448"><a href="#cb6-448" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "ordinal", </span></span>
+<span id="cb6-449"><a href="#cb6-449" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": null</span></span>
+<span id="cb6-450"><a href="#cb6-450" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-451"><a href="#cb6-451" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb6-452"><a href="#cb6-452" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "GoalsScored", </span></span>
+<span id="cb6-453"><a href="#cb6-453" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative", </span></span>
+<span id="cb6-454"><a href="#cb6-454" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Total Goals Scored"</span></span>
+<span id="cb6-455"><a href="#cb6-455" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-456"><a href="#cb6-456" aria-hidden="true" tabindex="-1"></a><span class="st">        "color": {</span></span>
+<span id="cb6-457"><a href="#cb6-457" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {</span></span>
+<span id="cb6-458"><a href="#cb6-458" aria-hidden="true" tabindex="-1"></a><span class="st">            "param": "pts", </span></span>
+<span id="cb6-459"><a href="#cb6-459" aria-hidden="true" tabindex="-1"></a><span class="st">            "field": "MatchesPlayed", </span></span>
+<span id="cb6-460"><a href="#cb6-460" aria-hidden="true" tabindex="-1"></a><span class="st">            "type": "quantitative", </span></span>
+<span id="cb6-461"><a href="#cb6-461" aria-hidden="true" tabindex="-1"></a><span class="st">            "scale": {"scheme": "magma", "reverse": true}</span></span>
+<span id="cb6-462"><a href="#cb6-462" aria-hidden="true" tabindex="-1"></a><span class="st">          },</span></span>
+<span id="cb6-463"><a href="#cb6-463" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": "#e0e0e0"</span></span>
+<span id="cb6-464"><a href="#cb6-464" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-465"><a href="#cb6-465" aria-hidden="true" tabindex="-1"></a><span class="st">        "opacity": {</span></span>
+<span id="cb6-466"><a href="#cb6-466" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {"param": "pts", "value": 1},</span></span>
+<span id="cb6-467"><a href="#cb6-467" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": 0.3</span></span>
+<span id="cb6-468"><a href="#cb6-468" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-469"><a href="#cb6-469" aria-hidden="true" tabindex="-1"></a><span class="st">        "tooltip": [</span></span>
+<span id="cb6-470"><a href="#cb6-470" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Year", "type": "ordinal"},</span></span>
+<span id="cb6-471"><a href="#cb6-471" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "Winner", "type": "nominal"},</span></span>
+<span id="cb6-472"><a href="#cb6-472" aria-hidden="true" tabindex="-1"></a><span class="st">          {"field": "GoalsPerMatch", "type": "quantitative", "format": ".2f"}</span></span>
+<span id="cb6-473"><a href="#cb6-473" aria-hidden="true" tabindex="-1"></a><span class="st">        ]</span></span>
+<span id="cb6-474"><a href="#cb6-474" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb6-475"><a href="#cb6-475" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb6-476"><a href="#cb6-476" aria-hidden="true" tabindex="-1"></a><span class="st">    {</span></span>
+<span id="cb6-477"><a href="#cb6-477" aria-hidden="true" tabindex="-1"></a><span class="st">      "width": 600,</span></span>
+<span id="cb6-478"><a href="#cb6-478" aria-hidden="true" tabindex="-1"></a><span class="st">      "height": 100,</span></span>
+<span id="cb6-479"><a href="#cb6-479" aria-hidden="true" tabindex="-1"></a><span class="st">      "mark": {"type": "bar"},</span></span>
+<span id="cb6-480"><a href="#cb6-480" aria-hidden="true" tabindex="-1"></a><span class="st">      "encoding": {</span></span>
+<span id="cb6-481"><a href="#cb6-481" aria-hidden="true" tabindex="-1"></a><span class="st">        "x": {</span></span>
+<span id="cb6-482"><a href="#cb6-482" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "Year", </span></span>
+<span id="cb6-483"><a href="#cb6-483" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "ordinal", </span></span>
+<span id="cb6-484"><a href="#cb6-484" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Tournament Timeline (Year)",</span></span>
+<span id="cb6-485"><a href="#cb6-485" aria-hidden="true" tabindex="-1"></a><span class="st">          "axis": {</span></span>
+<span id="cb6-486"><a href="#cb6-486" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelAngle": 0,</span></span>
+<span id="cb6-487"><a href="#cb6-487" aria-hidden="true" tabindex="-1"></a><span class="st">            "labelExpr": "(substring(datum.label, 2, 4))"</span></span>
+<span id="cb6-488"><a href="#cb6-488" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
+<span id="cb6-489"><a href="#cb6-489" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-490"><a href="#cb6-490" aria-hidden="true" tabindex="-1"></a><span class="st">        "y": {</span></span>
+<span id="cb6-491"><a href="#cb6-491" aria-hidden="true" tabindex="-1"></a><span class="st">          "field": "GoalsPerMatch", </span></span>
+<span id="cb6-492"><a href="#cb6-492" aria-hidden="true" tabindex="-1"></a><span class="st">          "type": "quantitative", </span></span>
+<span id="cb6-493"><a href="#cb6-493" aria-hidden="true" tabindex="-1"></a><span class="st">          "title": "Avg GPM"</span></span>
+<span id="cb6-494"><a href="#cb6-494" aria-hidden="true" tabindex="-1"></a><span class="st">        },</span></span>
+<span id="cb6-495"><a href="#cb6-495" aria-hidden="true" tabindex="-1"></a><span class="st">        "color": {</span></span>
+<span id="cb6-496"><a href="#cb6-496" aria-hidden="true" tabindex="-1"></a><span class="st">          "condition": {"param": "pts", "value": "#4682b4"},</span></span>
+<span id="cb6-497"><a href="#cb6-497" aria-hidden="true" tabindex="-1"></a><span class="st">          "value": "#d1dae0"</span></span>
+<span id="cb6-498"><a href="#cb6-498" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb6-499"><a href="#cb6-499" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb6-500"><a href="#cb6-500" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-501"><a href="#cb6-501" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-502"><a href="#cb6-502" aria-hidden="true" tabindex="-1"></a><span class="st">  "config": {"view": {"stroke": "transparent"}}</span></span>
+<span id="cb6-503"><a href="#cb6-503" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb6-504"><a href="#cb6-504" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
+<span id="cb6-505"><a href="#cb6-505" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-506"><a href="#cb6-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-507"><a href="#cb6-507" aria-hidden="true" tabindex="-1"></a>The graph shown above is my masterpiece. Not only does it demonstrate changes to the World Cup, as a tournament, over time, but it highlights the statistics from the winning country each year. While it may seem obvious that more goals would be scored as the number of games played by the winning team increased, this is crucial to highlight when shown in contrast to the inverse trend of decreasing Goals Per Match shown in the lower graph.</span>
+<span id="cb6-508"><a href="#cb6-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-509"><a href="#cb6-509" aria-hidden="true" tabindex="-1"></a>The slider is especially useful because it allows the viewer to start at the base year of 1930 and slowly increase the number of years displayed. This manual animation makes it much easier to see when the "Golden Age of Scoring" ended after the 1950s. Furthermore, it acts as a boundary to allow for the comparison of eras, encouraging actice learning from the viewer.</span>
+<span id="cb6-510"><a href="#cb6-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-511"><a href="#cb6-511" aria-hidden="true" tabindex="-1"></a>**2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.**</span>
+<span id="cb6-512"><a href="#cb6-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-513"><a href="#cb6-513" aria-hidden="true" tabindex="-1"></a>  **a.  Principles of Good Graphics (Tufte &amp; Beyond):**</span>
+<span id="cb6-514"><a href="#cb6-514" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-515"><a href="#cb6-515" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Maximizing the Data-Ink Ratio: I removed the X-axis from the top scatter plot because it was redundant. Tufte argues that "non-data ink" (like repeated labels) should be erased to reduce cognitive load. Since the charts are vertically aligned, the bottom axis serves both plots perfectly.</span>
 <span id="cb6-516"><a href="#cb6-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-517"><a href="#cb6-517" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #6: Using your palette</span></span>
+<span id="cb6-517"><a href="#cb6-517" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Focus + Context through Interaction: By linking the scatter plot and bar chart via a "Year" selection, I implemented a system that allows for the user to see the 80-year macro-trend while clicking to isolate specific/micro tournament stats.</span>
 <span id="cb6-518"><a href="#cb6-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-519"><a href="#cb6-519" aria-hidden="true" tabindex="-1"></a>**1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…**</span>
+<span id="cb6-519"><a href="#cb6-519" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Avoiding Chartjunk: I used a transparent view configuration and minimized grid lines. This ensures the "ink" is used almost exclusively for the data points themselves, preventing decorative elements from competing with the information.</span>
 <span id="cb6-520"><a href="#cb6-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-521"><a href="#cb6-521" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #4, I used a complex JavaScript-based Label Expression with a substring to format the years. This allowed for a high-density "YY" format that isn't available as a standard Vega-Lite time format.</span>
-<span id="cb6-522"><a href="#cb6-522" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-523"><a href="#cb6-523" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #2, I used ifelse statements to mutate the data to get the correct percentage values.</span>
+<span id="cb6-521"><a href="#cb6-521" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Visual Integrity: I maintained a zero-baseline for both Y-axes. This avoids the "Lie Factor," ensuring the decline in scoring efficiency is represented accurately rather than exaggerated by a clipped axis.</span>
+<span id="cb6-522"><a href="#cb6-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-523"><a href="#cb6-523" aria-hidden="true" tabindex="-1"></a>  **b.  Alternatives Considered:**</span>
 <span id="cb6-524"><a href="#cb6-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-525"><a href="#cb6-525" aria-hidden="true" tabindex="-1"></a>**2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)**</span>
+<span id="cb6-525"><a href="#cb6-525" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dual-Axis Chart: I considered overlaying Goals and GPM on a single plot. I rejected this because dual-axes often violate visual integrity by suggesting correlations that depend entirely on how the scales are manipulated. Vertical concatenation is a much more "honest Tuftean" approach.</span>
 <span id="cb6-526"><a href="#cb6-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-527"><a href="#cb6-527" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Following Edward Tufte's principles in The Visual Display of Quantitative Information (specifically the focus on "Erasing Non-Data-Ink", p. 91-105), I customized the config in nearly all my plots to remove outer view borders ("stroke": "transparent") and unnecessary gridlines. This is most evident in the Twin Genetics scatter plots, where the focus remains on the data points and the identity line rather than the chart's frame.</span>
-<span id="cb6-528"><a href="#cb6-528" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-529"><a href="#cb6-529" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #4, I followed the advice found in Claus Wilke's Fundamentals of Data Visualization regarding secondary axes (<span class="co">[</span><span class="ot">Chapter 3, "Visualizing amounts"</span><span class="co">](https://clauswilke.com/dataviz/coordinate-systems-axes.html)</span>). Instead of overlaying "Total Goals" and "Goals Per Match" on one graph, I used vertical concatenation to create separate panels. This maintains the visual integrity of both scales while still allowing for a direct comparison across the shared timeline.</span>
-<span id="cb6-530"><a href="#cb6-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-531"><a href="#cb6-531" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
-<span id="cb6-532"><a href="#cb6-532" aria-hidden="true" tabindex="-1"></a>Healy, K. 2019. Data Visualization: A Practical Introduction. Princeton University Press. https://socviz.co/.</span>
-<span id="cb6-533"><a href="#cb6-533" aria-hidden="true" tabindex="-1"></a>Heer, Dominik, Jeffrey AND Moritz. 2024. “Mosaic: An Architecture for Scalable &amp; Interoperable Data Views.” IEEE Trans. Visualization &amp; Comp. Graphics (Proc. VIS). https://doi.org/10.1109/TVCG.2023.3327189.</span>
-<span id="cb6-534"><a href="#cb6-534" aria-hidden="true" tabindex="-1"></a>Knaflic, C. N. 2015. Storytelling with Data: A Data Visualization Guide for Business Professionals. Wiley. https://github.com/Saurav6789/Books-/blob/master/storytelling-with-data-cole-nussbaumer-knaflic.pdf.</span>
-<span id="cb6-535"><a href="#cb6-535" aria-hidden="true" tabindex="-1"></a>———. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%</span>
-<span id="cb6-536"><a href="#cb6-536" aria-hidden="true" tabindex="-1"></a>E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.</span>
-<span id="cb6-537"><a href="#cb6-537" aria-hidden="true" tabindex="-1"></a>Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%</span>
-<span id="cb6-538"><a href="#cb6-538" aria-hidden="true" tabindex="-1"></a>20quantitative%20information.pdf.</span>
-<span id="cb6-539"><a href="#cb6-539" aria-hidden="true" tabindex="-1"></a>Wilke, C. O. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O’Reilly Media. https://clauswilke.com/dataviz/.</span>
+<span id="cb6-527"><a href="#cb6-527" aria-hidden="true" tabindex="-1"></a>**3. Be sure to include information about where you got your data from. This could be a link to a website, a proper citation of an article, a description of a research project you have been working on, etc.**</span>
+<span id="cb6-528"><a href="#cb6-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-529"><a href="#cb6-529" aria-hidden="true" tabindex="-1"></a>  a.  Data acquired from: <span class="co">[</span><span class="ot">Tableau Public Datasets</span><span class="co">](https://public.tableau.com/app/learn/sample-data)</span>{target="_blank"}</span>
+<span id="cb6-530"><a href="#cb6-530" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-531"><a href="#cb6-531" aria-hidden="true" tabindex="-1"></a>  b.  See link above for the data: <span class="co">[</span><span class="ot">Back to Top</span><span class="co">](#top)</span></span>
+<span id="cb6-532"><a href="#cb6-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-533"><a href="#cb6-533" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #5: Using your palette</span></span>
+<span id="cb6-534"><a href="#cb6-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-535"><a href="#cb6-535" aria-hidden="true" tabindex="-1"></a>**1. The grammar of graphics gives us a palette of graphical elements with which to “paint” our graphic. The palette includes various marks, channels, composition, etc. One of the goals for your portfolio is that you demonstrate the ability to use a variety of these features and use them effectively. Look over your graphics, and identify a place where you used:**</span>
+<span id="cb6-536"><a href="#cb6-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-537"><a href="#cb6-537" aria-hidden="true" tabindex="-1"></a>  **a. an encoding channel other than x or y: ** The first graph of *Exercise #1*, to map the region to color and assign a respective legend.</span>
+<span id="cb6-538"><a href="#cb6-538" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-539"><a href="#cb6-539" aria-hidden="true" tabindex="-1"></a>  **b. layers: ** The first graph of *Exercise #1*, to show the dashed gray stroke to emphasize discrepancies.</span>
+<span id="cb6-540"><a href="#cb6-540" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-541"><a href="#cb6-541" aria-hidden="true" tabindex="-1"></a>  **c. facets: ** The first graph of *Exercise #1*, the graphs are faceted by DNA kit to more effectively compare both twin and kit results.</span>
+<span id="cb6-542"><a href="#cb6-542" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-543"><a href="#cb6-543" aria-hidden="true" tabindex="-1"></a>  **d. concatenation or repeat: ** *Exercise #4*, vertical concatenation to display the relationship between Total Goals and Attendance in the top view, and Goals Per Match in the bottom timeline.</span>
+<span id="cb6-544"><a href="#cb6-544" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-545"><a href="#cb6-545" aria-hidden="true" tabindex="-1"></a>  **e. non-default settings for a channel’s scale or guide: ** The graph in part two of *Exercise #3*, the Modern Contraception Percentage on the y-axis is limited to the range of 0 to 50.</span>
+<span id="cb6-546"><a href="#cb6-546" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-547"><a href="#cb6-547" aria-hidden="true" tabindex="-1"></a>  **f. tooltips: ** The second graph of *Exercise #1*, the graph has a tooltip to display the kit, region, and average error information for the points on the graph.</span>
+<span id="cb6-548"><a href="#cb6-548" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-549"><a href="#cb6-549" aria-hidden="true" tabindex="-1"></a>  **g. another kind of interaction (panning/zooming, brushing, sliders, etc.): ** *Exercise #4*, the dynamic filter controlled by a slider to control the given years up to a certain selected point on the timeline.</span>
+<span id="cb6-550"><a href="#cb6-550" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-551"><a href="#cb6-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-552"><a href="#cb6-552" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise #6: Using your palette</span></span>
+<span id="cb6-553"><a href="#cb6-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-554"><a href="#cb6-554" aria-hidden="true" tabindex="-1"></a>**1. Cite 2 or 3 specific examples in the graphics in your portfolio where you used a feature of Vega-Lite/vegabrite/Altair/altair that we did not learn in class. This might be using a new kind of mark or transform, or a way to customize a feature of the graphic, or a way to use interaction, or…**</span>
+<span id="cb6-555"><a href="#cb6-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-556"><a href="#cb6-556" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #4, I used a complex JavaScript-based Label Expression with a substring to format the years. This allowed for a high-density "YY" format that isn't available as a standard Vega-Lite time format.</span>
+<span id="cb6-557"><a href="#cb6-557" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-558"><a href="#cb6-558" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #2, I used ifelse statements to mutate the data to get the correct percentage values.</span>
+<span id="cb6-559"><a href="#cb6-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-560"><a href="#cb6-560" aria-hidden="true" tabindex="-1"></a>**2. You will also want to keep learning about principles of good graphics design. Cite 2 or 3 specific examples where you followed the advice in one of the resources from class. Provide specific page (for print or pdf) or section (for HTML) references. Include direct links, if possible. (HTML books often make it easy to link directly to a section.)**</span>
+<span id="cb6-561"><a href="#cb6-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-562"><a href="#cb6-562" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Following Edward Tufte's principles in The Visual Display of Quantitative Information (specifically the focus on "Erasing Non-Data-Ink", p. 91-105), I customized the config in nearly all my plots to remove outer view borders ("stroke": "transparent") and unnecessary gridlines. This is most evident in the Twin Genetics scatter plots, where the focus remains on the data points and the identity line rather than the chart's frame.</span>
+<span id="cb6-563"><a href="#cb6-563" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-564"><a href="#cb6-564" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>In Exercise #4, I followed the advice found in Claus Wilke's Fundamentals of Data Visualization regarding secondary axes (<span class="co">[</span><span class="ot">Chapter 3, "Visualizing amounts"</span><span class="co">](https://clauswilke.com/dataviz/coordinate-systems-axes.html)</span>). Instead of overlaying "Total Goals" and "Goals Per Match" on one graph, I used vertical concatenation to create separate panels. This maintains the visual integrity of both scales while still allowing for a direct comparison across the shared timeline.</span>
+<span id="cb6-565"><a href="#cb6-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-566"><a href="#cb6-566" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb6-567"><a href="#cb6-567" aria-hidden="true" tabindex="-1"></a>Healy, K. 2019. Data Visualization: A Practical Introduction. Princeton University Press. https://socviz.co/.</span>
+<span id="cb6-568"><a href="#cb6-568" aria-hidden="true" tabindex="-1"></a>Heer, Dominik, Jeffrey AND Moritz. 2024. “Mosaic: An Architecture for Scalable &amp; Interoperable Data Views.” IEEE Trans. Visualization &amp; Comp. Graphics (Proc. VIS). https://doi.org/10.1109/TVCG.2023.3327189.</span>
+<span id="cb6-569"><a href="#cb6-569" aria-hidden="true" tabindex="-1"></a>Knaflic, C. N. 2015. Storytelling with Data: A Data Visualization Guide for Business Professionals. Wiley. https://github.com/Saurav6789/Books-/blob/master/storytelling-with-data-cole-nussbaumer-knaflic.pdf.</span>
+<span id="cb6-570"><a href="#cb6-570" aria-hidden="true" tabindex="-1"></a>———. 2020. Storytelling with Data: Let’s Practice! Wiley. https://github.com/Saurav6789/Books-/blob/master/Storytelling%20with%20Data%20Let%</span>
+<span id="cb6-571"><a href="#cb6-571" aria-hidden="true" tabindex="-1"></a>E2%80%99s%20Practice%20by%20Cole%20Nussbaumer%20Knaflic%20(z-lib.org).pdf.</span>
+<span id="cb6-572"><a href="#cb6-572" aria-hidden="true" tabindex="-1"></a>Tufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Cheshire, CT: Graphics Press. https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%</span>
+<span id="cb6-573"><a href="#cb6-573" aria-hidden="true" tabindex="-1"></a>20quantitative%20information.pdf.</span>
+<span id="cb6-574"><a href="#cb6-574" aria-hidden="true" tabindex="-1"></a>Wilke, C. O. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O’Reilly Media. https://clauswilke.com/dataviz/.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

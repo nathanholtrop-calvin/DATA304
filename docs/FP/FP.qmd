@@ -273,7 +273,7 @@ Deep dive into the ticket data
 
   a.  See dataset link above: [Back to Top](#top)
   
-  b.  I am going to use a categorical approach by using the full string (e.g., 2015-2016) as a "Nominal" type in Vega-Lite. This preserves the accuracy of the Demographic and Health Survey period without forcing the data onto a strictly linear timeline that might misrepresent the mid-point.
+  b.  I am going to use a quantitative approach by taking the first of the two years when applicable but labeling with the full string (e.g., using the value 2015, but marking it as '2015-2016'). This preserves the more accurate spacing between the years (as opposed to treating x as a 'Nominal' type).
 
 **2. Use these data to create a visualization that tells a story.**
 
@@ -282,76 +282,107 @@ Deep dive into the ticket data
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "The Access Gap: Contraception vs. Unmet Need",
-    "subtitle": "Tanzania DHS Data (1991-2016): Closing the gap in family planning services",
+    "text": "The Access Gap and Fertility Trends",
+    "subtitle": "Tanzania DHS Data (1991-2016): Impact of family planning on fertility rates",
     "anchor": "start"
   },
-  "data": {
-    "url": "Tanzania.csv"
-  },
-  "width": 600,
-  "height": 350,
-  "padding": {"right": 20},
-  "encoding": {
-    "x": {
-      "field": "DHS Survey Year",
-      "type": "nominal",
-      "sort": ["1991-1992", "1996", "1999", "2004-2005", "2010", "2015-2016"],
-      "title": "Survey Period",
-      "axis": {"labelAngle": 0, "titlePadding": 15}
+  "data": {"url": "Tanzania.csv"},
+  "transform": [
+    {
+      "calculate": "toNumber(split(datum[\'DHS Survey Year\'], \'-\')[0])",
+      "as": "year_start"
     }
-  },
-  "layer": [
+  ],
+  "vconcat": [
     {
-      "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},
-      "encoding": {
-        "y": {
-          "field": "Current Use of a Modern Method of Contraception-All Women (%)",
-          "type": "quantitative",
-          "title": "Percentage of Women (%)",
-          "scale": {"domain": [0, 50]},
-          "axis": {"grid": true}
-        }
-      }
-    },
-    {
-      "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},
-      "encoding": {
-        "y": {
-          "field": "Unmet Need for Family Planning-All Women (%)",
-          "type": "quantitative",
-          "scale": {"domain": [0, 50]}
-        }
-      }
-    },
-    {
-      "transform": [{"filter": "datum[\'DHS Survey Year\'] == \'2015-2016\'"}],
-      "encoding": {
-        "x": {"field": "DHS Survey Year", "type": "nominal", "sort": null},
-        "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"}
-      },
+      "title": "Family Planning Access",
+      "width": 600,
+      "height": 350,
       "layer": [
         {
-          "mark": {"type": "text", "align": "right", "dx": -10, "dy": -10, "fontWeight": "bold"},
+          "mark": {"type": "line", "color": "#2c7fb8", "point": true, "size": 3},
           "encoding": {
-            "text": {"value": "MODERN CONTRACEPTION USE"},
-            "color": {"value": "#2c7fb8"}
+            "x": {
+              "field": "year_start",
+              "type": "quantitative",
+              "axis": {"labels": false, "title": null, "values": [1991, 1996, 1999, 2004, 2010, 2015]}
+            },
+            "y": {
+              "field": "Current Use of a Modern Method of Contraception-All Women (%)",
+              "type": "quantitative",
+              "title": "% of Women",
+              "scale": {"domain": [0, 50]}
+            }
           }
         },
         {
-          "mark": {"type": "text", "align": "right", "dx": -10, "dy": 15, "fontWeight": "bold"},
+          "mark": {"type": "line", "color": "#756bb1", "point": true, "size": 3, "strokeDash": [4,2]},
           "encoding": {
-            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},
-            "text": {"value": "UNMET NEED"},
-            "color": {"value": "#756bb1"}
+            "x": {"field": "year_start", "type": "quantitative"},
+            "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"}
           }
+        },
+        {
+          "transform": [{"filter": "datum[\'year_start\'] == 2015"}],
+          "layer": [
+            {
+              "mark": {"type": "text", "align": "left", "dx": -100, "dy": -10, "fontWeight": "bold"},
+              "encoding": {
+                "x": {"field": "year_start", "type": "quantitative"},
+                "y": {"field": "Current Use of a Modern Method of Contraception-All Women (%)", "type": "quantitative"},
+                "text": {"value": "Contraception Use"},
+                "color": {"value": "#2c7fb8"}
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": -60, "dy": 15, "fontWeight": "bold"},
+              "encoding": {
+                "x": {"field": "year_start", "type": "quantitative"},
+                "y": {"field": "Unmet Need for Family Planning-All Women (%)", "type": "quantitative"},
+                "text": {"value": "Unmet Need"},
+                "color": {"value": "#756bb1"}
+              }
+            }
+          ]
         }
       ]
+    },
+    {
+      "title": "Total Fertility Rate (TFR)",
+      "width": 600,
+      "height": 100,
+      "mark": {"type": "line", "color": "#111184", "point": true, "size": 3},
+      "encoding": {
+        "x": {
+          "field": "year_start",
+          "type": "quantitative",
+          "title": "Survey Period",
+          "axis": {
+            "format": "d",
+            "values": [1991, 1996, 1999, 2004, 2010, 2015],
+            "labelExpr": "datum.value == 1991 ? \'1991-92\' : datum.value == 2004 ? \'2004-05\' : datum.value == 2015 ? \'2015-16\' : datum.value"
+          }
+        },
+        "y": {
+          "field": "Total Fertility Rate All Women Ages 15-49",
+          "type": "quantitative",
+          "title": "TFR"
+        }
+      }
     }
   ],
   "config": {
+    "title": {
+      "fontSize": 22,
+      "subtitleFontSize": 16,
+      "subtitlePadding": 10
+    },
+    "axis": {
+      "labelFontSize": 13,
+      "titleFontSize": 14
+    },
     "view": {"stroke": "transparent"},
-    "autosize": {"type": "pad", "resize": true}
+    "spacing": 15
   }
 }
 ' |> as_vegaspec()
@@ -360,9 +391,9 @@ Deep dive into the ticket data
 
 **3. Write a few sentences explaining the story told.**
 
-Initially, you might assume that the story would sound something like this: "The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the "supply" of modern contraception and family planning has caught up to and begun to surpass the "unmet demand," indicating a move toward a more sustainable and equitable public health model."
+Initially, you might assume that the story would sound something like this: "The story told by this visualization is one of national progress and systemic convergence, we see the closing of a significant public health gap in Tanzania. For the first time in the recorded dataset, the "supply" of modern contraception and family planning has caught up to and begun to surpass the "unmet demand," indicating a move toward a more sustainable and equitable public health model. This is corroborated by the downward trend in Total Fertility Rate, decreasing from 6.2 to 5.2 over the 26 year period."
 
-However, I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down, they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10%, indicating that while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.
+However I feel as though this graph provides a much more nuanced view. While it is clear the modern contraception use has gone up and the unmet need for family planning has gone down (clearly correlated with the fertility rates), they happen at alarmingly differing rates. While modern contraception use has increased by over 40%, the unmet need has only decreased by 10% and fertility rate has decreased by 1, indicating that, while modern contraception has been instrumental in meeting the need for family planning, it is far from being the all-encompassing solution.
 
 ## Exercise #4: My Masterpiece
 
@@ -374,7 +405,7 @@ However, I feel as though this graph provides a much more nuanced view. While it
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "world_cup_results.csv"},
   "title": {
-    "text": "The Golden Age of Scoring: World Cup Efficiency",
+    "text": "World Cup Winners: The Golden Age of Scoring",
     "subtitle": "Total Goals vs. Goals Per Match (GPM). Click a point to sync the timeline.",
     "anchor": "start"
   },
@@ -464,6 +495,10 @@ However, I feel as though this graph provides a much more nuanced view. While it
 }
 ' |> as_vegaspec()
 ```
+
+The graph shown above is my masterpiece. Not only does it demonstrate changes to the World Cup, as a tournament, over time, but it highlights the statistics from the winning country each year. While it may seem obvious that more goals would be scored as the number of games played by the winning team increased, this is crucial to highlight when shown in contrast to the inverse trend of decreasing Goals Per Match shown in the lower graph.
+
+The slider is especially useful because it allows the viewer to start at the base year of 1930 and slowly increase the number of years displayed. This manual animation makes it much easier to see when the "Golden Age of Scoring" ended after the 1950s. Furthermore, it acts as a boundary to allow for the comparison of eras, encouraging actice learning from the viewer.
 
 **2. Explain the choices you made when designing your graphic and relate them to principles of good graphics that we have learned or seen in this class. Mention alternatives to your graphic that you considered but did not opt to submit.**
 
