@@ -13,13 +13,13 @@ format:
 
 ## Executive Summary
 
-This year was defined by two significant periods of seasonal pressure in **May** and **November**. Despite these inventory spikes, the team achieved a landmark turnaround in service quality, ending the year significantly above our 90% performance goal.
+This year was defined by two significant periods of seasonal pressure in **May** and **November**. Despite these inventory spikes, the team achieved a landmark turnaround in service quality, ending the year significantly above their 90% performance goal.
 
 ---
 
 ## 1. The Pressure: Seasonal Inventory Spikes
 
-To understand our year, we must look at the "Work-in-Process" (WIP). Our inventory levels are not static; they are heavily influenced by seasonal demand.
+To understand their year, we must look at the "Work-in-Process" (WIP). Their inventory levels were not static; rather, they were heavily influenced by seasonal demand.
 
 ---
 
@@ -166,8 +166,8 @@ reachability_data <- read_csv("knaflic-6-11.csv") %>%
 
 # 2. Create the Bar Chart
 ggplot(reachability_data, aes(x = Month, y = Reach_Value)) +
-  geom_col(fill = "#90EE90", alpha = 0.8) + 
-  geom_hline(yintercept = 0.90, linetype = "dashed", color = "red", size = 1.2) +
+  geom_col(fill = "#4682b4", alpha = 0.8) + 
+  geom_hline(yintercept = 0.90, linetype = "dashed", color = "#ff7300", size = 1.2) +
   geom_text(aes(label = percent(Reach_Value, accuracy = 0.1)), 
             vjust = -0.5, size = 4, fontface = "bold") +
   scale_y_continuous(labels = percent_format(), limits = c(0, 1.1)) +
@@ -182,13 +182,13 @@ ggplot(reachability_data, aes(x = Month, y = Reach_Value)) +
     axis.text.x = element_text(face = "bold")
   ) +
   # Goal Label
-  annotate("text", x = 1.5, y = 0.85, label = "GOAL: 90%", color = "red", fontface = "bold")
+  annotate("text", x = 1.5, y = 0.85, label = "GOAL: 90%", color = "#ff7300", fontface = "bold")
 
 ```
 
 ---
 
-**Key Takeaway:** Throughout the year, Front Office Reachability stayed remarkably high (consistently above 97%). While average answer times hovered slightly above their 8-second goal, the lines of communication remained open and reliable regardless of volume.
+**Key Takeaway:** Throughout the year, Front Office Reachability stayed remarkably high (consistently above 97%). While average answer times hovered slightly above their 8-second goal, the lines of communication remained open and reliable regardless of backlog volume.
 
 ---
 
@@ -215,8 +215,8 @@ ticket_data <- read_csv("knaflic-6-11.csv") %>%
     Month = factor(Month, levels = unique(Month))
   )
 ggplot(ticket_data, aes(x = Month, y = SLA_Value)) +
-  geom_col(fill = "#4682b4", alpha = 0.9) + 
-  geom_hline(yintercept = 0.90, linetype = "dashed", color = "red", size = 1.2) +
+  geom_col(fill = "#4682b4", alpha = 0.8) + 
+  geom_hline(yintercept = 0.90, linetype = "dashed", color = "#ff7300", size = 1.2) +
   geom_text(aes(label = percent(SLA_Value, accuracy = 1)), 
             vjust = -0.5, size = 4.5, fontface = "bold") +
   scale_y_continuous(labels = percent_format(), limits = c(0, 1.1)) +
@@ -230,13 +230,13 @@ ggplot(ticket_data, aes(x = Month, y = SLA_Value)) +
     panel.grid.major.x = element_blank(),
     axis.text.x = element_text(face = "bold")
   ) +
-  annotate("text", x = 1.5, y = 0.94, label = "GOAL: 90%", color = "red", fontface = "bold")
+  annotate("text", x = 1.5, y = 0.94, label = "GOAL: 90%", color = "#ff7300", fontface = "bold")
 
 ```
 
 ---
 
-**Key Takeaway:** The organization successfully transformed its delivery model. Starting from just 82% in January, they steadily increased their efficiency, easily surpassing the 90% goal and ending the year at a record 97% success rate.
+**Key Takeaway:** The organization successfully transformed its service model. Starting from just 82% in January, they steadily increased their efficiency, easily surpassing the 90% goal and ending the year at a record 97% success rate.
 
 ---
 

@@ -230,11 +230,11 @@ Challenge #4: Tickets
 
   **a.  Graph #1: Monthly Ticket Volume by Channel: Last 12 Months**
 
-  - While the average daily volume stayed fairly consistent between 300 and 375 tickets the total monthly ticket volume showed large fluctuations in the range of ~5,700 to ~7,800.
+  - While the average daily volume stayed fairly consistent between 300 and 375 tickets, the total monthly ticket volume showed large fluctuations in the range of ~5,700 to ~7,800, indicating potential seasonality in ticket volume.
 
   **b.  Graph #2: Work-In-Process Inventory Level at Month-End**
   
-  - The Work-in-Progress Inventory level spiked significantly in both May and November, also highlighted by the sudden spikes in 'Unprocessed Inbox', leading to a backlog prior to both the summer and Christmas seasons.
+  - The Work-in-Progress Inventory level spiked significantly in both May and November, also highlighted by the sudden spikes in 'Pending eFile', leading to a backlog prior to both the summer and Christmas seasons.
 
   **c.  Graph #3: % of Requests Within Standard Service Levels**
 
